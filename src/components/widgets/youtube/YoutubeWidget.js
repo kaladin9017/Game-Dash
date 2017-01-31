@@ -17,14 +17,15 @@ import VideoList from './video-list';
 
 class YoutubeWidget extends Component {
   constructor (props) {
-    super (props)
+    super (props);
 
     this.state = {videos: []};
-    this.videoSearch(this.props.search)
+    this.videoSearch(this.props.search);
+    this.handleSelect.bind(this);
   }
 
   handleSelect(video) {
-    this.setState({selectedVideo: video})
+    this.setState({selectedVideo: video});
   }
 
   videoSearch(term) {
@@ -33,13 +34,13 @@ class YoutubeWidget extends Component {
         {
           videos: videos,
           selectedVideo: videos[0]
-        })
+        });
     });
 
   }
 
   render() {
-    const videoSearch = _.debounce((term) => {this.videoSearch(term)}, 500)
+    const videoSearch = _.debounce((term) => {this.videoSearch(term);}, 500);
 
     return(
       <div>
@@ -47,7 +48,7 @@ class YoutubeWidget extends Component {
         <SearchBar onSearchTermChange={videoSearch} />
         <VideoDetail video={this.state.selectedVideo}/>
         <VideoList
-          onVideoSelect={this.handleSelect.bind(this)}
+          onVideoSelect={this.handleSelect}
           videos={this.state.videos}
           />
       </div>
@@ -58,7 +59,7 @@ class YoutubeWidget extends Component {
 
 
 function mapStateToProps(state) {
-   return {search: state.youtube.search}
+   return {search: state.youtube.search};
 }
 
 export default connect(mapStateToProps)(YoutubeWidget);

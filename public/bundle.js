@@ -27896,7 +27896,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var YOUTUBE_SEARCH_TERM = exports.YOUTUBE_SEARCH_TERM = 'YOUTUBE_SEARCH_TERM';
+	var YOUTUBE_SEARCH_TERM = exports.YOUTUBE_SEARCH_TERM = 'YOUTUBE_EARCH_TERM';
 
 /***/ },
 /* 262 */
@@ -46150,13 +46150,9 @@
 
 	var _types = __webpack_require__(261);
 
-	var _types2 = _interopRequireDefault(_types);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 	function changeYoutubeVideos(term) {
 	  return {
-	    type: _types2.default,
+	    type: _types.YOUTUBE_SEARCH_TERM,
 	    payload: term
 	  };
 	}
@@ -46257,25 +46253,21 @@
 	  }
 
 	  _createClass(SearchBar, [{
-	    key: "render",
-	    value: function render() {
-	      var _this2 = this;
-
-	      return _react2.default.createElement(
-	        "div",
-	        { className: "search-bar" },
-	        _react2.default.createElement("input", {
-	          onChange: function onChange(event) {
-	            return _this2.onInputChange(event.target.value);
-	          },
-	          value: this.state.term })
-	      );
-	    }
-	  }, {
 	    key: "onInputChange",
 	    value: function onInputChange(term) {
 	      this.setState({ term: term });
 	      this.props.onSearchTermChange(term);
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        { className: "search-bar" },
+	        _react2.default.createElement("input", {
+	          onChange: this.onInputChange(event.target.value),
+	          value: this.state.term })
+	      );
 	    }
 	  }]);
 

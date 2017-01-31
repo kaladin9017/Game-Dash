@@ -1,8 +1,8 @@
-import YOUTUBE_SEARCH_TERM from './types';
+import {YOUTUBE_SEARCH_TERM} from './types';
 
-export default function changeYoutubeVideos(term) {
+export function changeYoutubeVideos(term) {
   return {
     type: YOUTUBE_SEARCH_TERM,
     payload: term
-  }
+  };
 }

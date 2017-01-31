@@ -4,7 +4,7 @@ import youtubeReducer from './youtubeReducer';
 
 
 const rootReducer = combineReducers({
-  youtube: youtubeReducer,
+  youtube: youtubeReducer
 
 });
 

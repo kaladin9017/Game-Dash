@@ -6,7 +6,7 @@ import YoutubeWidget from './components/widgets/youtube/YoutubeWidget';
 
 
 export default (
-  <Route path='/' component={Main}>
-    <Route path='/test' component={YoutubeWidget}/>
+  <Route path="/" component={Main}>
+    <Route path="/test" component={YoutubeWidget}/>
   </Route>
-)
+);

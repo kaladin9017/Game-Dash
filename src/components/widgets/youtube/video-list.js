@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import VideoListItem from './video-list-items';
+
 
 const VideoList = (props) => {
 
@@ -9,14 +10,14 @@ const VideoList = (props) => {
         onVideoSelect = {props.onVideoSelect}
         video={video}
         key={video.etag}  />
-    )
+    );
   });
 
   return(
     <ul className="col-md-4 list-group">
       {videoItems}
     </ul>
-  )
-}
+  );
+};
 
 export default VideoList;
