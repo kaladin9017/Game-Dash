@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "npm-run-all --parallel nmon wpack lint:watch",
     "lint": "node_modules/.bin/esw webpack.config.js ./src",
     "lint:watch": "npm run lint -- --watch",
-    "start": "nodemon ./node_modules/.bin/babel-node --presets react,es2015 & server.js & webpack --w"
+    "nmon": "nodemon server.js --exec babel-node --presets es2015,es2015",
+    "wpack": "webpack --w"
   },
   "repository": {
     "type": "git",
@@ -45,10 +47,11 @@
   },
   "homepage": "https://github.com/kaladin9017/Game-Dash#readme",
   "devDependencies": {
+    "colors": "1.1.2",
     "eslint": "2.9.0",
     "eslint-plugin-import": "1.6.1",
     "eslint-plugin-react": "5.0.1",
     "eslint-watch": "2.1.11",
-    "colors": "1.1.2"
+    "nodemon": "^1.11.0"
   }
 }
