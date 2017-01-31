@@ -27874,7 +27874,7 @@
 	  var action = arguments[1];
 
 	  switch (action.type) {
-	    case _types.YOUTUBE_SERACH_TERM:
+	    case _types.YOUTUBE_SEARCH_TERM:
 	      return action.payload;
 	  }
 
@@ -27896,7 +27896,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var YOUTUBE_SEARCH_TERM = exports.YOUTUBE_SEARCH_TERM = 'YOUTUBE_EARCH_TERM';
+	var YOUTUBE_SEARCH_TERM = exports.YOUTUBE_SEARCH_TERM = 'YOUTUBE_SEARCH_TERM';
 
 /***/ },
 /* 262 */
@@ -27966,6 +27966,7 @@
 	  _createClass(Main, [{
 	    key: "render",
 	    value: function render() {
+
 	      return _react2.default.createElement(
 	        "div",
 	        null,
@@ -28049,6 +28050,7 @@
 
 	    _this.state = { videos: [] };
 	    _this.videoSearch(_this.props.search);
+	    _this.handleSelect.bind(_this);
 	    return _this;
 	  }
 
@@ -28087,7 +28089,7 @@
 	          _react2.default.createElement(_SearchBar2.default, { onSearchTermChange: videoSearch }),
 	          _react2.default.createElement(_videoDetail2.default, { video: this.state.selectedVideo }),
 	          _react2.default.createElement(_videoList2.default, {
-	            onVideoSelect: this.handleSelect.bind(this),
+	            onVideoSelect: this.handleSelect,
 	            videos: this.state.videos
 	          })
 	        )
@@ -46146,7 +46148,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.default = changeYoutubeVideos;
+	exports.changeYoutubeVideos = changeYoutubeVideos;
 
 	var _types = __webpack_require__(261);
 
@@ -46187,7 +46189,6 @@
 
 	  var videoId = video.id.videoId;
 	  var url = "https://www.youtube.com/embed/" + videoId;
-	  console.log(url);
 
 	  return _react2.default.createElement(
 	    "div",

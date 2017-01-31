@@ -23,6 +23,7 @@
   },
   "rules": {
     "quotes": 0,
+    "indent": ["error", 2],
     "no-console": 1,
     "no-debugger": 1,
     "no-var": 1,
