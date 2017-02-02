@@ -68,7 +68,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(285);
+	__webpack_require__(284);
 
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRedux.Provider,
@@ -28051,7 +28051,6 @@
 
 	    _this.state = { videos: [] };
 	    _this.videoSearch(_this.props.search);
-	    _this.handleSelect.bind(_this);
 	    return _this;
 	  }
 
@@ -28090,7 +28089,7 @@
 	          _react2.default.createElement(_SearchBar2.default, { onSearchTermChange: videoSearch }),
 	          _react2.default.createElement(_videoDetail2.default, { video: this.state.selectedVideo }),
 	          _react2.default.createElement(_videoList2.default, {
-	            onVideoSelect: this.handleSelect,
+	            onVideoSelect: this.handleSelect.bind(this),
 	            videos: this.state.videos
 	          })
 	        )
@@ -46256,7 +46255,8 @@
 
 	  _createClass(SearchBar, [{
 	    key: "onInputChange",
-	    value: function onInputChange(term) {
+	    value: function onInputChange(event) {
+	      var term = event.target.value;
 	      this.setState({ term: term });
 	      this.props.onSearchTermChange(term);
 	    }
@@ -46267,7 +46267,7 @@
 	        "div",
 	        { className: "search-bar" },
 	        _react2.default.createElement("input", {
-	          onChange: this.onInputChange(event.target.value),
+	          onChange: this.onInputChange,
 	          value: this.state.term })
 	      );
 	    }
@@ -46292,7 +46292,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _videoListItems = __webpack_require__(284);
+	var _videoListItems = __webpack_require__(288);
 
 	var _videoListItems2 = _interopRequireDefault(_videoListItems);
 
@@ -46320,61 +46320,13 @@
 /* 284 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var VideoListItem = function VideoListItem(_ref) {
-	  var video = _ref.video,
-	      onVideoSelect = _ref.onVideoSelect;
-
-	  var videoUrl = video.snippet.thumbnails.default.url;
-
-	  return _react2.default.createElement(
-	    "li",
-	    { onClick: onVideoSelect.bind(undefined, video), className: "list-group-item" },
-	    _react2.default.createElement(
-	      "div",
-	      { className: "video-list media" },
-	      _react2.default.createElement(
-	        "div",
-	        { className: "media-left" },
-	        _react2.default.createElement("img", { className: "media-object", src: videoUrl })
-	      ),
-	      _react2.default.createElement(
-	        "div",
-	        { className: "media-body" },
-	        _react2.default.createElement(
-	          "div",
-	          { className: "media-heading" },
-	          video.snippet.title
-	        )
-	      )
-	    )
-	  );
-	};
-
-	exports.default = VideoListItem;
-
-/***/ },
-/* 285 */
-/***/ function(module, exports, __webpack_require__) {
-
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(286);
+	var content = __webpack_require__(285);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(288)(content, {});
+	var update = __webpack_require__(287)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -46391,10 +46343,10 @@
 	}
 
 /***/ },
-/* 286 */
+/* 285 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(287)();
+	exports = module.exports = __webpack_require__(286)();
 	// imports
 
 
@@ -46405,7 +46357,7 @@
 
 
 /***/ },
-/* 287 */
+/* 286 */
 /***/ function(module, exports) {
 
 	/*
@@ -46461,7 +46413,7 @@
 
 
 /***/ },
-/* 288 */
+/* 287 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -46711,6 +46663,54 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
+
+/***/ },
+/* 288 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var VideoListItem = function VideoListItem(_ref) {
+	  var video = _ref.video,
+	      onVideoSelect = _ref.onVideoSelect;
+
+	  var videoUrl = video.snippet.thumbnails.default.url;
+
+	  return _react2.default.createElement(
+	    "li",
+	    { onClick: onVideoSelect.bind(undefined, video), className: "list-group-item" },
+	    _react2.default.createElement(
+	      "div",
+	      { className: "video-list media" },
+	      _react2.default.createElement(
+	        "div",
+	        { className: "media-left" },
+	        _react2.default.createElement("img", { className: "media-object", src: videoUrl })
+	      ),
+	      _react2.default.createElement(
+	        "div",
+	        { className: "media-body" },
+	        _react2.default.createElement(
+	          "div",
+	          { className: "media-heading" },
+	          video.snippet.title
+	        )
+	      )
+	    )
+	  );
+	};
+
+	exports.default = VideoListItem;
 
 /***/ }
 /******/ ]);
