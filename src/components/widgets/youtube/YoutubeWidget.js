@@ -21,7 +21,6 @@ class YoutubeWidget extends Component {
 
     this.state = {videos: []};
     this.videoSearch(this.props.search);
-    this.handleSelect.bind(this);
   }
 
   handleSelect(video) {
@@ -48,7 +47,7 @@ class YoutubeWidget extends Component {
         <SearchBar onSearchTermChange={videoSearch} />
         <VideoDetail video={this.state.selectedVideo}/>
         <VideoList
-          onVideoSelect={this.handleSelect}
+          onVideoSelect={this.handleSelect.bind(this)}
           videos={this.state.videos}
           />
       </div>
@@ -59,7 +58,7 @@ class YoutubeWidget extends Component {
 
 
 function mapStateToProps(state) {
-  return { search: state.youtube.search };
+  return {search: state.youtube.search};
 }
 
 export default connect(mapStateToProps)(YoutubeWidget);
