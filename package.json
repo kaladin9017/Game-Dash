@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm-run-all --parallel nmon wpack lint:watch",
+    "startwin": "concurrently --kill-others \"webpack --watch\" \"nodemon ./server.js\"",
     "lint": "node_modules/.bin/esw webpack.config.js ./src",
     "lint:watch": "npm run lint -- --watch",
     "nmon": "nodemon server.js --exec babel-node --presets es2015,es2015",
