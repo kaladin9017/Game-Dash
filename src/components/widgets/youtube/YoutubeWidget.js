@@ -59,7 +59,7 @@ class YoutubeWidget extends Component {
 
 
 function mapStateToProps(state) {
-   return {search: state.youtube.search};
+  return { search: state.youtube.search };
 }
 
 export default connect(mapStateToProps)(YoutubeWidget);

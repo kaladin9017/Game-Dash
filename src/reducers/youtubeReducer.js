@@ -7,7 +7,8 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case YOUTUBE_SEARCH_TERM:
+
+  case YOUTUBE_SEARCH_TERM:
     return action.payload;
   }
 

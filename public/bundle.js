@@ -27874,6 +27874,7 @@
 	  var action = arguments[1];
 
 	  switch (action.type) {
+
 	    case _types.YOUTUBE_SEARCH_TERM:
 	      return action.payload;
 	  }
