@@ -30,9 +30,6 @@ router.route('/api/fetchAuthorizationCode')
   .catch((err) => {
     res.sendStatus(500);
   });
-
-  
-
 });
 
 module.exports = router;
