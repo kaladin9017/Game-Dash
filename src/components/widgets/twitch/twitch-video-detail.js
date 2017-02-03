@@ -12,7 +12,7 @@ const TwitchVideoDetail = ({channel}) => {
         scrolling="no"
         allowFullScreen="true">
     </iframe>
-    
+
     </div>
   );
 

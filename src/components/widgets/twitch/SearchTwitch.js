@@ -12,7 +12,8 @@ class SearchTwitch extends Component {
     this.props.fetchTwitchVideos(this.state.input);
   }
   handleChange(event) {
-    this.setState({input: event.target.value});
+    let term = event.target.value.split(' ').join('+');
+    this.setState({input: term});
   }
   render() {
     return(

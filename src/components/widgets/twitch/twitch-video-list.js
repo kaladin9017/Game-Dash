@@ -1,12 +1,14 @@
 import React from 'react';
 import TwitchListItem from './twitch-list-item';
 
-const TwitchVideoList  = ({videos}) => {
+const TwitchVideoList  = ({videos, getVideo}) => {
   const videoItems = videos.map((video) => {
     return (
       <TwitchListItem
         video={video}
-        key={video['_id']}  />
+        key={video['_id']}
+        getVideo={getVideo}
+      />
     );
   });
   return (
