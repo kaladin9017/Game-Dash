@@ -19,19 +19,22 @@ class EveToken extends Component {
     }).then((data) => {
       this.setState({authToken: data.data.access_token, refreshToken: data.data.refresh_token});
     })
+    .then(() => {
+
+    })
     .catch((err) => {
-      console.log(err);
+      alert(err);
     });
   }
   handleClick(){
 
   }
   render(){
-    let screen = null;
+    let screen = "Loading...";
     if (this.state.authToken) {
       screen = (
         <div>
-          {this.state.authToken}
+          {this.props.children}
         </div>
       );
     }
