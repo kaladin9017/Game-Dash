@@ -3,6 +3,7 @@ import React from 'react';
 const TwitchVideoDetail = ({channel}) => {
   return(
     <div>
+
       <iframe
         src={`http://player.twitch.tv/?channel=${channel}`}
         height="720"
@@ -11,6 +12,7 @@ const TwitchVideoDetail = ({channel}) => {
         scrolling="no"
         allowFullScreen="true">
     </iframe>
+    
     </div>
   );
 
