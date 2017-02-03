@@ -28,3 +28,5 @@
 1. World of Warcraft
 2. Path of Exile
 3. Eve Online
+
+MVP will include a basic framework of the Dashboard, 2 custom widgets, and 3 custom book marked widgets that link to other apps with included functionality.
