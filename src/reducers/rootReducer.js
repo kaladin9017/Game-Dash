@@ -1,10 +1,12 @@
 
 import { combineReducers } from 'redux';
 import youtubeReducer from './youtubeReducer';
+import twitchReducer from './twitchReducer';
 
 
 const rootReducer = combineReducers({
-  youtube: youtubeReducer
+  youtube: youtubeReducer,
+  twitchVideos: twitchReducer
 
 });
 
