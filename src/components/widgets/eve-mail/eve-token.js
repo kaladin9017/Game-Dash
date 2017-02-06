@@ -1,19 +1,17 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {browserHistory} from 'react-router';
+import {eveMailWriteTokens} from '../../../actions/eve-mail';
+import {bindActionCreators} from 'redux';
 
 class EveToken extends Component {
-  constructor(props){
-    super(props);
-    let url = window.location.href;
-    let token = url.slice(url.indexOf('=') + 1, url.indexOf('&'));
-    this.state = {
-      token: token,
-      authToken: null,
-      refreshToken: null,
-      characterId: 1948822847
-    };
-  }
   componentDidMount(){
+
+    let url = window.location.href;
+    let authToken = url.slice(url.indexOf('=') + 1, url.indexOf('&'));
+    this.props.eveMailWriteTokens(authToken);
+    browserHistory.push('/eveMail');
+
     axios.post('/api/fetchAuthorizationCode', {
       token: this.state.token
     }).then((data) => {
@@ -25,22 +23,19 @@ class EveToken extends Component {
   }
   handleClick(){
 
+
   }
   render(){
-    let screen = null;
-    if (this.state.authToken) {
-      screen = (
-        <div>
-          {this.state.authToken}
-        </div>
-      );
-    }
     return (
       <div>
-        {screen}
+        Loading...
       </div>
     );
   }
 }
 
-export default EveToken;
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({eveMailWriteTokens}, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(EveToken);

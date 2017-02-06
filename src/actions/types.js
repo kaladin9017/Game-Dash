@@ -1,3 +1,10 @@
+///Video Constants
 export const YOUTUBE_SEARCH_TERM = 'YOUTUBE_SEARCH_TERM';
 export const GET_TWITCH_VIDEOS = 'GET_TWITCH_VIDEOS';
+
+///Eve-Mail
+export const EVE_MAIL_FETCH_HEADERS = 'EVE_MAIL_FETCH_HEADERS';
+export const EVE_MAIL_WRITE_TOKENS = 'EVE_MAIL_WRITE_TOKENS';
+
+// Wow Constants
 export const GET_WOW_RELM_STATUS = 'GET_WOW_RELM_STATUS';

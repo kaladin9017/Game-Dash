@@ -4,6 +4,12 @@ const path = require("path");
 const axios = require("axios");
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
+/*
+- User clicks button to begin oauth
+- User is taken to eve website to login and confirm
+- User is redirected back to mail app with auth token and refresh
+- Mail app send api call to populate mail
+*/
 
 router.route('/api/fetchAuthorizationCode')
 .post((req, res) => {
@@ -21,7 +27,7 @@ router.route('/api/fetchAuthorizationCode')
     },
     params: {
       grant_type: "authorization_code",
-      code: req.body.token
+      code: req.body.authToken
     }
   })
   .then((data) => {
