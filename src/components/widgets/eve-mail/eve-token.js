@@ -20,7 +20,7 @@ class EveToken extends Component {
       this.setState({authToken: data.data.access_token, refreshToken: data.data.refresh_token});
     })
     .catch((err) => {
-      console.log(err);
+      throw(err);
     });
   }
   handleClick(){
