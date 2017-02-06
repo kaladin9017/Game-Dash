@@ -1,4 +1,4 @@
-import {YOUTUBE_SEARCH_TERM, GET_TWITCH_VIDEOS} from './types';
+import { YOUTUBE_SEARCH_TERM, GET_TWITCH_VIDEOS, GET_WOW_RELM_STATUS } from './types';
 
 import axios from 'axios';
 
@@ -19,6 +19,13 @@ export function fetchTwitchVideos(term) {
   let response = axios.get(`https://api.twitch.tv/kraken/search/streams?query=${term}`, config);
   return {
     type: GET_TWITCH_VIDEOS,
+    payload: response
+  };
+}
+export function getWowRelmStatus() {
+  let response = axios.get("https://us.api.battle.net/wow/realm/status?locale=en_US&apikey=4f6q8vb5a8vbmt8p86bs6jkrv4r2edx2");
+  return {
+    type: GET_WOW_RELM_STATUS,
     payload: response
   };
 }
