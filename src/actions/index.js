@@ -1,5 +1,4 @@
 import {YOUTUBE_SEARCH_TERM, GET_TWITCH_VIDEOS} from './types';
-
 import axios from 'axios';
 
 export function changeYoutubeVideos(term) {
