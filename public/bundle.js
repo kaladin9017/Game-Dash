@@ -62,13 +62,13 @@
 
 	var _configureStore2 = _interopRequireDefault(_configureStore);
 
-	var _routes = __webpack_require__(290);
+	var _routes = __webpack_require__(291);
 
 	var _routes2 = _interopRequireDefault(_routes);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(323);
+	__webpack_require__(318);
 
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRedux.Provider,
@@ -27888,12 +27888,18 @@
 
 	var _eveMailReducer2 = _interopRequireDefault(_eveMailReducer);
 
+	var _wowRelmReducer = __webpack_require__(290);
+
+	var _wowRelmReducer2 = _interopRequireDefault(_wowRelmReducer);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var rootReducer = (0, _redux.combineReducers)({
 	  youtube: _youtubeReducer2.default,
 	  twitchVideos: _twitchReducer2.default,
-	  eveMail: _eveMailReducer2.default
+	  eveMail: _eveMailReducer2.default,
+	  wowRelms: _wowRelmReducer2.default
+
 	});
 
 	exports.default = rootReducer;
@@ -27936,13 +27942,16 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	///Video Constants
 	var YOUTUBE_SEARCH_TERM = exports.YOUTUBE_SEARCH_TERM = 'YOUTUBE_SEARCH_TERM';
 	var GET_TWITCH_VIDEOS = exports.GET_TWITCH_VIDEOS = 'GET_TWITCH_VIDEOS';
 
 	///Eve-Mail
-
 	var EVE_MAIL_FETCH_HEADERS = exports.EVE_MAIL_FETCH_HEADERS = 'EVE_MAIL_FETCH_HEADERS';
 	var EVE_MAIL_WRITE_TOKENS = exports.EVE_MAIL_WRITE_TOKENS = 'EVE_MAIL_WRITE_TOKENS';
+
+	// Wow Constants
+	var GET_WOW_RELM_STATUS = exports.GET_WOW_RELM_STATUS = 'GET_WOW_RELM_STATUS';
 
 /***/ },
 /* 263 */
@@ -29513,40 +29522,55 @@
 	  value: true
 	});
 
+	exports.default = function () {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case _types.GET_WOW_RELM_STATUS:
+	      return action.payload.data;
+	  }
+
+	  return state;
+	};
+
+	var _types = __webpack_require__(262);
+
+	var initialState = { realms: [] };
+
+/***/ },
+/* 291 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
 
 	var _reactRouter = __webpack_require__(197);
 
-	var _Main = __webpack_require__(291);
+	var _Main = __webpack_require__(292);
 
 	var _Main2 = _interopRequireDefault(_Main);
 
-	var _TwitchWidget = __webpack_require__(292);
-
-	var _TwitchWidget2 = _interopRequireDefault(_TwitchWidget);
-
-	var _YoutubeWidget = __webpack_require__(298);
+	var _YoutubeWidget = __webpack_require__(293);
 
 	var _YoutubeWidget2 = _interopRequireDefault(_YoutubeWidget);
 
-	var _eveToken = __webpack_require__(318);
+	var _eveToken = __webpack_require__(314);
 
 	var _eveToken2 = _interopRequireDefault(_eveToken);
 
-	var _eveMail = __webpack_require__(320);
+	var _eveMail = __webpack_require__(316);
 
 	var _eveMail2 = _interopRequireDefault(_eveMail);
 
-	var _eveMailSidebar = __webpack_require__(322);
-
-	var _eveMailSidebar2 = _interopRequireDefault(_eveMailSidebar);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	// import EveHeaderList from './components/widgets/eve-mail/eve-mail-header';
-	// import EveMailItem from './components/widgets/eve-mail/eve-mail-item';
 
 	exports.default = _react2.default.createElement(
 	  _reactRouter.Route,
@@ -29557,7 +29581,7 @@
 	);
 
 /***/ },
-/* 291 */
+/* 292 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -29612,331 +29636,9 @@
 	exports.default = Main;
 
 /***/ },
-/* 292 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRedux = __webpack_require__(159);
-
-	var _twitchVideoDetail = __webpack_require__(293);
-
-	var _twitchVideoDetail2 = _interopRequireDefault(_twitchVideoDetail);
-
-	var _SearchTwitch = __webpack_require__(294);
-
-	var _SearchTwitch2 = _interopRequireDefault(_SearchTwitch);
-
-	var _twitchVideoList = __webpack_require__(296);
-
-	var _twitchVideoList2 = _interopRequireDefault(_twitchVideoList);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var TwitchWidget = function (_Component) {
-	  _inherits(TwitchWidget, _Component);
-
-	  function TwitchWidget(props) {
-	    _classCallCheck(this, TwitchWidget);
-
-	    var _this = _possibleConstructorReturn(this, (TwitchWidget.__proto__ || Object.getPrototypeOf(TwitchWidget)).call(this, props));
-
-	    _this.state = { channel: "Zizaran" };
-	    return _this;
-	  }
-
-	  _createClass(TwitchWidget, [{
-	    key: 'getVideo',
-	    value: function getVideo(video) {
-	      this.setState({ channel: video.channel.name });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(_SearchTwitch2.default, null),
-	        _react2.default.createElement(_twitchVideoDetail2.default, { channel: this.state.channel }),
-	        this.props.twitchVideos ? _react2.default.createElement(
-	          'div',
-	          null,
-	          ' ',
-	          _react2.default.createElement(_twitchVideoList2.default, { videos: this.props.twitchVideos, getVideo: this.getVideo.bind(this) }),
-	          ' '
-	        ) : null
-	      );
-	    }
-	  }]);
-
-	  return TwitchWidget;
-	}(_react.Component);
-
-	function mapStateToProps(state) {
-	  return {
-	    twitchVideos: state.twitchVideos
-	  };
-	}
-	exports.default = (0, _reactRedux.connect)(mapStateToProps)(TwitchWidget);
-
-/***/ },
 /* 293 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var TwitchVideoDetail = function TwitchVideoDetail(_ref) {
-	  var channel = _ref.channel;
-
-	  return _react2.default.createElement(
-	    "div",
-	    null,
-	    _react2.default.createElement("iframe", {
-	      src: "http://player.twitch.tv/?channel=" + channel,
-	      height: "720",
-	      width: "1280",
-	      frameBorder: "0",
-	      scrolling: "no",
-	      allowFullScreen: "true" })
-	  );
-	};
-
-	exports.default = TwitchVideoDetail;
-
-/***/ },
-/* 294 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _axios = __webpack_require__(265);
-
-	var _axios2 = _interopRequireDefault(_axios);
-
-	var _reactRedux = __webpack_require__(159);
-
-	var _index = __webpack_require__(295);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var SearchTwitch = function (_Component) {
-	  _inherits(SearchTwitch, _Component);
-
-	  function SearchTwitch(props) {
-	    _classCallCheck(this, SearchTwitch);
-
-	    var _this = _possibleConstructorReturn(this, (SearchTwitch.__proto__ || Object.getPrototypeOf(SearchTwitch)).call(this, props));
-
-	    _this.state = { input: '' };
-	    return _this;
-	  }
-
-	  _createClass(SearchTwitch, [{
-	    key: 'handleSearch',
-	    value: function handleSearch() {
-	      this.props.fetchTwitchVideos(this.state.input);
-	    }
-	  }, {
-	    key: 'handleChange',
-	    value: function handleChange(event) {
-	      var term = event.target.value.split(' ').join('+');
-	      this.setState({ input: term });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement('input', { type: 'text', value: this.state.input, onChange: this.handleChange.bind(this) }),
-	        _react2.default.createElement(
-	          'button',
-	          { onClick: this.handleSearch.bind(this) },
-	          'Search'
-	        )
-	      );
-	    }
-	  }]);
-
-	  return SearchTwitch;
-	}(_react.Component);
-
-	exports.default = (0, _reactRedux.connect)(null, { fetchTwitchVideos: _index.fetchTwitchVideos })(SearchTwitch);
-
-/***/ },
-/* 295 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.changeYoutubeVideos = changeYoutubeVideos;
-	exports.fetchTwitchVideos = fetchTwitchVideos;
-
-	var _types = __webpack_require__(262);
-
-	var _axios = __webpack_require__(265);
-
-	var _axios2 = _interopRequireDefault(_axios);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function changeYoutubeVideos(term) {
-	  return {
-	    type: _types.YOUTUBE_SEARCH_TERM,
-	    payload: term
-	  };
-	}
-
-	function fetchTwitchVideos(term) {
-	  var config = {
-	    headers: {
-	      'Accept': 'application/vnd.twitchtv.v5+json',
-	      'Client-ID': '0kl1apsft0hl4a8bayxw6rqh98bkkl'
-	    }
-	  };
-	  var response = _axios2.default.get('https://api.twitch.tv/kraken/search/streams?query=' + term, config);
-	  return {
-	    type: _types.GET_TWITCH_VIDEOS,
-	    payload: response
-	  };
-	}
-
-/***/ },
-/* 296 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _twitchListItem = __webpack_require__(297);
-
-	var _twitchListItem2 = _interopRequireDefault(_twitchListItem);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var TwitchVideoList = function TwitchVideoList(_ref) {
-	  var videos = _ref.videos,
-	      getVideo = _ref.getVideo;
-
-	  var videoItems = videos.map(function (video) {
-	    return _react2.default.createElement(_twitchListItem2.default, {
-	      video: video,
-	      key: video['_id'],
-	      getVideo: getVideo
-	    });
-	  });
-	  return _react2.default.createElement(
-	    'ul',
-	    { className: 'col-md-4 list-group' },
-	    videoItems
-	  );
-	};
-
-	exports.default = TwitchVideoList;
-
-/***/ },
-/* 297 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var VideoListItem = function VideoListItem(_ref) {
-	  var video = _ref.video,
-	      key = _ref.key,
-	      getVideo = _ref.getVideo;
-
-	  return _react2.default.createElement(
-	    "li",
-	    { className: "list-group-item", key: key, onClick: getVideo.bind(undefined, video) },
-	    _react2.default.createElement(
-	      "div",
-	      { className: "video-list media" },
-	      _react2.default.createElement(
-	        "div",
-	        { className: "media-left" },
-	        _react2.default.createElement("img", { className: "media-object", src: video.channel['video_banner'] })
-	      ),
-	      _react2.default.createElement(
-	        "div",
-	        { className: "media-body" },
-	        _react2.default.createElement(
-	          "div",
-	          { className: "media-heading" },
-	          video.channel.name
-	        )
-	      )
-	    )
-	  );
-	};
-
-	exports.default = VideoListItem;
-
-/***/ },
-/* 298 */
-/***/ function(module, exports, __webpack_require__) {
-
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
@@ -29951,25 +29653,25 @@
 
 	var _reactRedux = __webpack_require__(159);
 
-	var _lodash = __webpack_require__(299);
+	var _lodash = __webpack_require__(294);
 
 	var _lodash2 = _interopRequireDefault(_lodash);
 
-	var _youtubeApiSearch = __webpack_require__(300);
+	var _youtubeApiSearch = __webpack_require__(295);
 
 	var _youtubeApiSearch2 = _interopRequireDefault(_youtubeApiSearch);
 
-	var _index = __webpack_require__(295);
+	var _index = __webpack_require__(309);
 
-	var _videoDetail = __webpack_require__(314);
+	var _videoDetail = __webpack_require__(310);
 
 	var _videoDetail2 = _interopRequireDefault(_videoDetail);
 
-	var _SearchBar = __webpack_require__(315);
+	var _SearchBar = __webpack_require__(311);
 
 	var _SearchBar2 = _interopRequireDefault(_SearchBar);
 
-	var _videoList = __webpack_require__(316);
+	var _videoList = __webpack_require__(312);
 
 	var _videoList2 = _interopRequireDefault(_videoList);
 
@@ -30054,7 +29756,7 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps)(YoutubeWidget);
 
 /***/ },
-/* 299 */
+/* 294 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global, module) {/**
@@ -47145,10 +46847,10 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(184)(module)))
 
 /***/ },
-/* 300 */
+/* 295 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var axios = __webpack_require__(301);
+	var axios = __webpack_require__(296);
 
 	var ROOT_URL = 'https://www.googleapis.com/youtube/v3/search';
 
@@ -47175,21 +46877,21 @@
 
 
 /***/ },
-/* 301 */
+/* 296 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(302);
+	module.exports = __webpack_require__(297);
 
 /***/ },
-/* 302 */
+/* 297 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var defaults = __webpack_require__(303);
-	var utils = __webpack_require__(304);
-	var dispatchRequest = __webpack_require__(305);
-	var InterceptorManager = __webpack_require__(312);
+	var defaults = __webpack_require__(298);
+	var utils = __webpack_require__(299);
+	var dispatchRequest = __webpack_require__(300);
+	var InterceptorManager = __webpack_require__(307);
 
 	var axios = module.exports = function (config) {
 	  // Allow for axios('example/url'[, config]) a la fetch API
@@ -47236,7 +46938,7 @@
 	axios.all = function (promises) {
 	  return Promise.all(promises);
 	};
-	axios.spread = __webpack_require__(313);
+	axios.spread = __webpack_require__(308);
 
 	// Expose interceptors
 	axios.interceptors = {
@@ -47275,12 +46977,12 @@
 
 
 /***/ },
-/* 303 */
+/* 298 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(304);
+	var utils = __webpack_require__(299);
 
 	var PROTECTION_PREFIX = /^\)\]\}',?\n/;
 	var DEFAULT_CONTENT_TYPE = {
@@ -47343,7 +47045,7 @@
 
 
 /***/ },
-/* 304 */
+/* 299 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -47598,7 +47300,7 @@
 
 
 /***/ },
-/* 305 */
+/* 300 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -47615,11 +47317,11 @@
 	    try {
 	      // For browsers use XHR adapter
 	      if ((typeof XMLHttpRequest !== 'undefined') || (typeof ActiveXObject !== 'undefined')) {
-	        __webpack_require__(306)(resolve, reject, config);
+	        __webpack_require__(301)(resolve, reject, config);
 	      }
 	      // For node use HTTP adapter
 	      else if (typeof process !== 'undefined') {
-	        __webpack_require__(306)(resolve, reject, config);
+	        __webpack_require__(301)(resolve, reject, config);
 	      }
 	    } catch (e) {
 	      reject(e);
@@ -47631,18 +47333,18 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
 
 /***/ },
-/* 306 */
+/* 301 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	/*global ActiveXObject:true*/
 
-	var defaults = __webpack_require__(303);
-	var utils = __webpack_require__(304);
-	var buildUrl = __webpack_require__(307);
-	var parseHeaders = __webpack_require__(308);
-	var transformData = __webpack_require__(309);
+	var defaults = __webpack_require__(298);
+	var utils = __webpack_require__(299);
+	var buildUrl = __webpack_require__(302);
+	var parseHeaders = __webpack_require__(303);
+	var transformData = __webpack_require__(304);
 
 	module.exports = function xhrAdapter(resolve, reject, config) {
 	  // Transform request data
@@ -47702,8 +47404,8 @@
 	  // This is only done if running in a standard browser environment.
 	  // Specifically not if we're in a web worker, or react-native.
 	  if (utils.isStandardBrowserEnv()) {
-	    var cookies = __webpack_require__(310);
-	    var urlIsSameOrigin = __webpack_require__(311);
+	    var cookies = __webpack_require__(305);
+	    var urlIsSameOrigin = __webpack_require__(306);
 
 	    // Add xsrf header
 	    var xsrfValue = urlIsSameOrigin(config.url) ?
@@ -47753,12 +47455,12 @@
 
 
 /***/ },
-/* 307 */
+/* 302 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(304);
+	var utils = __webpack_require__(299);
 
 	function encode(val) {
 	  return encodeURIComponent(val).
@@ -47818,12 +47520,12 @@
 
 
 /***/ },
-/* 308 */
+/* 303 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(304);
+	var utils = __webpack_require__(299);
 
 	/**
 	 * Parse headers into an object
@@ -47858,12 +47560,12 @@
 
 
 /***/ },
-/* 309 */
+/* 304 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(304);
+	var utils = __webpack_require__(299);
 
 	/**
 	 * Transform the data for a request or a response
@@ -47883,7 +47585,7 @@
 
 
 /***/ },
-/* 310 */
+/* 305 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47894,7 +47596,7 @@
 	 *  Please see lib/utils.isStandardBrowserEnv before including this file.
 	 */
 
-	var utils = __webpack_require__(304);
+	var utils = __webpack_require__(299);
 
 	module.exports = {
 	  write: function write(name, value, expires, path, domain, secure) {
@@ -47932,7 +47634,7 @@
 
 
 /***/ },
-/* 311 */
+/* 306 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47943,7 +47645,7 @@
 	 *  Please see lib/utils.isStandardBrowserEnv before including this file.
 	 */
 
-	var utils = __webpack_require__(304);
+	var utils = __webpack_require__(299);
 	var msie = /(msie|trident)/i.test(navigator.userAgent);
 	var urlParsingNode = document.createElement('a');
 	var originUrl;
@@ -47996,12 +47698,12 @@
 
 
 /***/ },
-/* 312 */
+/* 307 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var utils = __webpack_require__(304);
+	var utils = __webpack_require__(299);
 
 	function InterceptorManager() {
 	  this.handlers = [];
@@ -48054,7 +47756,7 @@
 
 
 /***/ },
-/* 313 */
+/* 308 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -48087,7 +47789,56 @@
 
 
 /***/ },
-/* 314 */
+/* 309 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.changeYoutubeVideos = changeYoutubeVideos;
+	exports.fetchTwitchVideos = fetchTwitchVideos;
+	exports.getWowRelmStatus = getWowRelmStatus;
+
+	var _types = __webpack_require__(262);
+
+	var _axios = __webpack_require__(265);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function changeYoutubeVideos(term) {
+	  return {
+	    type: _types.YOUTUBE_SEARCH_TERM,
+	    payload: term
+	  };
+	}
+
+	function fetchTwitchVideos(term) {
+	  var config = {
+	    headers: {
+	      'Accept': 'application/vnd.twitchtv.v5+json',
+	      'Client-ID': '0kl1apsft0hl4a8bayxw6rqh98bkkl'
+	    }
+	  };
+	  var response = _axios2.default.get('https://api.twitch.tv/kraken/search/streams?query=' + term, config);
+	  return {
+	    type: _types.GET_TWITCH_VIDEOS,
+	    payload: response
+	  };
+	}
+	function getWowRelmStatus() {
+	  var response = _axios2.default.get("https://us.api.battle.net/wow/realm/status?locale=en_US&apikey=4f6q8vb5a8vbmt8p86bs6jkrv4r2edx2");
+	  return {
+	    type: _types.GET_WOW_RELM_STATUS,
+	    payload: response
+	  };
+	}
+
+/***/ },
+/* 310 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -48145,7 +47896,7 @@
 	exports.default = VideoDetail;
 
 /***/ },
-/* 315 */
+/* 311 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -48206,7 +47957,7 @@
 	exports.default = SearchBar;
 
 /***/ },
-/* 316 */
+/* 312 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48219,7 +47970,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _videoListItems = __webpack_require__(317);
+	var _videoListItems = __webpack_require__(313);
 
 	var _videoListItems2 = _interopRequireDefault(_videoListItems);
 
@@ -48244,7 +47995,7 @@
 	exports.default = VideoList;
 
 /***/ },
-/* 317 */
+/* 313 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -48292,7 +48043,7 @@
 	exports.default = VideoListItem;
 
 /***/ },
-/* 318 */
+/* 314 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48311,7 +48062,7 @@
 
 	var _reactRouter = __webpack_require__(197);
 
-	var _eveMail = __webpack_require__(319);
+	var _eveMail = __webpack_require__(315);
 
 	var _redux = __webpack_require__(170);
 
@@ -48361,7 +48112,7 @@
 	exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(EveToken);
 
 /***/ },
-/* 319 */
+/* 315 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48419,7 +48170,7 @@
 	}
 
 /***/ },
-/* 320 */
+/* 316 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -48438,7 +48189,7 @@
 
 	var _reactRedux = __webpack_require__(159);
 
-	var _eveMail = __webpack_require__(319);
+	var _eveMail = __webpack_require__(315);
 
 	var _axios = __webpack_require__(265);
 
@@ -48452,7 +48203,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var EVE_PIC = __webpack_require__(321);
+	var EVE_PIC = __webpack_require__(317);
 
 	var EveMail = function (_Component) {
 	  _inherits(EveMail, _Component);
@@ -48527,95 +48278,22 @@
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(EveMail);
 
 /***/ },
-/* 321 */
+/* 317 */
 /***/ function(module, exports) {
 
 	module.exports = "data:image/png;base64,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"
 
 /***/ },
-/* 322 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var EveMailSidebar = function (_Component) {
-	  _inherits(EveMailSidebar, _Component);
-
-	  function EveMailSidebar() {
-	    _classCallCheck(this, EveMailSidebar);
-
-	    return _possibleConstructorReturn(this, (EveMailSidebar.__proto__ || Object.getPrototypeOf(EveMailSidebar)).apply(this, arguments));
-	  }
-
-	  _createClass(EveMailSidebar, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'button',
-	          null,
-	          'Inbox'
-	        ),
-	        _react2.default.createElement(
-	          'button',
-	          null,
-	          'Alliance'
-	        ),
-	        _react2.default.createElement(
-	          'button',
-	          null,
-	          'Corporation'
-	        ),
-	        _react2.default.createElement(
-	          'button',
-	          null,
-	          'Sent'
-	        ),
-	        _react2.default.createElement(
-	          'button',
-	          null,
-	          'Trash'
-	        )
-	      );
-	    }
-	  }]);
-
-	  return EveMailSidebar;
-	}(_react.Component);
-
-	exports.default = EveMailSidebar;
-
-/***/ },
-/* 323 */
+/* 318 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(324);
+	var content = __webpack_require__(319);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(326)(content, {});
+	var update = __webpack_require__(321)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -48632,10 +48310,10 @@
 	}
 
 /***/ },
-/* 324 */
+/* 319 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(325)();
+	exports = module.exports = __webpack_require__(320)();
 	// imports
 
 
@@ -48646,7 +48324,7 @@
 
 
 /***/ },
-/* 325 */
+/* 320 */
 /***/ function(module, exports) {
 
 	/*
@@ -48702,7 +48380,7 @@
 
 
 /***/ },
-/* 326 */
+/* 321 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
