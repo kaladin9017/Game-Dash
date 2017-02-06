@@ -12,23 +12,21 @@ export function eveMailWriteTokens(authToken) {
 }
 
 export function eveMailFetchHeaders(charId, authToken, LastHeader) {
-  let headerData;
+  let newAuthToken = "Bearer " + authToken;
+  console.log(newAuthToken);
   let baseUrl = 'https://esi.tech.ccp.is/latest/characters/' + charId + '/mail/?';
   if (LastHeader) {
     baseUrl = baseUrl + 'last_mail_id=' + LastHeader + '&datasource=tranquility';
   } else {
     baseUrl += '?datasource=tranquility';
   }
-  axios({
+  let headerData = axios({
     method: "get",
     url: baseUrl,
     headers: {
-      Authorization: authToken,
-      Host: 'login.eveonline.com'
+      Authorization: newAuthToken,
+      Accept: 'application/json'
     }
-  })
-  .then((data) => {
-    headerData = data;
   })
   .catch((err) => {
     alert(err);

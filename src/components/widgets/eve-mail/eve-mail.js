@@ -14,8 +14,8 @@ class EveMail extends Component {
   }
   handleClick(){
     let characterId = this.props.characterId;
-    let authToken = this.props.authToken;
-    eveMailFetchHeaders(characterId, authToken);
+    let accessToken = this.props.accessToken;
+    this.props.eveMailFetchHeaders(characterId, accessToken);
   }
   render(){
     let screen;
@@ -46,7 +46,7 @@ class EveMail extends Component {
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({}, dispatch);
+  return bindActionCreators({eveMailFetchHeaders}, dispatch);
 }
 
 function mapStateToProps(state, ownProps) {

@@ -13,6 +13,7 @@ const initialState = {
 export default function (state = initialState, action) {
   switch (action.type) {
   case 'EVE_MAIL_FETCH_HEADERS':
+    console.log(action.payload);
     return state;
   case 'EVE_MAIL_WRITE_TOKENS':
     return Object.assign({}, state, {

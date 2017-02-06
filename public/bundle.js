@@ -27987,6 +27987,7 @@
 
 	  switch (action.type) {
 	    case 'EVE_MAIL_FETCH_HEADERS':
+	      console.log(action.payload);
 	      return state;
 	    case 'EVE_MAIL_WRITE_TOKENS':
 	      return Object.assign({}, state, {
@@ -48391,22 +48392,21 @@
 	}
 
 	function eveMailFetchHeaders(charId, authToken, LastHeader) {
-	  var headerData = void 0;
+	  var newAuthToken = "Bearer " + authToken;
+	  console.log(newAuthToken);
 	  var baseUrl = 'https://esi.tech.ccp.is/latest/characters/' + charId + '/mail/?';
 	  if (LastHeader) {
 	    baseUrl = baseUrl + 'last_mail_id=' + LastHeader + '&datasource=tranquility';
 	  } else {
 	    baseUrl += '?datasource=tranquility';
 	  }
-	  (0, _axios2.default)({
+	  var headerData = (0, _axios2.default)({
 	    method: "get",
 	    url: baseUrl,
 	    headers: {
-	      Authorization: authToken,
-	      Host: 'login.eveonline.com'
+	      Authorization: newAuthToken,
+	      Accept: 'application/json'
 	    }
-	  }).then(function (data) {
-	    headerData = data;
 	  }).catch(function (err) {
 	    alert(err);
 	  });
@@ -48472,8 +48472,8 @@
 	    key: 'handleClick',
 	    value: function handleClick() {
 	      var characterId = this.props.characterId;
-	      var authToken = this.props.authToken;
-	      (0, _eveMail.eveMailFetchHeaders)(characterId, authToken);
+	      var accessToken = this.props.accessToken;
+	      this.props.eveMailFetchHeaders(characterId, accessToken);
 	    }
 	  }, {
 	    key: 'render',
@@ -48513,7 +48513,7 @@
 	}(_react.Component);
 
 	function mapDispatchToProps(dispatch) {
-	  return (0, _redux.bindActionCreators)({}, dispatch);
+	  return (0, _redux.bindActionCreators)({ eveMailFetchHeaders: _eveMail.eveMailFetchHeaders }, dispatch);
 	}
 
 	function mapStateToProps(state, ownProps) {
