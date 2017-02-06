@@ -1,4 +1,4 @@
-import {YOUTUBE_SEARCH_TERM, EVE_MAIL_FETCH_HEADERS} from './types';
+import {YOUTUBE_SEARCH_TERM, EVE_MAIL_FETCH_HEADERS, EVE_MAIL_WRITE_TOKENS} from './types';
 import axios from 'axios';
 
 export function changeYoutubeVideos(term) {
@@ -8,8 +8,18 @@ export function changeYoutubeVideos(term) {
   };
 }
 
+export function eveMailWriteTokens(authToken) {
+  let tokenData = axios.post('/api/fetchAuthorizationCode', {
+    authToken: authToken
+  });
+  return {
+    type: EVE_MAIL_WRITE_TOKENS,
+    payload: tokenData
+  };
+}
+
 export function eveMailFetchHeaders(charId, authToken, LastHeader) {
-  let dataBlock;
+  let headerData;
   let baseUrl = 'https://esi.tech.ccp.is/latest/characters/' + charId + '/mail/?';
   if (LastHeader) {
     baseUrl = baseUrl + 'last_mail_id=' + LastHeader + '&datasource=tranquility';
@@ -25,7 +35,7 @@ export function eveMailFetchHeaders(charId, authToken, LastHeader) {
     }
   })
   .then((data) => {
-    dataBlock = data;
+    headerData = data;
   })
   .catch((err) => {
     alert(err);
@@ -35,6 +45,6 @@ export function eveMailFetchHeaders(charId, authToken, LastHeader) {
   //https://esi.tech.ccp.is/latest/characters/1948822847/mail/?last_mail_id=363459428&datasource=tranquility
   return {
     type: EVE_MAIL_FETCH_HEADERS,
-    payload: dataBlock
+    payload: headerData
   };
 }

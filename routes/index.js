@@ -27,7 +27,7 @@ router.route('/api/fetchAuthorizationCode')
     },
     params: {
       grant_type: "authorization_code",
-      code: req.body.token
+      code: req.body.authToken
     }
   })
   .then((data) => {
