@@ -6,10 +6,24 @@ import {bindActionCreators} from 'redux';
 
 class EveToken extends Component {
   componentDidMount(){
+
     let url = window.location.href;
     let authToken = url.slice(url.indexOf('=') + 1, url.indexOf('&'));
     this.props.eveMailWriteTokens(authToken);
     browserHistory.push('/eveMail');
+
+    axios.post('/api/fetchAuthorizationCode', {
+      token: this.state.token
+    }).then((data) => {
+      this.setState({authToken: data.data.access_token, refreshToken: data.data.refresh_token});
+    })
+    .catch((err) => {
+      throw(err);
+    });
+  }
+  handleClick(){
+
+
   }
   render(){
     return (
