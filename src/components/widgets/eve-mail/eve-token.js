@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import {eveMailWriteTokens} from '../../../actions/eve-mail';
 import {bindActionCreators} from 'redux';
+import axios from 'axios';
 
 class EveToken extends Component {
   componentDidMount(){
