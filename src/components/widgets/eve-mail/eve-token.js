@@ -6,10 +6,12 @@ import {bindActionCreators} from 'redux';
 
 class EveToken extends Component {
   componentDidMount(){
-    let url = window.location.href;
-    let authToken = url.slice(url.indexOf('=') + 1, url.indexOf('&'));
-    this.props.eveMailWriteTokens(authToken);
-    browserHistory.push('/eveMail');
+    if (this.props.updateStage == 0) {
+      let url = window.location.href;
+      let authToken = url.slice(url.indexOf('=') + 1, url.indexOf('&'));
+      this.props.eveMailWriteTokens(authToken, 1);
+      browserHistory.push('/eveMail');
+    }
   }
   render(){
     return (
@@ -24,4 +26,10 @@ function mapDispatchToProps(dispatch){
   return bindActionCreators({eveMailWriteTokens}, dispatch);
 }
 
-export default connect(null, mapDispatchToProps)(EveToken);
+function mapStateToProps(state, ownProps) {
+  return {
+    updateStage: state.eveMail.updateStage
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EveToken);

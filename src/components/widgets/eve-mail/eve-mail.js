@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {eveMailFetchHeaders} from '../../../actions/eve-mail';
+import {eveMailFetchHeaders, eveMailFetchCharacterNames} from '../../../actions/eve-mail';
 import axios from 'axios';
 const EVE_PIC = require('../../../assets/eve-login.png');
 
@@ -12,27 +12,43 @@ class EveMail extends Component {
       screen: null
     };
   }
-  handleClick(){
-    let characterId = this.props.characterId;
-    let accessToken = this.props.accessToken;
-    this.props.eveMailFetchHeaders(characterId, accessToken);
-  }
   render(){
     let screen;
-    if (this.props.accessToken) {
-      screen = (
-        <div>
-          <button onClick={this.handleClick.bind(this)}>
-            Get Mail
-          </button>
-        </div>
-      );
-    } else {
+    if (this.props.updateStage == 0) {
       screen = (
         <div>
           <a href={this.props.authUrl}>
             <img src={EVE_PIC} />
           </a>
+        </div>
+      );
+    }
+
+    if (this.props.updateStage == 1) {
+      let characterId = this.props.characterId;
+      let accessToken = this.props.accessToken;
+      this.props.eveMailFetchHeaders(characterId, accessToken, 2);
+      screen = (
+        <div>
+          <p>{this.props.updateStage}</p>
+        </div>
+      );
+    }
+
+    if (this.props.updateStage == 2) {
+      let mailHeaders = this.props.mailHeaders;
+      this.props.eveMailFetchCharacterNames(mailHeaders, 3);
+      screen = (
+        <div>
+          <p>{this.props.updateStage}</p>
+        </div>
+      );
+    }
+
+    if (this.props.updateStage == 3) {
+      screen = (
+        <div>
+          <p>{this.props.updateStage}</p>
         </div>
       );
     }
@@ -46,14 +62,18 @@ class EveMail extends Component {
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({eveMailFetchHeaders}, dispatch);
+  return bindActionCreators({eveMailFetchHeaders, eveMailFetchCharacterNames}, dispatch);
 }
 
 function mapStateToProps(state, ownProps) {
   return {
-    accessToken: state.eveMail.accessToken,
     authUrl: state.eveMail.authUrl,
-    characterId: state.eveMail.characterId
+    token: state.eveMail.token,
+    characterId: state.eveMail.characterId,
+    accessToken: state.eveMail.accessToken,
+    refreshToken: state.eveMail.refreshToken,
+    mailHeaders: state.eveMail.mailHeaders,
+    updateStage: state.eveMail.updateStage
   };
 }
 

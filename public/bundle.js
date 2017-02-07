@@ -27948,7 +27948,9 @@
 
 	///Eve-Mail
 	var EVE_MAIL_FETCH_HEADERS = exports.EVE_MAIL_FETCH_HEADERS = 'EVE_MAIL_FETCH_HEADERS';
+	var EVE_MAIL_FETCH_CHARACTER_NAMES = exports.EVE_MAIL_FETCH_CHARACTER_NAMES = 'EVE_MAIL_FETCH_CHARACTER_NAMES';
 	var EVE_MAIL_WRITE_TOKENS = exports.EVE_MAIL_WRITE_TOKENS = 'EVE_MAIL_WRITE_TOKENS';
+	var EVE_MAIL_CHANGE_UPDATE_STAGE = exports.EVE_MAIL_CHANGE_UPDATE_STAGE = 'EVE_MAIL_CHANGE_UPDATE_STAGE';
 
 	// Wow Constants
 	var GET_WOW_RELM_STATUS = exports.GET_WOW_RELM_STATUS = 'GET_WOW_RELM_STATUS';
@@ -27996,18 +27998,32 @@
 
 	  switch (action.type) {
 	    case 'EVE_MAIL_FETCH_HEADERS':
-	      console.log(action.payload);
-	      return state;
-	    case 'EVE_MAIL_WRITE_TOKENS':
+	      console.log(action.type, action.payload);
 	      return Object.assign({}, state, {
-	        accessToken: action.payload.data.access_token,
-	        refreshToken: action.payload.data.refresh_token
+	        mailHeaders: action.payload.headers,
+	        updateStage: action.payload.updateStage
+	      });
+	    case 'EVE_MAIL_WRITE_TOKENS':
+	      console.log(action.type, action.payload);
+	      return Object.assign({}, state, {
+	        accessToken: action.payload.tokenData.data.access_token,
+	        refreshToken: action.payload.tokenData.data.refresh_token,
+	        updateStage: action.payload.updateStage
+	      });
+	    case 'EVE_MAIL_FETCH_CHARACTER_NAMES':
+	      console.log(action.type, action.payload);
+	      return Object.assign({}, state, {
+	        mailHeaders: action.payload.charNameData,
+	        updateStage: action.payload.updateStage
+	      });
+	    case 'EVE_MAIL_CHANGE_UPDATE_STAGE':
+	      console.log(action.type, action.payload);
+	      return Object.assign({}, state, {
+	        updateStage: action.payload
 	      });
 	  }
 	  return state;
 	};
-
-	var _types = __webpack_require__(262);
 
 	var _axios = __webpack_require__(265);
 
@@ -28021,7 +28037,8 @@
 	  characterId: 1948822847,
 	  accessToken: null,
 	  refreshToken: null,
-	  mailHeaders: null
+	  mailHeaders: null,
+	  updateStage: 0
 	};
 
 /***/ },
@@ -48087,10 +48104,12 @@
 	  _createClass(EveToken, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      var url = window.location.href;
-	      var authToken = url.slice(url.indexOf('=') + 1, url.indexOf('&'));
-	      this.props.eveMailWriteTokens(authToken);
-	      _reactRouter.browserHistory.push('/eveMail');
+	      if (this.props.updateStage == 0) {
+	        var url = window.location.href;
+	        var authToken = url.slice(url.indexOf('=') + 1, url.indexOf('&'));
+	        this.props.eveMailWriteTokens(authToken, 1);
+	        _reactRouter.browserHistory.push('/eveMail');
+	      }
 	    }
 	  }, {
 	    key: 'render',
@@ -48110,7 +48129,13 @@
 	  return (0, _redux.bindActionCreators)({ eveMailWriteTokens: _eveMail.eveMailWriteTokens }, dispatch);
 	}
 
-	exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(EveToken);
+	function mapStateToProps(state, ownProps) {
+	  return {
+	    updateStage: state.eveMail.updateStage
+	  };
+	}
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(EveToken);
 
 /***/ },
 /* 315 */
@@ -48123,6 +48148,8 @@
 	});
 	exports.eveMailWriteTokens = eveMailWriteTokens;
 	exports.eveMailFetchHeaders = eveMailFetchHeaders;
+	exports.eveMailFetchCharacterNames = eveMailFetchCharacterNames;
+	exports.changeUpdateStage = changeUpdateStage;
 
 	var _types = __webpack_require__(262);
 
@@ -48132,9 +48159,14 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function eveMailWriteTokens(authToken) {
+	function eveMailWriteTokens(authToken, updateStage) {
 	  var tokenData = _axios2.default.post('/api/fetchAuthorizationCode', {
 	    authToken: authToken
+	  }).then(function (data) {
+	    var tokenDataObj = {};
+	    tokenDataObj.tokenData = data;
+	    tokenDataObj.updateStage = updateStage;
+	    return tokenDataObj;
 	  });
 	  return {
 	    type: _types.EVE_MAIL_WRITE_TOKENS,
@@ -48142,30 +48174,71 @@
 	  };
 	}
 
-	function eveMailFetchHeaders(charId, authToken, LastHeader) {
+	function eveMailFetchHeaders(charId, authToken, updateStage, LastHeader) {
 	  var newAuthToken = "Bearer " + authToken;
-	  console.log(newAuthToken);
 	  var baseUrl = 'https://esi.tech.ccp.is/latest/characters/' + charId + '/mail/?';
 	  if (LastHeader) {
 	    baseUrl = baseUrl + 'last_mail_id=' + LastHeader + '&datasource=tranquility';
 	  } else {
 	    baseUrl += '?datasource=tranquility';
 	  }
-	  var headerData = (0, _axios2.default)({
+	  var payload = (0, _axios2.default)({
 	    method: "get",
 	    url: baseUrl,
 	    headers: {
 	      Authorization: newAuthToken,
 	      Accept: 'application/json'
 	    }
-	  }).catch(function (err) {
-	    alert(err);
+	  }).then(function (data) {
+	    var payloadObj = {};
+	    payloadObj.headers = data.data;
+	    payloadObj.updateStage = updateStage;
+	    return payloadObj;
 	  });
-	  //https://esi.tech.ccp.is/latest/characters/1948822847/mail/?datasource=tranquility
-	  //https://esi.tech.ccp.is/latest/characters/1948822847/mail/?last_mail_id=363459428&datasource=tranquility
 	  return {
 	    type: _types.EVE_MAIL_FETCH_HEADERS,
-	    payload: headerData
+	    payload: payload
+	  };
+	}
+
+	function eveMailFetchCharacterNames(headerData, updateStage) {
+	  var refinedData = headerData;
+	  var idStr = '';
+	  refinedData.forEach(function (ele, ind, arr) {
+	    if (ind == arr.length - 1) {
+	      idStr += ele.from;
+	    } else {
+	      idStr = idStr + ele.from + '%2C';
+	    }
+	  });
+	  var url = 'https://esi.tech.ccp.is/latest/characters/names/?character_ids=';
+	  url = url + idStr + '&datasource=tranquility';
+	  var charNameData = (0, _axios2.default)({
+	    method: "get",
+	    url: url,
+	    headers: {
+	      Accept: 'application/json'
+	    }
+	  }).then(function (data) {
+	    var nameData = data.data;
+	    refinedData.forEach(function (ele, ind, arr) {
+	      ele.from = nameData[ind].character_name;
+	    });
+	    var charNameDataObj = {};
+	    charNameDataObj.charNameData = refinedData;
+	    charNameDataObj.updateStage = updateStage;
+	    return charNameDataObj;
+	  });
+	  return {
+	    type: _types.EVE_MAIL_FETCH_CHARACTER_NAMES,
+	    payload: charNameData
+	  };
+	}
+
+	function changeUpdateStage(stage) {
+	  return {
+	    type: _types.EVE_MAIL_CHANGE_UPDATE_STAGE,
+	    payload: stage
 	  };
 	}
 
@@ -48220,27 +48293,10 @@
 	  }
 
 	  _createClass(EveMail, [{
-	    key: 'handleClick',
-	    value: function handleClick() {
-	      var characterId = this.props.characterId;
-	      var accessToken = this.props.accessToken;
-	      this.props.eveMailFetchHeaders(characterId, accessToken);
-	    }
-	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var screen = void 0;
-	      if (this.props.accessToken) {
-	        screen = _react2.default.createElement(
-	          'div',
-	          null,
-	          _react2.default.createElement(
-	            'button',
-	            { onClick: this.handleClick.bind(this) },
-	            'Get Mail'
-	          )
-	        );
-	      } else {
+	      if (this.props.updateStage == 0) {
 	        screen = _react2.default.createElement(
 	          'div',
 	          null,
@@ -48248,6 +48304,47 @@
 	            'a',
 	            { href: this.props.authUrl },
 	            _react2.default.createElement('img', { src: EVE_PIC })
+	          )
+	        );
+	      }
+
+	      if (this.props.updateStage == 1) {
+	        var characterId = this.props.characterId;
+	        var accessToken = this.props.accessToken;
+	        this.props.eveMailFetchHeaders(characterId, accessToken, 2);
+	        screen = _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            this.props.updateStage
+	          )
+	        );
+	      }
+
+	      if (this.props.updateStage == 2) {
+	        var mailHeaders = this.props.mailHeaders;
+	        this.props.eveMailFetchCharacterNames(mailHeaders, 3);
+	        screen = _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            this.props.updateStage
+	          )
+	        );
+	      }
+
+	      if (this.props.updateStage == 3) {
+	        screen = _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            this.props.updateStage
 	          )
 	        );
 	      }
@@ -48264,14 +48361,18 @@
 	}(_react.Component);
 
 	function mapDispatchToProps(dispatch) {
-	  return (0, _redux.bindActionCreators)({ eveMailFetchHeaders: _eveMail.eveMailFetchHeaders }, dispatch);
+	  return (0, _redux.bindActionCreators)({ eveMailFetchHeaders: _eveMail.eveMailFetchHeaders, eveMailFetchCharacterNames: _eveMail.eveMailFetchCharacterNames }, dispatch);
 	}
 
 	function mapStateToProps(state, ownProps) {
 	  return {
-	    accessToken: state.eveMail.accessToken,
 	    authUrl: state.eveMail.authUrl,
-	    characterId: state.eveMail.characterId
+	    token: state.eveMail.token,
+	    characterId: state.eveMail.characterId,
+	    accessToken: state.eveMail.accessToken,
+	    refreshToken: state.eveMail.refreshToken,
+	    mailHeaders: state.eveMail.mailHeaders,
+	    updateStage: state.eveMail.updateStage
 	  };
 	}
 

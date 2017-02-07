@@ -1,4 +1,3 @@
-import { EVE_MAIL_FETCH_HEADERS, EVE_MAIL_WRITE_TOKENS } from '../actions/types';
 import axios from 'axios';
 
 const initialState = {
@@ -7,18 +6,35 @@ const initialState = {
   characterId: 1948822847,
   accessToken: null,
   refreshToken: null,
-  mailHeaders: null
+  mailHeaders: null,
+  updateStage: 0
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
   case 'EVE_MAIL_FETCH_HEADERS':
-    console.log(action.payload);
-    return state;
-  case 'EVE_MAIL_WRITE_TOKENS':
+    console.log(action.type, action.payload);
     return Object.assign({}, state, {
-      accessToken: action.payload.data.access_token,
-      refreshToken: action.payload.data.refresh_token
+      mailHeaders: action.payload.headers,
+      updateStage: action.payload.updateStage
+    });
+  case 'EVE_MAIL_WRITE_TOKENS':
+    console.log(action.type, action.payload);
+    return Object.assign({}, state, {
+      accessToken: action.payload.tokenData.data.access_token,
+      refreshToken: action.payload.tokenData.data.refresh_token,
+      updateStage: action.payload.updateStage
+    });
+  case 'EVE_MAIL_FETCH_CHARACTER_NAMES':
+    console.log(action.type, action.payload);
+    return Object.assign({}, state, {
+      mailHeaders: action.payload.charNameData,
+      updateStage: action.payload.updateStage
+    });
+  case 'EVE_MAIL_CHANGE_UPDATE_STAGE':
+    console.log(action.type, action.payload);
+    return Object.assign({}, state, {
+      updateStage: action.payload
     });
   }
   return state;
