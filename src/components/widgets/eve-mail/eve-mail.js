@@ -3,17 +3,18 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {eveMailFetchHeaders, eveMailFetchCharacterNames} from '../../../actions/eve-mail';
 import EveMailHeaderList from './eve-mail-header-list';
+import EveMailSidebar from './eve-mail-sidebar';
 import axios from 'axios';
 const EVE_PIC = require('../../../assets/eve-login.png');
 
 class EveMail extends Component {
-  constructor(props, context){
-    super(props, context);
+  constructor(props) {
+    super(props);
     this.state = {
       screen: null
     };
   }
-  render(){
+  render() {
     let screen;
     if (this.props.updateStage == 0) {
       screen = (
@@ -56,14 +57,14 @@ class EveMail extends Component {
 
     return (
       <div>
-        {this.props.children}
+        <EveMailSidebar/>
         {screen}
       </div>
     );
   }
 }
 
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
   return bindActionCreators({eveMailFetchHeaders, eveMailFetchCharacterNames}, dispatch);
 }
 

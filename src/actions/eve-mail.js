@@ -1,4 +1,9 @@
-import {EVE_MAIL_FETCH_HEADERS, EVE_MAIL_WRITE_TOKENS, EVE_MAIL_FETCH_CHARACTER_NAMES, EVE_MAIL_CHANGE_UPDATE_STAGE} from './types';
+import {
+  EVE_MAIL_FETCH_HEADERS,
+  EVE_MAIL_WRITE_TOKENS,
+  EVE_MAIL_FETCH_CHARACTER_NAMES,
+  EVE_MAIL_CHANGE_UPDATE_STAGE,
+  EVE_MAIL_GET_MAIL_BODY} from './types';
 import axios from 'axios';
 
 export function eveMailWriteTokens(authToken, updateStage) {

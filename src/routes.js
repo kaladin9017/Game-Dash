@@ -13,8 +13,6 @@ export default (
   <Route path="/" component={Main}>
     <Route path="/test" component={YoutubeWidget}/>
     <Route path="/eveToken" component={EveToken}/>
-    <Route path="/eveMail" component={EveMail}>
-      <IndexRoute component={EveMailSidebar}/>
-    </Route>
+    <Route path="/eveMail" component={EveMail}/>
   </Route>
 );
