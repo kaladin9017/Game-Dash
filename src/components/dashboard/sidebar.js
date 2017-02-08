@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var $ = require('jquery')
+import { Link } from 'react-router'
 
 var SideBar = React.createClass({
 
@@ -45,8 +46,8 @@ var SideBar = React.createClass({
               }
 
                 <ul className="dashgames">
-                  <li className="game" id="gameone">   Eve  <span className="glyphicon glyphicon-chevron-down" id="gamearrone"></span></li>    
-                  <li className="game" id="gametwo">   World of <span className="glyphicon glyphicon-chevron-down" id="gamearrtwo"></span>Warcraft</li>    
+                  <Link to="/evewidgets"> <li className="game" id="gameone">   Eve  <span className="glyphicon glyphicon-chevron-down" id="gamearrone"></span></li> </Link>   
+                  <Link to="/warcraftwidgets"><li className="game" id="gametwo">   Warcraft <span className="glyphicon glyphicon-chevron-down" id="gamearrtwo"></span></li> </Link>   
                   <li className="game" id="gamethree"> Misc. <span className="glyphicon glyphicon-chevron-down" id="gamearrthree"></span></li>   
                   <li className="game" id="addgame">   + </li> 
                 </ul>
