@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import TwitchVideoDetail from './twitch-video-detail';
 import SearchTwitch from './SearchTwitch';
 import TwitchVideoList from './twitch-video-list';
+import TwitchChat from './TwitchChat';
+
+
 class TwitchWidget extends Component {
   constructor(props) {
     super(props);
@@ -19,7 +22,8 @@ class TwitchWidget extends Component {
 
         <SearchTwitch />
         <TwitchVideoDetail channel={this.state.channel} />
-        {this.props.twitchVideos ? <div> <TwitchVideoList videos={this.props.twitchVideos} getVideo={this.getVideo.bind(this)} /> </div> : null}
+        {this.props.twitchVideos ? <div><TwitchVideoList videos={this.props.twitchVideos} getVideo={this.getVideo.bind(this)} /> <div> </div></div> : null}
+        <TwitchChat channel={this.state.channel} />
       </div>
     );
   }
