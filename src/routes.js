@@ -6,9 +6,12 @@ import TwitchWidget from './components/widgets/twitch/TwitchWidget';
 import EveToken from './components/widgets/eve-mail/eve-token';
 import EveMail from './components/widgets/eve-mail/eve-mail';
 
+// FOR TESTING VIEW
+import FifteenGame from './components/widgets/fifteen-game/FifteenGame';
+//
 export default (
   <Route path="/" component={Main}>
-    <Route path="/test" component={TwitchWidget}/>
+    <Route path="/test" component={FifteenGame}/>
     <Route path="/eveToken" component={EveToken}/>
     <Route path="/eveMail" component={EveMail}/>
   </Route>
