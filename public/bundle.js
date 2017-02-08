@@ -68,7 +68,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(318);
+	__webpack_require__(322);
 
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRedux.Provider,
@@ -27998,26 +27998,22 @@
 
 	  switch (action.type) {
 	    case 'EVE_MAIL_FETCH_HEADERS':
-	      console.log(action.type, action.payload);
 	      return Object.assign({}, state, {
 	        mailHeaders: action.payload.headers,
 	        updateStage: action.payload.updateStage
 	      });
 	    case 'EVE_MAIL_WRITE_TOKENS':
-	      console.log(action.type, action.payload);
 	      return Object.assign({}, state, {
 	        accessToken: action.payload.tokenData.data.access_token,
 	        refreshToken: action.payload.tokenData.data.refresh_token,
 	        updateStage: action.payload.updateStage
 	      });
 	    case 'EVE_MAIL_FETCH_CHARACTER_NAMES':
-	      console.log(action.type, action.payload);
 	      return Object.assign({}, state, {
 	        mailHeaders: action.payload.charNameData,
 	        updateStage: action.payload.updateStage
 	      });
 	    case 'EVE_MAIL_CHANGE_UPDATE_STAGE':
-	      console.log(action.type, action.payload);
 	      return Object.assign({}, state, {
 	        updateStage: action.payload
 	      });
@@ -29588,6 +29584,18 @@
 
 	var _eveMail2 = _interopRequireDefault(_eveMail);
 
+	var _eveMailSidebar = __webpack_require__(320);
+
+	var _eveMailSidebar2 = _interopRequireDefault(_eveMailSidebar);
+
+	var _eveMailItem = __webpack_require__(321);
+
+	var _eveMailItem2 = _interopRequireDefault(_eveMailItem);
+
+	var _eveMailHeaderList = __webpack_require__(317);
+
+	var _eveMailHeaderList2 = _interopRequireDefault(_eveMailHeaderList);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createElement(
@@ -29595,7 +29603,11 @@
 	  { path: '/', component: _Main2.default },
 	  _react2.default.createElement(_reactRouter.Route, { path: '/test', component: _YoutubeWidget2.default }),
 	  _react2.default.createElement(_reactRouter.Route, { path: '/eveToken', component: _eveToken2.default }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/eveMail', component: _eveMail2.default })
+	  _react2.default.createElement(
+	    _reactRouter.Route,
+	    { path: '/eveMail', component: _eveMail2.default },
+	    _react2.default.createElement(_reactRouter.IndexRoute, { component: _eveMailSidebar2.default })
+	  )
 	);
 
 /***/ },
@@ -48174,30 +48186,37 @@
 	  };
 	}
 
-	function eveMailFetchHeaders(charId, authToken, updateStage, LastHeader) {
-	  var newAuthToken = "Bearer " + authToken;
-	  var baseUrl = 'https://esi.tech.ccp.is/latest/characters/' + charId + '/mail/?';
-	  if (LastHeader) {
-	    baseUrl = baseUrl + 'last_mail_id=' + LastHeader + '&datasource=tranquility';
+	function eveMailFetchHeaders(charId, authToken, updateStage, force, lastHeader) {
+	  var mailHeaders = {};
+	  if (localStorage.getItem("mailHeaders") && force == false) {
+	    updateStage = 3;
+	    mailHeaders.headers = JSON.parse(localStorage.getItem("mailHeaders"));
+	    mailHeaders.updateStage = updateStage;
 	  } else {
-	    baseUrl += '?datasource=tranquility';
-	  }
-	  var payload = (0, _axios2.default)({
-	    method: "get",
-	    url: baseUrl,
-	    headers: {
-	      Authorization: newAuthToken,
-	      Accept: 'application/json'
+	    var newAuthToken = "Bearer " + authToken;
+	    var baseUrl = 'https://esi.tech.ccp.is/latest/characters/' + charId + '/mail/?';
+	    if (lastHeader) {
+	      baseUrl = baseUrl + 'last_mail_id=' + lastHeader + '&datasource=tranquility';
+	    } else {
+	      baseUrl += '?datasource=tranquility';
 	    }
-	  }).then(function (data) {
-	    var payloadObj = {};
-	    payloadObj.headers = data.data;
-	    payloadObj.updateStage = updateStage;
-	    return payloadObj;
-	  });
+	    mailHeaders = (0, _axios2.default)({
+	      method: "get",
+	      url: baseUrl,
+	      headers: {
+	        Authorization: newAuthToken,
+	        Accept: 'application/json'
+	      }
+	    }).then(function (data) {
+	      mailHeaders.headers = data.data;
+	      mailHeaders.updateStage = updateStage;
+	      return mailHeaders;
+	    });
+	  }
+
 	  return {
 	    type: _types.EVE_MAIL_FETCH_HEADERS,
-	    payload: payload
+	    payload: mailHeaders
 	  };
 	}
 
@@ -48224,6 +48243,7 @@
 	    refinedData.forEach(function (ele, ind, arr) {
 	      ele.from = nameData[ind].character_name;
 	    });
+	    localStorage.setItem("mailHeaders", JSON.stringify(refinedData));
 	    var charNameDataObj = {};
 	    charNameDataObj.charNameData = refinedData;
 	    charNameDataObj.updateStage = updateStage;
@@ -48264,6 +48284,10 @@
 
 	var _eveMail = __webpack_require__(315);
 
+	var _eveMailHeaderList = __webpack_require__(317);
+
+	var _eveMailHeaderList2 = _interopRequireDefault(_eveMailHeaderList);
+
 	var _axios = __webpack_require__(265);
 
 	var _axios2 = _interopRequireDefault(_axios);
@@ -48276,7 +48300,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var EVE_PIC = __webpack_require__(317);
+	var EVE_PIC = __webpack_require__(319);
 
 	var EveMail = function (_Component) {
 	  _inherits(EveMail, _Component);
@@ -48311,7 +48335,7 @@
 	      if (this.props.updateStage == 1) {
 	        var characterId = this.props.characterId;
 	        var accessToken = this.props.accessToken;
-	        this.props.eveMailFetchHeaders(characterId, accessToken, 2);
+	        this.props.eveMailFetchHeaders(characterId, accessToken, 2, false);
 	        screen = _react2.default.createElement(
 	          'div',
 	          null,
@@ -48341,17 +48365,14 @@
 	        screen = _react2.default.createElement(
 	          'div',
 	          null,
-	          _react2.default.createElement(
-	            'p',
-	            null,
-	            this.props.updateStage
-	          )
+	          _react2.default.createElement(_eveMailHeaderList2.default, { mailHeaders: this.props.mailHeaders })
 	        );
 	      }
 
 	      return _react2.default.createElement(
 	        'div',
 	        null,
+	        this.props.children,
 	        screen
 	      );
 	    }
@@ -48380,21 +48401,322 @@
 
 /***/ },
 /* 317 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	module.exports = "data:image/png;base64,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"
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _eveMailHeader = __webpack_require__(318);
+
+	var _eveMailHeader2 = _interopRequireDefault(_eveMailHeader);
+
+	var _redux = __webpack_require__(170);
+
+	var _reactRedux = __webpack_require__(159);
+
+	var _eveMail = __webpack_require__(315);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var EveMailHeaderList = function (_Component) {
+	  _inherits(EveMailHeaderList, _Component);
+
+	  function EveMailHeaderList(props) {
+	    _classCallCheck(this, EveMailHeaderList);
+
+	    var _this = _possibleConstructorReturn(this, (EveMailHeaderList.__proto__ || Object.getPrototypeOf(EveMailHeaderList)).call(this, props));
+
+	    _this.state = {
+	      headerList: null,
+	      screen: null
+	    };
+	    return _this;
+	  }
+
+	  _createClass(EveMailHeaderList, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this2 = this;
+
+	      var headerList = [];
+	      this.props.mailHeaders.forEach(function (ele, ind) {
+	        headerList.push(_react2.default.createElement(_eveMailHeader2.default, {
+	          key: ind,
+	          header: ele,
+	          handleClick: _this2.handleClick.bind(_this2)
+	        }));
+	      });
+	      this.setState({ headerList: headerList });
+	      this.setState({ screen: headerList });
+	    }
+	  }, {
+	    key: 'handleClick',
+	    value: function handleClick(event) {
+	      var mailScreen = _react2.default.createElement(
+	        'div',
+	        null,
+	        'test'
+	      );
+	      this.setState({ screen: mailScreen });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        this.state.screen
+	      );
+	    }
+	  }]);
+
+	  return EveMailHeaderList;
+	}(_react.Component);
+
+	function mapDispatchToProps(dispatch) {
+	  return (0, _redux.bindActionCreators)({ eveMailFetchHeaders: _eveMail.eveMailFetchHeaders, eveMailFetchCharacterNames: _eveMail.eveMailFetchCharacterNames }, dispatch);
+	}
+
+	function mapStateToProps(state, ownProps) {
+	  return {
+	    authUrl: state.eveMail.authUrl,
+	    token: state.eveMail.token,
+	    characterId: state.eveMail.characterId,
+	    accessToken: state.eveMail.accessToken,
+	    refreshToken: state.eveMail.refreshToken,
+	    mailHeaders: state.eveMail.mailHeaders,
+	    updateStage: state.eveMail.updateStage
+	  };
+	}
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(EveMailHeaderList);
 
 /***/ },
 /* 318 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(197);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var EveMailHeader = function (_Component) {
+	  _inherits(EveMailHeader, _Component);
+
+	  function EveMailHeader(props) {
+	    _classCallCheck(this, EveMailHeader);
+
+	    return _possibleConstructorReturn(this, (EveMailHeader.__proto__ || Object.getPrototypeOf(EveMailHeader)).call(this, props));
+	  }
+
+	  _createClass(EveMailHeader, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'li',
+	          null,
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            'subject: ',
+	            this.props.header.subject
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            'sender: ',
+	            this.props.header.from
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { onClick: this.props.handleClick },
+	            'Read'
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return EveMailHeader;
+	}(_react.Component);
+
+	exports.default = EveMailHeader;
+
+/***/ },
+/* 319 */
+/***/ function(module, exports) {
+
+	module.exports = "data:image/png;base64,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"
+
+/***/ },
+/* 320 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var EveMailSidebar = function (_Component) {
+	  _inherits(EveMailSidebar, _Component);
+
+	  function EveMailSidebar() {
+	    _classCallCheck(this, EveMailSidebar);
+
+	    return _possibleConstructorReturn(this, (EveMailSidebar.__proto__ || Object.getPrototypeOf(EveMailSidebar)).apply(this, arguments));
+	  }
+
+	  _createClass(EveMailSidebar, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'button',
+	          null,
+	          'Refresh'
+	        ),
+	        _react2.default.createElement(
+	          'button',
+	          null,
+	          'Inbox'
+	        ),
+	        _react2.default.createElement(
+	          'button',
+	          null,
+	          'Alliance'
+	        ),
+	        _react2.default.createElement(
+	          'button',
+	          null,
+	          'Corporation'
+	        ),
+	        _react2.default.createElement(
+	          'button',
+	          null,
+	          'Sent'
+	        ),
+	        _react2.default.createElement(
+	          'button',
+	          null,
+	          'Trash'
+	        )
+	      );
+	    }
+	  }]);
+
+	  return EveMailSidebar;
+	}(_react.Component);
+
+	exports.default = EveMailSidebar;
+
+/***/ },
+/* 321 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var EveMailItem = function (_Component) {
+	  _inherits(EveMailItem, _Component);
+
+	  function EveMailItem(props) {
+	    _classCallCheck(this, EveMailItem);
+
+	    return _possibleConstructorReturn(this, (EveMailItem.__proto__ || Object.getPrototypeOf(EveMailItem)).call(this, props));
+	  }
+
+	  _createClass(EveMailItem, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement('div', null);
+	    }
+	  }]);
+
+	  return EveMailItem;
+	}(_react.Component);
+
+	exports.default = EveMailItem;
+
+/***/ },
+/* 322 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(319);
+	var content = __webpack_require__(323);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(321)(content, {});
+	var update = __webpack_require__(325)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -48411,10 +48733,10 @@
 	}
 
 /***/ },
-/* 319 */
+/* 323 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(320)();
+	exports = module.exports = __webpack_require__(324)();
 	// imports
 
 
@@ -48425,7 +48747,7 @@
 
 
 /***/ },
-/* 320 */
+/* 324 */
 /***/ function(module, exports) {
 
 	/*
@@ -48481,7 +48803,7 @@
 
 
 /***/ },
-/* 321 */
+/* 325 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {eveMailFetchHeaders, eveMailFetchCharacterNames} from '../../../actions/eve-mail';
+import EveMailHeaderList from './eve-mail-header-list';
 import axios from 'axios';
 const EVE_PIC = require('../../../assets/eve-login.png');
 
@@ -27,7 +28,7 @@ class EveMail extends Component {
     if (this.props.updateStage == 1) {
       let characterId = this.props.characterId;
       let accessToken = this.props.accessToken;
-      this.props.eveMailFetchHeaders(characterId, accessToken, 2);
+      this.props.eveMailFetchHeaders(characterId, accessToken, 2, false);
       screen = (
         <div>
           <p>{this.props.updateStage}</p>
@@ -48,13 +49,14 @@ class EveMail extends Component {
     if (this.props.updateStage == 3) {
       screen = (
         <div>
-          <p>{this.props.updateStage}</p>
+          <EveMailHeaderList mailHeaders={this.props.mailHeaders} />
         </div>
       );
     }
 
     return (
       <div>
+        {this.props.children}
         {screen}
       </div>
     );

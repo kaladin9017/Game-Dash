@@ -17,31 +17,38 @@ export function eveMailWriteTokens(authToken, updateStage) {
   };
 }
 
-export function eveMailFetchHeaders(charId, authToken, updateStage, LastHeader) {
-  let newAuthToken = "Bearer " + authToken;
-  let baseUrl = 'https://esi.tech.ccp.is/latest/characters/' + charId + '/mail/?';
-  if (LastHeader) {
-    baseUrl = baseUrl + 'last_mail_id=' + LastHeader + '&datasource=tranquility';
+export function eveMailFetchHeaders(charId, authToken, updateStage, force, lastHeader) {
+  let mailHeaders = {};
+  if (localStorage.getItem("mailHeaders") && force == false) {
+    updateStage = 3;
+    mailHeaders.headers = JSON.parse(localStorage.getItem("mailHeaders"));
+    mailHeaders.updateStage = updateStage;
   } else {
-    baseUrl += '?datasource=tranquility';
-  }
-  let payload = axios({
-    method: "get",
-    url: baseUrl,
-    headers: {
-      Authorization: newAuthToken,
-      Accept: 'application/json'
+    let newAuthToken = "Bearer " + authToken;
+    let baseUrl = 'https://esi.tech.ccp.is/latest/characters/' + charId + '/mail/?';
+    if (lastHeader) {
+      baseUrl = baseUrl + 'last_mail_id=' + lastHeader + '&datasource=tranquility';
+    } else {
+      baseUrl += '?datasource=tranquility';
     }
-  })
-  .then((data) => {
-    let payloadObj = {};
-    payloadObj.headers = data.data;
-    payloadObj.updateStage = updateStage;
-    return payloadObj;
-  });
+    mailHeaders = axios({
+      method: "get",
+      url: baseUrl,
+      headers: {
+        Authorization: newAuthToken,
+        Accept: 'application/json'
+      }
+    })
+    .then((data) => {
+      mailHeaders.headers = data.data;
+      mailHeaders.updateStage = updateStage;
+      return mailHeaders;
+    });
+  }
+
   return {
     type: EVE_MAIL_FETCH_HEADERS,
-    payload: payload
+    payload: mailHeaders
   };
 }
 
@@ -69,6 +76,7 @@ export function eveMailFetchCharacterNames (headerData, updateStage) {
     refinedData.forEach((ele, ind, arr) => {
       ele.from = nameData[ind].character_name;
     });
+    localStorage.setItem("mailHeaders", JSON.stringify(refinedData));
     let charNameDataObj = {};
     charNameDataObj.charNameData = refinedData;
     charNameDataObj.updateStage = updateStage;
