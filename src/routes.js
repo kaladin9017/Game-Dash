@@ -12,6 +12,9 @@ import MiscScreen from './components/miscscreen/miscscreen'
 import YoutubeWidget from './components/widgets/youtube/YoutubeWidget';
 import EveToken from './components/widgets/eve-mail/eve-token';
 import EveMail from './components/widgets/eve-mail/eve-mail';
+import EveMailSidebar from './components/widgets/eve-mail/eve-mail-sidebar';
+import EveMailItem from './components/widgets/eve-mail/eve-mail-item';
+import EveMailHeaderList from './components/widgets/eve-mail/eve-mail-header-list';
 
 // FOR TESTING VIEW
 import FifteenGame from './components/widgets/fifteen-game/FifteenGame';

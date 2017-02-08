@@ -4,6 +4,7 @@ class EveMailSidebar extends Component {
   render() {
     return (
       <div>
+        <button>Refresh</button>
         <button>Inbox</button>
         <button>Alliance</button>
         <button>Corporation</button>

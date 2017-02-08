@@ -1,33 +1,19 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {eveMailFetchHeaders} from '../../../actions/eve-mail';
+import {eveMailFetchHeaders, eveMailFetchCharacterNames} from '../../../actions/eve-mail';
+import EveMailHeaderList from './eve-mail-header-list';
+import EveMailSidebar from './eve-mail-sidebar';
 import axios from 'axios';
 const EVE_PIC = require('../../../assets/eve-login.png');
 
 class EveMail extends Component {
-  constructor(props, context){
-    super(props, context);
-    this.state = {
-      screen: null
-    };
+  constructor(props) {
+    super(props);
   }
-  handleClick(){
-    let characterId = this.props.characterId;
-    let authToken = this.props.authToken;
-    eveMailFetchHeaders(characterId, authToken);
-  }
-  render(){
+  render() {
     let screen;
-    if (this.props.accessToken) {
-      screen = (
-        <div>
-          <button onClick={this.handleClick.bind(this)}>
-            Get Mail
-          </button>
-        </div>
-      );
-    } else {
+    if (this.props.updateStage == 0) {
       screen = (
         <div>
           <a href={this.props.authUrl}>
@@ -37,23 +23,55 @@ class EveMail extends Component {
       );
     }
 
+    if (this.props.updateStage == 1) {
+      let characterId = this.props.characterId;
+      let accessToken = this.props.accessToken;
+      this.props.eveMailFetchHeaders(characterId, accessToken, 2, false);
+      screen = (
+        <div>
+          <p>{this.props.updateStage}</p>
+        </div>
+      );
+    }
+
+    if (this.props.updateStage == 2) {
+      let mailHeaders = this.props.mailHeaders;
+      this.props.eveMailFetchCharacterNames(mailHeaders, 3);
+      screen = (
+        <div>
+          <p>{this.props.updateStage}</p>
+        </div>
+      );
+    }
+
+    if (this.props.updateStage == 3) {
+      screen = (
+        <div>
+          <EveMailHeaderList mailHeaders={this.props.mailHeaders} />
+        </div>
+      );
+    }
+
     return (
       <div>
+        <EveMailSidebar/>
         {screen}
       </div>
     );
   }
 }
 
-function mapDispatchToProps(dispatch){
-  return bindActionCreators({}, dispatch);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({eveMailFetchHeaders, eveMailFetchCharacterNames}, dispatch);
 }
 
 function mapStateToProps(state, ownProps) {
   return {
-    accessToken: state.eveMail.accessToken,
     authUrl: state.eveMail.authUrl,
-    characterId: state.eveMail.characterId
+    characterId: state.eveMail.characterId,
+    accessToken: state.eveMail.accessToken,
+    mailHeaders: state.eveMail.mailHeaders,
+    updateStage: state.eveMail.updateStage
   };
 }
 
