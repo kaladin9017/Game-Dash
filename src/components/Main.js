@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import SideBar from './dashboard/sidebar';
+import InitialScreen from './initialscreen/initialscreen'
+import EveScreen from './evescreen/evescreenpage'
 
 export default class Main extends Component {
 
@@ -6,11 +9,11 @@ export default class Main extends Component {
 
     return (
       <div>
-        <h3>Header</h3>
-
+      	<SideBar />
         {this.props.children}
       </div>
     );
+
   }
 
 }
