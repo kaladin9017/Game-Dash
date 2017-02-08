@@ -16,11 +16,14 @@ export function eveMailWriteTokens(authToken, updateStage) {
     tokenDataObj.updateStage = updateStage;
     return tokenDataObj;
   });
+
   return {
     type: EVE_MAIL_WRITE_TOKENS,
     payload: tokenData
   };
 }
+
+
 
 export function eveMailFetchHeaders(charId, authToken, updateStage, force, lastHeader) {
   let mailHeaders = {};
@@ -57,6 +60,8 @@ export function eveMailFetchHeaders(charId, authToken, updateStage, force, lastH
   };
 }
 
+
+
 export function eveMailFetchCharacterNames (headerData, updateStage) {
   let refinedData = headerData;
   let idStr = '';
@@ -87,15 +92,42 @@ export function eveMailFetchCharacterNames (headerData, updateStage) {
     charNameDataObj.updateStage = updateStage;
     return charNameDataObj;
   });
+
   return {
     type: EVE_MAIL_FETCH_CHARACTER_NAMES,
     payload: charNameData
   };
 }
 
+
+
 export function changeUpdateStage (stage) {
   return {
     type: EVE_MAIL_CHANGE_UPDATE_STAGE,
     payload: stage
+  };
+}
+
+
+
+export function eveMailGetMailBody (charId, authToken, mailId, from) {
+  let url = `https://esi.tech.ccp.is/latest/characters/{charId}/mail/{mailId}?datasource=tranquility`;
+  let authorization = `Bearer {authToken}`;
+  let mailUpdate = axios({
+    method: 'get',
+    url: url,
+    headers: {
+      Accept: 'application/json',
+      Authorization: authorization
+    }
+  })
+  .then((data) => {
+    data.from = from;
+    return data;
+  });
+
+  return {
+    type: EVE_MAIL_GET_MAIL_BODY,
+    payload: mailUpdate
   };
 }

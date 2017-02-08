@@ -10,9 +10,6 @@ const EVE_PIC = require('../../../assets/eve-login.png');
 class EveMail extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      screen: null
-    };
   }
   render() {
     let screen;
