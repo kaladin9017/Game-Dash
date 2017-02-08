@@ -1,7 +1,6 @@
 import React from 'react';
 
 const TwitchChat = ({channel}) => {
-  console.log(channel);
   return (
     <iframe frameBorder="0"
         scrolling="no"
