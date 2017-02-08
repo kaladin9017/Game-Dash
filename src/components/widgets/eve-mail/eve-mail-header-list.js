@@ -76,13 +76,9 @@ function mapDispatchToProps(dispatch){
 
 function mapStateToProps(state, ownProps) {
   return {
-    authUrl: state.eveMail.authUrl,
-    token: state.eveMail.token,
     characterId: state.eveMail.characterId,
     accessToken: state.eveMail.accessToken,
-    refreshToken: state.eveMail.refreshToken,
-    mailHeaders: state.eveMail.mailHeaders,
-    updateStage: state.eveMail.updateStage
+    mailHeaders: state.eveMail.mailHeaders
   };
 }
 
