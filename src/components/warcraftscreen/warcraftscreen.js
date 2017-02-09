@@ -3,15 +3,15 @@ const ReactDOM = require('react-dom');
 const $ = require('jquery')
 import {Component} from 'react';
 
-class InitialScreen extends Component {
+class WarCraftScreen extends Component {
 
   render() {
     return (
       <div>
 
-        <div className="homepage">
+        <div className="warcrafthomepage">
 
-        	<center><h1 className="placeholderinstruction">Click on a Game to show widgets...</h1></center>
+        	<center><h1 className="placeholderinstruction">List of all War Craft widgets</h1></center>
 
           <center><hr id="mainhr"/></center>
 
@@ -22,4 +22,4 @@ class InitialScreen extends Component {
   }
 }
 
-export default InitialScreen;
+export default WarCraftScreen;

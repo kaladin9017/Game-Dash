@@ -1,10 +1,11 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var $ = require('jquery')
+const React = require('react');
+const ReactDOM = require('react-dom');
+const $ = require('jquery')
+import {Component} from 'react';
 
-var EveScreen = React.createClass({
+class EveScreen extends Component {
 
-  render: function() {
+  render() {
     return (
       <div>
 
@@ -19,6 +20,6 @@ var EveScreen = React.createClass({
       </div>
     )
   }
-})
+}
 
 export default EveScreen;
