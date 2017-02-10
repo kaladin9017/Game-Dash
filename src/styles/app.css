@@ -5,6 +5,7 @@ html, body {
   font-family: 'Roboto Mono', monospace;
   /*font-family: 'Lato', sans-serif;*/
   /*background-color: red;*/
+  overflow-x: hidden;
 }
 
 .dashboard {
@@ -28,12 +29,23 @@ html, body {
 }
 
 .homepage {
-  width: 50%;
-  height: 670px;
-  background-color: white;
+  width: 82%;
+  height: 100vh;
+  background-color: black;
   display: inline-block;
   float: right;
+  /*margin-left: 20%;*/
   text-align: center;
+  background-image: url(http://s1.picswalls.com/wallpapers/2014/09/18/eve-online-backgrounds_112515969_224.jpg);
+  background-size: 150%;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+#mainheading {
+  margin-left: 2%;
+  color: white;
+  margin-top: 300px;
 }
 
 .evehomepage {
@@ -384,4 +396,93 @@ a:visited {
 
 .stay {
   /*position: absolute;*/
+}
+
+.evediv {
+  width: auto;
+  height: 100vh;
+  padding-top: 10vh;
+  background-color: black;
+  background-image: url(http://wallpapercave.com/wp/0yTiw8R.jpg);
+  background-size: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+#evemailhr {
+  width: 70%;
+  border-color: white;
+  border-width: 1px;
+}
+
+.evemaillogin {
+  width: 300px;
+  height: 30vh;
+  background-color: black;
+  opacity: 0.9;
+  margin-left: 20%;
+  padding-top: 2%;
+}
+
+#logininst {
+  margin-top: 15%;
+  color: red;
+}
+
+.evemailfeatures {
+  width: 50%;
+  height: auto;
+  background-color: #1a1a1a;
+  opacity: 0.9;
+  margin-left: 20%;
+  margin-top: 7vh;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  font-size: 20px;
+  color: white;
+}
+
+/* ---------------------- YOUTUBE DIV -------------------- */
+
+.youtubediv {
+  background-color: #1a1a1a;
+  width: auto;
+  height: auto;
+  /*overflow-y: scroll;*/
+  overflow-x: hidden;
+  padding-top: 40px;
+  scroll-behavior: smooth;
+}
+
+.youtubevideodiv {
+  width: 120%;
+  height: 40vh;
+  margin-left: 10%;
+  margin-top: 40px;
+}
+
+#top {
+  width: auto;
+  height: auto;
+  background-color: red;
+}
+
+.list-group {
+  width: 97%;
+  margin-top: 50px;
+  margin-left: 2.5%;
+}
+
+.youtubeparentdiv {
+  overflow-y: scroll;
+  width: auto;
+  height: 670px;
+  margin-left: 20px;
+  scroll-behavior: smooth;  
+}
+
+.loading {
+  color: white;
+  font-size: 25px;
 }

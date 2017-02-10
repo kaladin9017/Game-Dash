@@ -29,10 +29,30 @@ class EveMail extends Component {
       );
     } else {
       screen = (
-        <div>
-          <a href={this.props.authUrl}>
-            <img src={EVE_PIC} />
-          </a>
+        <div className="evediv">
+
+          <center><h1>Log into your Eve-Mail account below:</h1></center>
+          <hr id="evemailhr" />
+          <br />
+
+          <center>
+            <div className="evemaillogin">
+              <center>
+                <a href={this.props.authUrl}><img src={EVE_PIC} /></a>
+              </center>
+
+              <h4 id="logininst">Click above for login</h4>
+            </div>
+          </center>
+
+          <center>
+            <div className="evemailfeatures">
+                <center><p>Stand with the alliance</p></center>
+                <br />
+                <center><p>Communicate with the Corporation</p></center>
+            </div>
+          </center>
+
         </div>
       );
     }

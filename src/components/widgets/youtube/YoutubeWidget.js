@@ -42,16 +42,26 @@ class YoutubeWidget extends Component {
     const videoSearch = _.debounce((term) => {this.videoSearch(term);}, 500);
 
     return(
-      <div>
-        <div id="top">
-        <SearchBar onSearchTermChange={videoSearch} />
-        <VideoDetail video={this.state.selectedVideo}/>
-        <VideoList
-          onVideoSelect={this.handleSelect.bind(this)}
-          videos={this.state.videos}
-          />
-      </div>
-      </div>
+        <div className="youtubeparentdiv">
+          <div className="youtubediv">
+
+                    <center>
+                      <SearchBar onSearchTermChange={videoSearch} />
+                    </center>
+
+                      <center>
+                        <div className="youtubevideodiv">
+                          <VideoDetail video={this.state.selectedVideo}/>
+                        </div>  
+                      </center>
+                    
+                    <VideoList
+                      onVideoSelect={this.handleSelect.bind(this)}
+                      videos={this.state.videos}
+                    />
+
+          </div>
+        </div>
     );
   }
 }

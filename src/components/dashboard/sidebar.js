@@ -48,9 +48,9 @@ class SideBar extends Component {
               }
 
                 <ul className="dashgames">
-                  <Link to="/evewidgets">       <li className="game" id="gameone">   Eve</li>                </Link>
+                  <Link to="/eveToken">       <li className="game" id="gameone">   Eve</li>                </Link>
                   <Link to="/warcraftwidgets">  <li className="game" id="gametwo">   World of Warcraft </li>  </Link>   
-                  <Link to="/miscscreen">       <li className="game" id="gamethree"> Misc. </li>              </Link>
+                  <Link to="/test">       <li className="game" id="gamethree"> Misc. </li>              </Link>
                                                 <li className="game" id="addgame">   + </li> 
                 </ul>
 

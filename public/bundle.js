@@ -29789,7 +29789,7 @@
 	            { className: 'dashgames' },
 	            React.createElement(
 	              _reactRouter.Link,
-	              { to: '/evewidgets' },
+	              { to: '/eveToken' },
 	              '       ',
 	              React.createElement(
 	                'li',
@@ -29811,7 +29811,7 @@
 	            ),
 	            React.createElement(
 	              _reactRouter.Link,
-	              { to: '/miscscreen' },
+	              { to: '/test' },
 	              '       ',
 	              React.createElement(
 	                'li',
@@ -40142,7 +40142,7 @@
 	            null,
 	            React.createElement(
 	              'h1',
-	              { className: 'placeholderinstruction' },
+	              { id: 'mainheading', className: 'placeholderinstruction' },
 	              'Click on a Game to show widgets...'
 	            )
 	          ),
@@ -40323,12 +40323,24 @@
 
 	      return _react2.default.createElement(
 	        'div',
-	        null,
+	        { className: 'youtubeparentdiv' },
 	        _react2.default.createElement(
 	          'div',
-	          { id: 'top' },
-	          _react2.default.createElement(_SearchBar2.default, { onSearchTermChange: videoSearch }),
-	          _react2.default.createElement(_videoDetail2.default, { video: this.state.selectedVideo }),
+	          { className: 'youtubediv' },
+	          _react2.default.createElement(
+	            'center',
+	            null,
+	            _react2.default.createElement(_SearchBar2.default, { onSearchTermChange: videoSearch })
+	          ),
+	          _react2.default.createElement(
+	            'center',
+	            null,
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'youtubevideodiv' },
+	              _react2.default.createElement(_videoDetail2.default, { video: this.state.selectedVideo })
+	            )
+	          ),
 	          _react2.default.createElement(_videoList2.default, {
 	            onVideoSelect: this.handleSelect.bind(this),
 	            videos: this.state.videos
@@ -58452,7 +58464,7 @@
 	  if (!video) {
 	    return _react2.default.createElement(
 	      "div",
-	      null,
+	      { className: "loading" },
 	      "Loading"
 	    );
 	  }
@@ -58835,11 +58847,66 @@
 	      } else {
 	        screen = _react2.default.createElement(
 	          'div',
-	          null,
+	          { className: 'evediv' },
 	          _react2.default.createElement(
-	            'a',
-	            { href: this.props.authUrl },
-	            _react2.default.createElement('img', { src: EVE_PIC })
+	            'center',
+	            null,
+	            _react2.default.createElement(
+	              'h1',
+	              null,
+	              'Log into your Eve-Mail account below:'
+	            )
+	          ),
+	          _react2.default.createElement('hr', { id: 'evemailhr' }),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(
+	            'center',
+	            null,
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'evemaillogin' },
+	              _react2.default.createElement(
+	                'center',
+	                null,
+	                _react2.default.createElement(
+	                  'a',
+	                  { href: this.props.authUrl },
+	                  _react2.default.createElement('img', { src: EVE_PIC })
+	                )
+	              ),
+	              _react2.default.createElement(
+	                'h4',
+	                { id: 'logininst' },
+	                'Click above for login'
+	              )
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'center',
+	            null,
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'evemailfeatures' },
+	              _react2.default.createElement(
+	                'center',
+	                null,
+	                _react2.default.createElement(
+	                  'p',
+	                  null,
+	                  'Stand with the alliance'
+	                )
+	              ),
+	              _react2.default.createElement('br', null),
+	              _react2.default.createElement(
+	                'center',
+	                null,
+	                _react2.default.createElement(
+	                  'p',
+	                  null,
+	                  'Communicate with the Corporation'
+	                )
+	              )
+	            )
 	          )
 	        );
 	      }
@@ -58910,7 +58977,7 @@
 
 
 	// module
-	exports.push([module.id, "html, body {\n  margin: 0px;\n  padding: 0px;\n  /*font-family: 'Ubuntu', sans-serif;*/\n  font-family: 'Roboto Mono', monospace;\n  /*font-family: 'Lato', sans-serif;*/\n  /*background-color: red;*/\n}\n\n.dashboard {\n  width: 18%;\n  height: 670px;\n  background-color: #1a1a1a;\n  display: inline-block;\n  float: left;\n  padding: 2%;\n  z-index: 10;\n  text-align: left;\n  overflow: hidden;\n  /*margin-top: -20px;*/\n  overflow-y: scroll;\n  padding-left: 0px;\n  /*background-image: url('../../images/panel.jpg');*/\n/*  background-image: url(http://www.imgbase.info/images/safe-wallpapers/video_games/eve_online/18165_eve_online.jpg);\n  background-size: 450%;\n  background-position: center center;\n  background-repeat: no-repeat;*/\n}\n\n.homepage {\n  width: 50%;\n  height: 670px;\n  background-color: white;\n  display: inline-block;\n  float: right;\n  text-align: center;\n}\n\n.evehomepage {\n  width: 50%;\n  height: 670px;\n  background-color: white;\n  display: inline-block;\n  float: right;\n  text-align: center;\n}\n\n.mischomepage {\n  width: 50%;\n  height: 670px;\n  background-color: white;\n  display: inline-block;\n  float: right;\n  text-align: center;\n}\n\n.warcrafthomepage {\n  width: 50%;\n  height: 670px;\n  background-color: white;\n  display: inline-block;\n  float: right;\n  text-align: center;\n}\n\n.gameonepage {\n  width: 100%;\n  height: 800px;\n  background-color: white;\n  display: inline-block;\n  float: right;\n}\n\n.gametwopage {\n  width: 100%;\n  height: 800px;\n  background-color: white;\n  display: inline-block;\n  float: right;\n}\n\n.gamethreepage {\n  width: 100%;\n  height: 800px;\n  background-color: white;\n  display: inline-block;\n  float: right;\n}\n\n#pj {\n  color: white;\n}\n\n.placeholderinstruction {\n  margin-top: 40%;\n  color: silver;\n  font-weight: lighter;\n  align-content: center;\n  margin-left: -50%; \n}\n\n.profilepic {\n  width: 120px;\n  height: 150px;\n  border-radius: 5px;\n  background-image: url(" + __webpack_require__(325) + ");\n  background-size: 125%;\n  display: block;\n  overflow: hidden;\n  float: left;\n  margin-bottom: 10px;\n  margin-top: 5%;\n  margin-left: 30%;\n}\n\n#pjsub {\n  list-style: none;\n  font-size: 12px;\n  text-align: left;\n  /*margin-right: 10px;*/\n  /*margin-left: 50%;*/\n  margin-top: 8%;\n  color: white;\n  display: block;\n  margin-left: 24%;\n}\n\n\n.lineitem {\n  margin-bottom: 15px;\n  float: left;\n  width: 200px;\n  margin-left: -25px;\n}\n\n.lineitem:hover {\n  cursor: pointer;\n}\n\n.game {\n  width: 100%;\n  height: 80px;\n  border: 1px solid transparent;\n  border-bottom-color: white;\n  border-left-color: white;\n  border-top-color: black;\n  border-right-color: black;\n  /*border-radius: 10px;*/\n  margin-top: 25%;\n  margin-right: 10%;\n  font-weight: bolder;\n  background-color: black;\n  opacity: 0.8;\n  font-size: 18px;\n  padding: 10px;\n  transition: 0.4s;\n  text-align: left;\n  margin-right: 5%;\n  color: red;\n}\n\n#addgame {\n  text-align: center;\n  font-size: 40px;\n}\n\n.game:hover {\n  background-color: red;\n  color: white;\n  transition: 0.4s;\n  cursor: pointer;\n}\n\n.gameonewidgets {\n  width: 100%;\n  color: #1a1a1a;\n  /*border: 1px solid white;*/\n  list-style: none;\n  display: none;\n}\n\n.widgetgameone {\n  width: 80%;\n  height: 40px;\n  border: 1px solid #1a1a1a;\n  border-bottom-color: white;\n  margin-top: 40px;\n  margin-bottom: 40px;\n  /*display: none;*/\n  /*margin: 10px;*/\n  text-align: center;\n  padding: 10px;\n  color: red;\n  transition: 1s;\n}\n\n.widgetgameone:hover {\n  transition: 1s;\n  background-color: white;\n  cursor: pointer;\n}\n\n#gameone:hover {\n  text-decoration: none;\n}\n\n#gametwo:hover {\n  text-decoration: none;\n}\n\n#gamethree:hover {\n  text-decoration: none;\n}\n\na:hover {\n  text-decoration: none;\n}\n\na:visited {\n  text-decoration: none;\n}\n\n#gamearrone {\n  color: white; \n  font-size: 16px;\n  margin-left: 50%;\n}\n\n#gamearrtwo {\n  color: white; \n  font-size: 16px;\n  margin-left: 20%;\n}\n\n#gamearrthree {\n  color: white; \n  font-size: 16px;\n  margin-left: 38%;\n}\n\n.gametwowidgets {\n  width: 100%;\n  color: #1a1a1a;\n  /*border: 1px solid white;*/\n  list-style: none;\n  display: none;\n  color: red;\n}\n\n.widgetgametwo {\n  width: 80%;\n  height: 40px;\n  border: 1px solid #1a1a1a;\n  border-bottom-color: white;\n  margin-top: 40px;\n  margin-bottom: 40px;\n  /*display: none;*/\n  text-align: center;\n  padding: 10px;\n  transition: 1s;\n}\n\n.widgetgametwo:hover {\n  transition: 1s;\n  background-color: white;\n  cursor: pointer;\n}\n\n.gamethreewidgets {\n  width: 100%;\n  color: #1a1a1a;\n  /*border: 1px solid white;*/\n  list-style: none;\n  display: none;\n  color: red;\n}\n\n.widgetgamethree {\n  width: 80%;\n  height: 40px;\n  border: 1px solid #1a1a1a;\n  border-bottom-color: white;\n  margin-top: 40px;\n  margin-bottom: 40px;\n  /*display: none;*/\n  text-align: center;\n  padding: 10px;\n  transition: 1s;\n}\n\n.widgetgamethree:hover {\n  transition: 1s;\n  background-color: white;\n  cursor: pointer;\n}\n\n\n.widgettwo {\n  width: 50%;\n  height: 40px;\n  border: 1px solid white;\n  background-color: #1a1a1a;\n  margin-top: 20px;\n  display: none;\n}\n\n.widgetthree {\n  width: 50%;\n  height: 40px;\n  border: 1px solid white;\n  background-color: #1a1a1a;\n  margin-top: 20px;\n  display: none;\n}\n\n.backtogames {\n  display: none;\n  color: red;\n}\n\n.backtogames:hover {\n  cursor: pointer;\n}\n\n.gameone:hover {\n  cursor: pointer;\n}\n\n.gametwo:hover {\n  cursor: pointer;\n}\n\n.gamethree:hover {\n  cursor: pointer;\n}\n\n\n\n\n\n@media only screen and (max-width: 900px) {\n  \n  .game{\n    font-size: 14px;\n  }\n\n}\n\n.dashgames {\n  list-style: none;\n  /*margin-top: 50px;*/\n  text-align: left;\n  margin-right: 10%;\n  width: 100%;\n  display: block;\n}\n\n#mainhr {\n  width: 20%;\n  border-color: color;\n  border-width: 1px;\n  transition: 0.4s;\n}\n\n/*#mainhr:hover {\n  width: 50%;\n  border-color: red;\n  border-width: 1px;\n  transition: 0.4s;\n}\n*/\n\n#editpro {\n  color: red;\n}\n\n#settings {\n  color: red;\n}\n\n#logout {\n  color: red;\n}\n\n.stay {\n  /*position: absolute;*/\n}\n", ""]);
+	exports.push([module.id, "html, body {\n  margin: 0px;\n  padding: 0px;\n  /*font-family: 'Ubuntu', sans-serif;*/\n  font-family: 'Roboto Mono', monospace;\n  /*font-family: 'Lato', sans-serif;*/\n  /*background-color: red;*/\n  overflow-x: hidden;\n}\n\n.dashboard {\n  width: 18%;\n  height: 670px;\n  background-color: #1a1a1a;\n  display: inline-block;\n  float: left;\n  padding: 2%;\n  z-index: 10;\n  text-align: left;\n  overflow: hidden;\n  /*margin-top: -20px;*/\n  overflow-y: scroll;\n  padding-left: 0px;\n  /*background-image: url('../../images/panel.jpg');*/\n/*  background-image: url(http://www.imgbase.info/images/safe-wallpapers/video_games/eve_online/18165_eve_online.jpg);\n  background-size: 450%;\n  background-position: center center;\n  background-repeat: no-repeat;*/\n}\n\n.homepage {\n  width: 82%;\n  height: 100vh;\n  background-color: black;\n  display: inline-block;\n  float: right;\n  /*margin-left: 20%;*/\n  text-align: center;\n  background-image: url(http://s1.picswalls.com/wallpapers/2014/09/18/eve-online-backgrounds_112515969_224.jpg);\n  background-size: 150%;\n  background-position: center center;\n  background-repeat: no-repeat;\n}\n\n#mainheading {\n  margin-left: 2%;\n  color: white;\n  margin-top: 300px;\n}\n\n.evehomepage {\n  width: 50%;\n  height: 670px;\n  background-color: white;\n  display: inline-block;\n  float: right;\n  text-align: center;\n}\n\n.mischomepage {\n  width: 50%;\n  height: 670px;\n  background-color: white;\n  display: inline-block;\n  float: right;\n  text-align: center;\n}\n\n.warcrafthomepage {\n  width: 50%;\n  height: 670px;\n  background-color: white;\n  display: inline-block;\n  float: right;\n  text-align: center;\n}\n\n.gameonepage {\n  width: 100%;\n  height: 800px;\n  background-color: white;\n  display: inline-block;\n  float: right;\n}\n\n.gametwopage {\n  width: 100%;\n  height: 800px;\n  background-color: white;\n  display: inline-block;\n  float: right;\n}\n\n.gamethreepage {\n  width: 100%;\n  height: 800px;\n  background-color: white;\n  display: inline-block;\n  float: right;\n}\n\n#pj {\n  color: white;\n}\n\n.placeholderinstruction {\n  margin-top: 40%;\n  color: silver;\n  font-weight: lighter;\n  align-content: center;\n  margin-left: -50%; \n}\n\n.profilepic {\n  width: 120px;\n  height: 150px;\n  border-radius: 5px;\n  background-image: url(" + __webpack_require__(325) + ");\n  background-size: 125%;\n  display: block;\n  overflow: hidden;\n  float: left;\n  margin-bottom: 10px;\n  margin-top: 5%;\n  margin-left: 30%;\n}\n\n#pjsub {\n  list-style: none;\n  font-size: 12px;\n  text-align: left;\n  /*margin-right: 10px;*/\n  /*margin-left: 50%;*/\n  margin-top: 8%;\n  color: white;\n  display: block;\n  margin-left: 24%;\n}\n\n\n.lineitem {\n  margin-bottom: 15px;\n  float: left;\n  width: 200px;\n  margin-left: -25px;\n}\n\n.lineitem:hover {\n  cursor: pointer;\n}\n\n.game {\n  width: 100%;\n  height: 80px;\n  border: 1px solid transparent;\n  border-bottom-color: white;\n  border-left-color: white;\n  border-top-color: black;\n  border-right-color: black;\n  /*border-radius: 10px;*/\n  margin-top: 25%;\n  margin-right: 10%;\n  font-weight: bolder;\n  background-color: black;\n  opacity: 0.8;\n  font-size: 18px;\n  padding: 10px;\n  transition: 0.4s;\n  text-align: left;\n  margin-right: 5%;\n  color: red;\n}\n\n#addgame {\n  text-align: center;\n  font-size: 40px;\n}\n\n.game:hover {\n  background-color: red;\n  color: white;\n  transition: 0.4s;\n  cursor: pointer;\n}\n\n.gameonewidgets {\n  width: 100%;\n  color: #1a1a1a;\n  /*border: 1px solid white;*/\n  list-style: none;\n  display: none;\n}\n\n.widgetgameone {\n  width: 80%;\n  height: 40px;\n  border: 1px solid #1a1a1a;\n  border-bottom-color: white;\n  margin-top: 40px;\n  margin-bottom: 40px;\n  /*display: none;*/\n  /*margin: 10px;*/\n  text-align: center;\n  padding: 10px;\n  color: red;\n  transition: 1s;\n}\n\n.widgetgameone:hover {\n  transition: 1s;\n  background-color: white;\n  cursor: pointer;\n}\n\n#gameone:hover {\n  text-decoration: none;\n}\n\n#gametwo:hover {\n  text-decoration: none;\n}\n\n#gamethree:hover {\n  text-decoration: none;\n}\n\na:hover {\n  text-decoration: none;\n}\n\na:visited {\n  text-decoration: none;\n}\n\n#gamearrone {\n  color: white; \n  font-size: 16px;\n  margin-left: 50%;\n}\n\n#gamearrtwo {\n  color: white; \n  font-size: 16px;\n  margin-left: 20%;\n}\n\n#gamearrthree {\n  color: white; \n  font-size: 16px;\n  margin-left: 38%;\n}\n\n.gametwowidgets {\n  width: 100%;\n  color: #1a1a1a;\n  /*border: 1px solid white;*/\n  list-style: none;\n  display: none;\n  color: red;\n}\n\n.widgetgametwo {\n  width: 80%;\n  height: 40px;\n  border: 1px solid #1a1a1a;\n  border-bottom-color: white;\n  margin-top: 40px;\n  margin-bottom: 40px;\n  /*display: none;*/\n  text-align: center;\n  padding: 10px;\n  transition: 1s;\n}\n\n.widgetgametwo:hover {\n  transition: 1s;\n  background-color: white;\n  cursor: pointer;\n}\n\n.gamethreewidgets {\n  width: 100%;\n  color: #1a1a1a;\n  /*border: 1px solid white;*/\n  list-style: none;\n  display: none;\n  color: red;\n}\n\n.widgetgamethree {\n  width: 80%;\n  height: 40px;\n  border: 1px solid #1a1a1a;\n  border-bottom-color: white;\n  margin-top: 40px;\n  margin-bottom: 40px;\n  /*display: none;*/\n  text-align: center;\n  padding: 10px;\n  transition: 1s;\n}\n\n.widgetgamethree:hover {\n  transition: 1s;\n  background-color: white;\n  cursor: pointer;\n}\n\n\n.widgettwo {\n  width: 50%;\n  height: 40px;\n  border: 1px solid white;\n  background-color: #1a1a1a;\n  margin-top: 20px;\n  display: none;\n}\n\n.widgetthree {\n  width: 50%;\n  height: 40px;\n  border: 1px solid white;\n  background-color: #1a1a1a;\n  margin-top: 20px;\n  display: none;\n}\n\n.backtogames {\n  display: none;\n  color: red;\n}\n\n.backtogames:hover {\n  cursor: pointer;\n}\n\n.gameone:hover {\n  cursor: pointer;\n}\n\n.gametwo:hover {\n  cursor: pointer;\n}\n\n.gamethree:hover {\n  cursor: pointer;\n}\n\n\n\n\n\n@media only screen and (max-width: 900px) {\n  \n  .game{\n    font-size: 14px;\n  }\n\n}\n\n.dashgames {\n  list-style: none;\n  /*margin-top: 50px;*/\n  text-align: left;\n  margin-right: 10%;\n  width: 100%;\n  display: block;\n}\n\n#mainhr {\n  width: 20%;\n  border-color: color;\n  border-width: 1px;\n  transition: 0.4s;\n}\n\n/*#mainhr:hover {\n  width: 50%;\n  border-color: red;\n  border-width: 1px;\n  transition: 0.4s;\n}\n*/\n\n#editpro {\n  color: red;\n}\n\n#settings {\n  color: red;\n}\n\n#logout {\n  color: red;\n}\n\n.stay {\n  /*position: absolute;*/\n}\n\n.evediv {\n  width: auto;\n  height: 100vh;\n  padding-top: 10vh;\n  background-color: black;\n  background-image: url(http://wallpapercave.com/wp/0yTiw8R.jpg);\n  background-size: 100%;\n  background-position: center center;\n  background-repeat: no-repeat;\n  color: white;\n}\n\n#evemailhr {\n  width: 70%;\n  border-color: white;\n  border-width: 1px;\n}\n\n.evemaillogin {\n  width: 300px;\n  height: 30vh;\n  background-color: black;\n  opacity: 0.9;\n  margin-left: 20%;\n  padding-top: 2%;\n}\n\n#logininst {\n  margin-top: 15%;\n  color: red;\n}\n\n.evemailfeatures {\n  width: 50%;\n  height: auto;\n  background-color: #1a1a1a;\n  opacity: 0.9;\n  margin-left: 20%;\n  margin-top: 7vh;\n  padding-top: 50px;\n  padding-bottom: 50px;\n  font-size: 20px;\n  color: white;\n}\n\n/* ---------------------- YOUTUBE DIV -------------------- */\n\n.youtubediv {\n  background-color: #1a1a1a;\n  width: auto;\n  height: auto;\n  /*overflow-y: scroll;*/\n  overflow-x: hidden;\n  padding-top: 40px;\n  scroll-behavior: smooth;\n}\n\n.youtubevideodiv {\n  width: 120%;\n  height: 40vh;\n  margin-left: 10%;\n  margin-top: 40px;\n}\n\n#top {\n  width: auto;\n  height: auto;\n  background-color: red;\n}\n\n.list-group {\n  width: 97%;\n  margin-top: 50px;\n  margin-left: 2.5%;\n}\n\n.youtubeparentdiv {\n  overflow-y: scroll;\n  width: auto;\n  height: 670px;\n  margin-left: 20px;\n  scroll-behavior: smooth;  \n}\n\n.loading {\n  color: white;\n  font-size: 25px;\n}", ""]);
 
 	// exports
 

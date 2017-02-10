@@ -11,7 +11,7 @@ class InitialScreen extends Component {
 
         <div className="homepage">
 
-        	<center><h1 className="placeholderinstruction">Click on a Game to show widgets...</h1></center>
+        	<center><h1 id="mainheading" className="placeholderinstruction">Click on a Game to show widgets...</h1></center>
 
           <center><hr id="mainhr"/></center>
 
