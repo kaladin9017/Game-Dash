@@ -48,10 +48,10 @@ class EveMail extends Component {
       screen = (
         <div>
           <EveMailHeaderList mailHeaders={this.props.mailHeaders} />
+
         </div>
       );
     }
-
     return (
       <div>
         <EveMailSidebar/>

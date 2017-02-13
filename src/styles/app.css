@@ -5,33 +5,70 @@ html, body {
   font-family: 'Roboto Mono', monospace;
   /*font-family: 'Lato', sans-serif;*/
   /*background-color: red;*/
+  overflow-x: hidden;
 }
 
 .dashboard {
-  width: 25%;
-  height: 900px;
+  width: 18%;
+  height: 670px;
   background-color: #1a1a1a;
   display: inline-block;
   float: left;
-  padding: 1%;
+  padding: 2%;
   z-index: 10;
   text-align: left;
   overflow: hidden;
   /*margin-top: -20px;*/
+  overflow-y: scroll;
+  padding-left: 0px;
+  /*background-image: url('../../images/panel.jpg');*/
+/*  background-image: url(http://www.imgbase.info/images/safe-wallpapers/video_games/eve_online/18165_eve_online.jpg);
+  background-size: 450%;
+  background-position: center center;
+  background-repeat: no-repeat;*/
 }
 
 .homepage {
+  width: 82%;
+  height: 100vh;
+  background-color: black;
+  display: inline-block;
+  float: right;
+  /*margin-left: 20%;*/
+  text-align: center;
+  background-image: url(http://s1.picswalls.com/wallpapers/2014/09/18/eve-online-backgrounds_112515969_224.jpg);
+  background-size: 150%;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+#mainheading {
+  margin-left: 2%;
+  color: white;
+  margin-top: 300px;
+}
+
+.evehomepage {
   width: 50%;
-  height: 850px;
+  height: 670px;
   background-color: white;
   display: inline-block;
   float: right;
   text-align: center;
 }
 
-.evehomepage {
+.mischomepage {
   width: 50%;
-  height: 850px;
+  height: 670px;
+  background-color: white;
+  display: inline-block;
+  float: right;
+  text-align: center;
+}
+
+.warcrafthomepage {
+  width: 50%;
+  height: 670px;
   background-color: white;
   display: inline-block;
   float: right;
@@ -98,11 +135,12 @@ html, body {
   border-radius: 5px;
   background-image: url('../../images/pp.jpg');
   background-size: 125%;
-  display: inline-block;
+  display: block;
   overflow: hidden;
   float: left;
   margin-bottom: 10px;
   margin-top: 5%;
+  margin-left: 30%;
 }
 
 #pjsub {
@@ -111,8 +149,10 @@ html, body {
   text-align: left;
   /*margin-right: 10px;*/
   /*margin-left: 50%;*/
-  margin-top: 20px;
+  margin-top: 8%;
   color: white;
+  display: block;
+  margin-left: 24%;
 }
 
 
@@ -129,18 +169,31 @@ html, body {
 
 .game {
   width: 100%;
-  height: 100px;
-  border: 1px solid #1a1a1a;
-  border-bottom-color: grey;
+  height: 80px;
+  border: 1px solid transparent;
+  border-bottom-color: white;
+  border-left-color: white;
+  border-top-color: black;
+  border-right-color: black;
   /*border-radius: 10px;*/
-  margin-top: 20%;
+  margin-top: 25%;
+  margin-right: 10%;
   font-weight: bolder;
+  background-color: black;
+  opacity: 0.8;
+  font-size: 18px;
+  padding: 10px;
   font-size: 20px;
   /*padding: 20px;*/
   transition: 0.4s;
   text-align: left;
-  margin-left: -7%;
+  margin-right: 5%;
   color: red;
+}
+
+#addgame {
+  text-align: center;
+  font-size: 40px;
 }
 
 .game:hover {
@@ -177,6 +230,26 @@ html, body {
   transition: 1s;
   background-color: white;
   cursor: pointer;
+}
+
+#gameone:hover {
+  text-decoration: none;
+}
+
+#gametwo:hover {
+  text-decoration: none;
+}
+
+#gamethree:hover {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
 }
 
 #gamearrone {
@@ -300,15 +373,18 @@ html, body {
 @media only screen and (max-width: 900px) {
   
   .game{
-    font-size: 15px;
+    font-size: 14px;
   }
 
 }
 
 .dashgames {
   list-style: none;
-  margin-top: 50px;
+  /*margin-top: 50px;*/
   text-align: left;
+  margin-right: 10%;
+  width: 100%;
+  display: block;
 }
 
 #mainhr {
@@ -338,6 +414,95 @@ html, body {
   color: red;
 }
 
+.stay {
+  /*position: absolute;*/
+}
 
+.evediv {
+  width: auto;
+  height: 100vh;
+  padding-top: 10vh;
+  background-color: black;
+  background-image: url(http://wallpapercave.com/wp/0yTiw8R.jpg);
+  background-size: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  color: white;
+}
 
+#evemailhr {
+  width: 70%;
+  border-color: white;
+  border-width: 1px;
+}
 
+.evemaillogin {
+  width: 300px;
+  height: 30vh;
+  background-color: black;
+  opacity: 0.9;
+  margin-left: 20%;
+  padding-top: 2%;
+}
+
+#logininst {
+  margin-top: 15%;
+  color: red;
+}
+
+.evemailfeatures {
+  width: 50%;
+  height: auto;
+  background-color: #1a1a1a;
+  opacity: 0.9;
+  margin-left: 20%;
+  margin-top: 7vh;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  font-size: 20px;
+  color: white;
+}
+
+/* ---------------------- YOUTUBE DIV -------------------- */
+
+.youtubediv {
+  background-color: #1a1a1a;
+  width: auto;
+  height: auto;
+  /*overflow-y: scroll;*/
+  overflow-x: hidden;
+  padding-top: 40px;
+  scroll-behavior: smooth;
+}
+
+.youtubevideodiv {
+  width: 120%;
+  height: 40vh;
+  margin-left: 10%;
+  margin-top: 40px;
+}
+
+#top {
+  width: auto;
+  height: auto;
+  background-color: red;
+}
+
+.list-group {
+  width: 97%;
+  margin-top: 50px;
+  margin-left: 2.5%;
+}
+
+.youtubeparentdiv {
+  overflow-y: scroll;
+  width: auto;
+  height: 670px;
+  margin-left: 20px;
+  scroll-behavior: smooth;  
+}
+
+.loading {
+  color: white;
+  font-size: 25px;
+}
