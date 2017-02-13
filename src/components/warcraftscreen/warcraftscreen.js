@@ -1,3 +1,4 @@
+
 const React = require('react');
 const ReactDOM = require('react-dom');
 const $ = require('jquery')
@@ -20,6 +21,9 @@ class WarCraftScreen extends Component {
       </div>
     )
   }
+
 }
+
+
 
 export default WarCraftScreen;

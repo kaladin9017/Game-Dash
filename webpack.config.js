@@ -1,3 +1,6 @@
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const stylusLoader  = ExtractTextPlugin.extract('style-loader',"css-loader!stylus-loader");
+
 module.exports = {
   entry: "./src/app.js",
   output: {
@@ -6,6 +9,7 @@ module.exports = {
   },
   module: {
     loaders: [
+      { test:/\.styl$/, loader: stylusLoader },
       { test: /\.css$/, loader: "style-loader!css-loader" },
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader',
         query: { presets: ['react', 'es2015'] }
@@ -17,5 +21,10 @@ module.exports = {
     ],
     loader: 'eslint',
     exclude: /node_modules/
-  }
+  },
+  plugins:[
+    new ExtractTextPlugin("public/style.css")
+      //new webpack.optimize.UglifyJsPlugin({minimize: true})
+  ]
+
 };

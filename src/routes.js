@@ -12,13 +12,21 @@ import MiscScreen from './components/miscscreen/miscscreen'
 import YoutubeWidget from './components/widgets/youtube/YoutubeWidget';
 import EveToken from './components/widgets/eve-mail/eve-token';
 import EveMail from './components/widgets/eve-mail/eve-mail';
+import EveMailSidebar from './components/widgets/eve-mail/eve-mail-sidebar';
+import EveMailItem from './components/widgets/eve-mail/eve-mail-item';
+import EveMailHeaderList from './components/widgets/eve-mail/eve-mail-header-list';
+
+// FOR TESTING VIEW
+import FifteenGame from './components/widgets/fifteen-game/FifteenGame';
+import TwitchWidget from './components/widgets/twitch/TwitchWidget';
+//
 
 export default (
   <Route path="/" component={Main}>
   	<IndexRoute component={InitialScreen}/>
   	<Route path="/evewidgets" component={EveScreen}/>
   	<Route path="/warcraftwidgets" component={WarCraftScreen}/>
-  	<Route path="/miscscreen" component={MiscScreen}/>
+  	<Route path="/miscwidgets" component={MiscScreen}/>
     <Route path="/test" component={YoutubeWidget}/>
     <Route path="/eveToken" component={EveToken}/>
     <Route path="/eveMail" component={EveMail}/>
