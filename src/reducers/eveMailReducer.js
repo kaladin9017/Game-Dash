@@ -5,8 +5,11 @@ const initialState = {
   token: null,
   characterId: 1948822847,
   accessToken: null,
+  accessTokenRefreshTime: null,
   refreshToken: null,
   mailHeaders: null,
+  mailHeaderDisplay: 'headers',
+  mailRead: null,
   updateStage: 0
 };
 
@@ -21,7 +24,8 @@ export default function (state = initialState, action) {
     return Object.assign({}, state, {
       accessToken: action.payload.tokenData.data.access_token,
       refreshToken: action.payload.tokenData.data.refresh_token,
-      updateStage: action.payload.updateStage
+      updateStage: action.payload.updateStage,
+      accessTokenRefreshTime: action.payload.accessTokenRefreshTime
     });
   case 'EVE_MAIL_FETCH_CHARACTER_NAMES':
     return Object.assign({}, state, {
@@ -31,6 +35,15 @@ export default function (state = initialState, action) {
   case 'EVE_MAIL_CHANGE_UPDATE_STAGE':
     return Object.assign({}, state, {
       updateStage: action.payload
+    });
+  case 'EVE_MAIL_GET_MAIL_BODY':
+    return Object.assign({}, state, {
+      mailRead: action.payload,
+      mailHeaderDisplay: 'mail'
+    });
+  case 'EVE_MAIL_MAIL_HEADER_DISPLAY_IS_HEADERS':
+    return Object.assign({}, state, {
+      mailHeaderDisplay: 'headers'
     });
   }
   return state;

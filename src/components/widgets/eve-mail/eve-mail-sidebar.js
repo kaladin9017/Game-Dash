@@ -5,6 +5,7 @@ class EveMailSidebar extends Component {
     return (
       <div>
         <button>Refresh</button>
+        <button>Compose</button>
         <button>Inbox</button>
         <button>Alliance</button>
         <button>Corporation</button>

@@ -3,7 +3,10 @@ import {
   EVE_MAIL_WRITE_TOKENS,
   EVE_MAIL_FETCH_CHARACTER_NAMES,
   EVE_MAIL_CHANGE_UPDATE_STAGE,
-  EVE_MAIL_GET_MAIL_BODY} from './types';
+  EVE_MAIL_GET_MAIL_BODY,
+  EVE_MAIL_MAIL_HEADER_DISPLAY_IS_HEADERS,
+  EVE_MAIL_GET_NEW_ACCESS_TOKEN_WITH_REFRESH_TOKEN
+  } from './types';
 import axios from 'axios';
 
 export function eveMailWriteTokens(authToken, updateStage) {
@@ -14,6 +17,7 @@ export function eveMailWriteTokens(authToken, updateStage) {
     let tokenDataObj = {};
     tokenDataObj.tokenData = data;
     tokenDataObj.updateStage = updateStage;
+    tokenDataObj.accessTokenRefreshTime = Date.now() + 900000;
     return tokenDataObj;
   });
 
@@ -53,7 +57,6 @@ export function eveMailFetchHeaders(charId, authToken, updateStage, force, lastH
       return mailHeaders;
     });
   }
-
   return {
     type: EVE_MAIL_FETCH_HEADERS,
     payload: mailHeaders
@@ -111,9 +114,9 @@ export function changeUpdateStage (stage) {
 
 
 export function eveMailGetMailBody (charId, authToken, mailId, from) {
-  let url = `https://esi.tech.ccp.is/latest/characters/{charId}/mail/{mailId}?datasource=tranquility`;
-  let authorization = `Bearer {authToken}`;
-  let mailUpdate = axios({
+  let url = `https://esi.tech.ccp.is/latest/characters/${charId}/mail/${mailId}/?datasource=tranquility`;
+  let authorization = `Bearer ${authToken}`;
+  let mailItem = axios({
     method: 'get',
     url: url,
     headers: {
@@ -122,12 +125,32 @@ export function eveMailGetMailBody (charId, authToken, mailId, from) {
     }
   })
   .then((data) => {
-    data.from = from;
-    return data;
+    let mailItem = data.data;
+    mailItem.from = from;
+    return mailItem;
   });
 
   return {
     type: EVE_MAIL_GET_MAIL_BODY,
-    payload: mailUpdate
+    payload: mailItem
+  };
+}
+
+
+
+export function eveMailMailHeaderDisplayIsHeaders () {
+  return {
+    type: EVE_MAIL_MAIL_HEADER_DISPLAY_IS_HEADERS
+  };
+}
+
+
+
+export function eveMailGetNewAccessTokenWithRefreshToken () {
+
+
+  return {
+    type: EVE_MAIL_GET_NEW_ACCESS_TOKEN_WITH_REFRESH_TOKEN,
+    payload: null
   };
 }

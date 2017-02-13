@@ -27952,6 +27952,8 @@
 	var EVE_MAIL_WRITE_TOKENS = exports.EVE_MAIL_WRITE_TOKENS = 'EVE_MAIL_WRITE_TOKENS';
 	var EVE_MAIL_CHANGE_UPDATE_STAGE = exports.EVE_MAIL_CHANGE_UPDATE_STAGE = 'EVE_MAIL_CHANGE_UPDATE_STAGE';
 	var EVE_MAIL_GET_MAIL_BODY = exports.EVE_MAIL_GET_MAIL_BODY = 'EVE_MAIL_GET_MAIL_BODY';
+	var EVE_MAIL_MAIL_HEADER_DISPLAY_IS_HEADERS = exports.EVE_MAIL_MAIL_HEADER_DISPLAY_IS_HEADERS = 'EVE_MAIL_MAIL_HEADER_DISPLAY_IS_HEADERS';
+	var EVE_MAIL_GET_NEW_ACCESS_TOKEN_WITH_REFRESH_TOKEN = exports.EVE_MAIL_GET_NEW_ACCESS_TOKEN_WITH_REFRESH_TOKEN = 'EVE_MAIL_GET_NEW_ACCESS_TOKEN_WITH_REFRESH_TOKEN';
 
 	// Wow Constants
 	var GET_WOW_RELM_STATUS = exports.GET_WOW_RELM_STATUS = 'GET_WOW_RELM_STATUS';
@@ -28007,7 +28009,8 @@
 	      return Object.assign({}, state, {
 	        accessToken: action.payload.tokenData.data.access_token,
 	        refreshToken: action.payload.tokenData.data.refresh_token,
-	        updateStage: action.payload.updateStage
+	        updateStage: action.payload.updateStage,
+	        accessTokenRefreshTime: action.payload.accessTokenRefreshTime
 	      });
 	    case 'EVE_MAIL_FETCH_CHARACTER_NAMES':
 	      return Object.assign({}, state, {
@@ -28017,6 +28020,15 @@
 	    case 'EVE_MAIL_CHANGE_UPDATE_STAGE':
 	      return Object.assign({}, state, {
 	        updateStage: action.payload
+	      });
+	    case 'EVE_MAIL_GET_MAIL_BODY':
+	      return Object.assign({}, state, {
+	        mailRead: action.payload,
+	        mailHeaderDisplay: 'mail'
+	      });
+	    case 'EVE_MAIL_MAIL_HEADER_DISPLAY_IS_HEADERS':
+	      return Object.assign({}, state, {
+	        mailHeaderDisplay: 'headers'
 	      });
 	  }
 	  return state;
@@ -28033,8 +28045,11 @@
 	  token: null,
 	  characterId: 1948822847,
 	  accessToken: null,
+	  accessTokenRefreshTime: null,
 	  refreshToken: null,
 	  mailHeaders: null,
+	  mailHeaderDisplay: 'headers',
+	  mailRead: null,
 	  updateStage: 0
 	};
 
@@ -58782,6 +58797,8 @@
 	exports.eveMailFetchCharacterNames = eveMailFetchCharacterNames;
 	exports.changeUpdateStage = changeUpdateStage;
 	exports.eveMailGetMailBody = eveMailGetMailBody;
+	exports.eveMailMailHeaderDisplayIsHeaders = eveMailMailHeaderDisplayIsHeaders;
+	exports.eveMailGetNewAccessTokenWithRefreshToken = eveMailGetNewAccessTokenWithRefreshToken;
 
 	var _types = __webpack_require__(262);
 
@@ -58798,6 +58815,7 @@
 	    var tokenDataObj = {};
 	    tokenDataObj.tokenData = data;
 	    tokenDataObj.updateStage = updateStage;
+	    tokenDataObj.accessTokenRefreshTime = Date.now() + 900000;
 	    return tokenDataObj;
 	  });
 
@@ -58834,7 +58852,6 @@
 	      return mailHeaders;
 	    });
 	  }
-
 	  return {
 	    type: _types.EVE_MAIL_FETCH_HEADERS,
 	    payload: mailHeaders
@@ -58885,9 +58902,9 @@
 	}
 
 	function eveMailGetMailBody(charId, authToken, mailId, from) {
-	  var url = 'https://esi.tech.ccp.is/latest/characters/{charId}/mail/{mailId}?datasource=tranquility';
-	  var authorization = 'Bearer {authToken}';
-	  var mailUpdate = (0, _axios2.default)({
+	  var url = 'https://esi.tech.ccp.is/latest/characters/' + charId + '/mail/' + mailId + '/?datasource=tranquility';
+	  var authorization = 'Bearer ' + authToken;
+	  var mailItem = (0, _axios2.default)({
 	    method: 'get',
 	    url: url,
 	    headers: {
@@ -58895,13 +58912,28 @@
 	      Authorization: authorization
 	    }
 	  }).then(function (data) {
-	    data.from = from;
-	    return data;
+	    var mailItem = data.data;
+	    mailItem.from = from;
+	    return mailItem;
 	  });
 
 	  return {
 	    type: _types.EVE_MAIL_GET_MAIL_BODY,
-	    payload: mailUpdate
+	    payload: mailItem
+	  };
+	}
+
+	function eveMailMailHeaderDisplayIsHeaders() {
+	  return {
+	    type: _types.EVE_MAIL_MAIL_HEADER_DISPLAY_IS_HEADERS
+	  };
+	}
+
+	function eveMailGetNewAccessTokenWithRefreshToken() {
+
+	  return {
+	    type: _types.EVE_MAIL_GET_NEW_ACCESS_TOKEN_WITH_REFRESH_TOKEN,
+	    payload: null
 	  };
 	}
 
@@ -59090,9 +59122,7 @@
 	    var _this = _possibleConstructorReturn(this, (EveMailHeaderList.__proto__ || Object.getPrototypeOf(EveMailHeaderList)).call(this, props));
 
 	    _this.state = {
-	      headerList: null,
-	      mail: null,
-	      screen: null
+	      JsxheaderList: null
 	    };
 	    return _this;
 	  }
@@ -59100,56 +59130,27 @@
 	  _createClass(EveMailHeaderList, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      var _this2 = this;
-
 	      var headerList = [];
 	      this.props.mailHeaders.forEach(function (ele, ind) {
 	        headerList.push(_react2.default.createElement(_eveMailHeader2.default, {
 	          key: ind,
-	          header: ele,
-	          handleClick: _this2.handleClick.bind(_this2, _this2.props.characterId, _this2.props.accessToken, ele.mail_id, ele.from)
+	          header: ele
 	        }));
 	      });
-	      this.setState({ headerList: headerList });
-	      this.setState({ screen: headerList });
-	    }
-	  }, {
-	    key: 'backButton',
-	    value: function backButton() {
-	      this.setState({ mail: null });
-	    }
-	  }, {
-	    key: 'handleClick',
-	    value: function handleClick(charId, accessToken, mailId, from) {
-	      var _this3 = this;
-
-	      var url = 'https://esi.tech.ccp.is/latest/characters/' + charId + '/mail/' + mailId + '/?datasource=tranquility';
-	      var authorization = 'Bearer ' + accessToken;
-	      (0, _axios2.default)({
-	        method: 'get',
-	        url: url,
-	        headers: {
-	          Authorization: authorization,
-	          Accept: 'application/json'
-	        }
-	      }).then(function (data) {
-	        var newMail = _react2.default.createElement(_eveMailItem2.default, {
-	          subject: data.data.subject,
-	          from: from,
-	          body: data.data.body,
-	          backButton: _this3.backButton.bind(_this3)
-	        });
-	        _this3.setState({ mail: newMail });
-	      });
+	      this.setState({ JsxheaderList: headerList });
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var display = void 0;
-	      if (this.state.mail) {
-	        display = this.state.mail;
-	      } else {
-	        display = this.state.headerList;
+	      if (this.props.mailHeaderDisplay == 'mail') {
+	        display = _react2.default.createElement(_eveMailItem2.default, {
+	          subject: this.props.mailRead.subject,
+	          from: this.props.mailRead.from,
+	          body: this.props.mailRead.body
+	        });
+	      } else if (this.props.mailHeaderDisplay == 'headers') {
+	        display = this.state.JsxheaderList;
 	      }
 	      return _react2.default.createElement(
 	        'div',
@@ -59170,7 +59171,9 @@
 	  return {
 	    characterId: state.eveMail.characterId,
 	    accessToken: state.eveMail.accessToken,
-	    mailHeaders: state.eveMail.mailHeaders
+	    mailHeaders: state.eveMail.mailHeaders,
+	    mailHeaderDisplay: state.eveMail.mailHeaderDisplay,
+	    mailRead: state.eveMail.mailRead
 	  };
 	}
 
@@ -59192,7 +59195,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _reactRouter = __webpack_require__(197);
+	var _eveMail = __webpack_require__(321);
+
+	var _redux = __webpack_require__(170);
+
+	var _reactRedux = __webpack_require__(159);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -59212,6 +59219,15 @@
 	  }
 
 	  _createClass(EveMailHeader, [{
+	    key: 'handleClick',
+	    value: function handleClick() {
+	      var charId = this.props.characterId;
+	      var accessToken = this.props.accessToken;
+	      var mailId = this.props.header.mail_id;
+	      var from = this.props.header.from;
+	      this.props.eveMailGetMailBody(charId, accessToken, mailId, from);
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -59234,7 +59250,7 @@
 	          ),
 	          _react2.default.createElement(
 	            'button',
-	            { onClick: this.props.handleClick },
+	            { onClick: this.handleClick.bind(this) },
 	            'Read'
 	          )
 	        )
@@ -59245,7 +59261,18 @@
 	  return EveMailHeader;
 	}(_react.Component);
 
-	exports.default = EveMailHeader;
+	function mapDispatchToProps(dispatch) {
+	  return (0, _redux.bindActionCreators)({ eveMailGetMailBody: _eveMail.eveMailGetMailBody }, dispatch);
+	}
+
+	function mapStateToProps(state, ownProps) {
+	  return {
+	    characterId: state.eveMail.characterId,
+	    accessToken: state.eveMail.accessToken
+	  };
+	}
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(EveMailHeader);
 
 /***/ },
 /* 325 */
@@ -59262,6 +59289,12 @@
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _eveMail = __webpack_require__(321);
+
+	var _redux = __webpack_require__(170);
+
+	var _reactRedux = __webpack_require__(159);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -59281,6 +59314,11 @@
 	  }
 
 	  _createClass(EveMailItem, [{
+	    key: 'handleClick',
+	    value: function handleClick() {
+	      this.props.eveMailMailHeaderDisplayIsHeaders();
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -59304,7 +59342,7 @@
 	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
 	          'button',
-	          { onClick: this.props.backButton },
+	          { onClick: this.handleClick.bind(this) },
 	          'Back'
 	        )
 	      );
@@ -59314,7 +59352,11 @@
 	  return EveMailItem;
 	}(_react.Component);
 
-	exports.default = EveMailItem;
+	function mapDispatchToProps(dispatch) {
+	  return (0, _redux.bindActionCreators)({ eveMailMailHeaderDisplayIsHeaders: _eveMail.eveMailMailHeaderDisplayIsHeaders }, dispatch);
+	}
+
+	exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(EveMailItem);
 
 /***/ },
 /* 326 */
@@ -59359,6 +59401,11 @@
 	          'button',
 	          null,
 	          'Refresh'
+	        ),
+	        _react2.default.createElement(
+	          'button',
+	          null,
+	          'Compose'
 	        ),
 	        _react2.default.createElement(
 	          'button',

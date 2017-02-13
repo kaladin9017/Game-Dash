@@ -10,9 +10,7 @@ class EveMailHeaderList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      headerList: null,
-      mail: null,
-      screen: null
+      JsxheaderList: null
     };
   }
   componentDidMount() {
@@ -22,45 +20,23 @@ class EveMailHeaderList extends Component {
         <EveMailHeader
           key={ind}
           header={ele}
-          handleClick={this.handleClick.bind(this, this.props.characterId, this.props.accessToken, ele.mail_id, ele.from)}
         />
       );
     });
-    this.setState({headerList: headerList});
-    this.setState({screen: headerList});
-  }
-  backButton() {
-    this.setState({mail: null});
-  }
-  handleClick(charId, accessToken, mailId, from) {
-    let url = `https://esi.tech.ccp.is/latest/characters/${charId}/mail/${mailId}/?datasource=tranquility`;
-    let authorization = `Bearer ${accessToken}`;
-    axios({
-      method: 'get',
-      url: url,
-      headers: {
-        Authorization: authorization,
-        Accept: 'application/json'
-      }
-    })
-    .then((data) => {
-      let newMail = (
-        <EveMailItem
-          subject={data.data.subject}
-          from={from}
-          body={data.data.body}
-          backButton={this.backButton.bind(this)}
-        />
-      );
-      this.setState({mail: newMail});
-    });
+    this.setState({JsxheaderList: headerList});
   }
   render() {
     let display;
-    if (this.state.mail) {
-      display = this.state.mail;
-    } else {
-      display = this.state.headerList;
+    if (this.props.mailHeaderDisplay == 'mail') {
+      display = (
+        <EveMailItem
+          subject={this.props.mailRead.subject}
+          from={this.props.mailRead.from}
+          body={this.props.mailRead.body}
+        />
+      );
+    } else if (this.props.mailHeaderDisplay == 'headers'){
+      display = this.state.JsxheaderList;
     }
     return (
       <div>
@@ -78,7 +54,9 @@ function mapStateToProps(state, ownProps) {
   return {
     characterId: state.eveMail.characterId,
     accessToken: state.eveMail.accessToken,
-    mailHeaders: state.eveMail.mailHeaders
+    mailHeaders: state.eveMail.mailHeaders,
+    mailHeaderDisplay: state.eveMail.mailHeaderDisplay,
+    mailRead: state.eveMail.mailRead
   };
 }
 
