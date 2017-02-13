@@ -3,6 +3,9 @@ import { YOUTUBE_SEARCH_TERM, GET_TWITCH_VIDEOS, GET_WOW_RELM_STATUS } from './t
 
 import axios from 'axios';
 
+const TWITCH_CLIENT_ID = process.env.TWITCH_CLIENT_ID;
+const WOW_API_KEY = process.env.WOW_API_KEY;
+
 export function changeYoutubeVideos(term) {
   return {
     type: YOUTUBE_SEARCH_TERM,
@@ -14,7 +17,7 @@ export function fetchTwitchVideos(term) {
   let config = {
     headers: {
       'Accept': 'application/vnd.twitchtv.v5+json',
-      'Client-ID': '0kl1apsft0hl4a8bayxw6rqh98bkkl'
+      'Client-ID': TWITCH_CLIENT_ID
     }
   };
   let response = axios.get(`https://api.twitch.tv/kraken/search/streams?query=${term}`, config);
@@ -24,7 +27,7 @@ export function fetchTwitchVideos(term) {
   };
 }
 export function getWowRelmStatus() {
-  let response = axios.get("https://us.api.battle.net/wow/realm/status?locale=en_US&apikey=4f6q8vb5a8vbmt8p86bs6jkrv4r2edx2");
+  let response = axios.get(`https://us.api.battle.net/wow/realm/status?locale=en_US&apikey=${WOW_API_KEY}`);
   return {
     type: GET_WOW_RELM_STATUS,
     payload: response
