@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-
 class EveMailItem extends Component {
   constructor(props) {
     super(props);
@@ -17,6 +16,5 @@ class EveMailItem extends Component {
       </div>
     );
   }
-}
-
+} 
 export default EveMailItem;
