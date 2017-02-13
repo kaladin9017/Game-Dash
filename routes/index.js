@@ -1,6 +1,14 @@
 const router = require("express").Router();
 const path = require("path");
-// const models = require("../models");
+const passportService = require('../services/passport');
+const passport = require('passport');
+
+// AUTH STUFF
+const authentication = require('../controller/authentication');
+
+// passport STUFF
+const requireSignin = passport.authenticate('local', { session: false });
+
 const axios = require("axios");
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
@@ -10,6 +18,12 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 - User is redirected back to mail app with auth token and refresh
 - Mail app send api call to populate mail
 */
+
+router.route('/api/signup')
+  .post(authentication.signup);
+
+router.route('/api/signin')
+  .post(requireSignin, authentication.signin);
 
 router.route('/api/fetchAuthorizationCode')
 .post((req, res) => {

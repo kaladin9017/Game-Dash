@@ -1,14 +1,14 @@
 {
   "development": {
-    "url": "postgres://postgres:walruspass@localhost:5432/gamedash",
+    "url": "postgres://postgres:postgres@localhost:5432/gamedash",
     "dialect": "postgres"
   },
   "test": {
-    "url": "postgres://postgres:walruspass@localhost:5432/gamedash",
+    "url": "postgres://postgres:postgres@localhost:5432/gamedash",
     "dialect": "postgres"
   },
   "production": {
-    "url": "postgres://postgres:walruspass@localhost:5432/gamedash",
+    "url": "postgres://postgres:postgres@localhost:5432/gamedash",
     "dialect": "postgres"
   }
 }
