@@ -1,5 +1,6 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const stylusLoader  = ExtractTextPlugin.extract('style-loader',"css-loader!stylus-loader");
+const DotenvPlugin = require('webpack-dotenv-plugin');
 
 module.exports = {
   entry: "./src/app.js",
@@ -23,7 +24,11 @@ module.exports = {
     exclude: /node_modules/
   },
   plugins:[
-    new ExtractTextPlugin("public/style.css")
+    new ExtractTextPlugin("public/style.css"),
+    new DotenvPlugin({
+      sample: './.local-env',
+      path: './.env'
+    })
       //new webpack.optimize.UglifyJsPlugin({minimize: true})
   ]
 
