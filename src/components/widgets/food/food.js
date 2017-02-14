@@ -96,7 +96,7 @@ const Food = React.createClass({
 
           <div style ={{display: "flex", flexWrap: "wrap", marginBottom: 30}}>
             {this.state.finalObj ? this.state.finalObj.map((ele,key)=>{
-              return <li style =  {{display:"flex", justifyContent: 'center', alignItems: 'center', width:250,height: 50, backgroundColor: "#196cfc", borderRadius: 15, marginLeft:  10, marginRight: 10, color: 'white'}} key = {key}> {ele.restaurant.name} </li> 
+              return <li style =  {{display:"flex", justifyContent: 'center', alignItems: 'center', width:250,height: 50, backgroundColor: "#196cfc", borderRadius: 15, marginLeft:  10, marginRight: 10, marginTop: 10, color: 'white'}} key = {key}> {ele.restaurant.name} </li> 
             }) : <p> loading </p>}
 
           </div>

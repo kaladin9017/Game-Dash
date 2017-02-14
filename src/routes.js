@@ -8,7 +8,7 @@ import EveMail from './components/widgets/eve-mail/eve-mail';
 import CalenderWidget from './components/widgets/calender/calender';
 import TvWidget from './components/widgets/tv/tv';
 import FoodWidget from './components/widgets/food/food';
-// import MusicWidget from './components/widgets/music/music';
+import GiantBombWidget from './components/widgets/giantBomb/giantBomb';
 
 export default (
   <Route path="/" component={Main}>
@@ -18,5 +18,6 @@ export default (
     <Route path="/cal" component={CalenderWidget}/>
     <Route path="/tv" component={TvWidget}/>
     <Route path="/food" component={FoodWidget}/>
+    <Route path="/giant" component={GiantBombWidget}/>
   </Route>
 );

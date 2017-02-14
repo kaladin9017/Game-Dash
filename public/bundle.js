@@ -68,7 +68,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	__webpack_require__(376);
+	__webpack_require__(377);
 
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRedux.Provider,
@@ -29582,9 +29582,11 @@
 
 	var _food2 = _interopRequireDefault(_food);
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var _giantBomb = __webpack_require__(376);
 
-	// import MusicWidget from './components/widgets/music/music';
+	var _giantBomb2 = _interopRequireDefault(_giantBomb);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createElement(
 	  _reactRouter.Route,
@@ -29594,7 +29596,8 @@
 	  _react2.default.createElement(_reactRouter.Route, { path: '/eveMail', component: _eveMail2.default }),
 	  _react2.default.createElement(_reactRouter.Route, { path: '/cal', component: _calender2.default }),
 	  _react2.default.createElement(_reactRouter.Route, { path: '/tv', component: _tv2.default }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/food', component: _food2.default })
+	  _react2.default.createElement(_reactRouter.Route, { path: '/food', component: _food2.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/giant', component: _giantBomb2.default })
 	);
 
 /***/ },
@@ -59221,11 +59224,11 @@
 
 	var _reactRouter = __webpack_require__(197);
 
-	var _foodMapContainer = __webpack_require__(378);
+	var _foodMapContainer = __webpack_require__(327);
 
 	var _foodMapContainer2 = _interopRequireDefault(_foodMapContainer);
 
-	var _foodMap = __webpack_require__(379);
+	var _foodMap = __webpack_require__(328);
 
 	var _foodMap2 = _interopRequireDefault(_foodMap);
 
@@ -59324,7 +59327,7 @@
 	          this.state.finalObj ? this.state.finalObj.map(function (ele, key) {
 	            return _react2.default.createElement(
 	              'li',
-	              { style: { display: "flex", justifyContent: 'center', alignItems: 'center', width: 250, height: 50, backgroundColor: "#196cfc", borderRadius: 15, marginLeft: 10, marginRight: 10, color: 'white' }, key: key },
+	              { style: { display: "flex", justifyContent: 'center', alignItems: 'center', width: 250, height: 50, backgroundColor: "#196cfc", borderRadius: 15, marginLeft: 10, marginRight: 10, marginTop: 10, color: 'white' }, key: key },
 	              ' ',
 	              ele.restaurant.name,
 	              ' '
@@ -59353,8 +59356,144 @@
 	exports.default = Food;
 
 /***/ },
-/* 327 */,
-/* 328 */,
+/* 327 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _foodMap = __webpack_require__(328);
+
+	var _foodMap2 = _interopRequireDefault(_foodMap);
+
+	var _exAPI = __webpack_require__(375);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	// css
+	// import '../public/css/main.css';
+
+	var foodMapContainer = _react2.default.createClass({
+	  displayName: 'foodMapContainer',
+	  getInitialState: function getInitialState() {
+	    return { data: null };
+	  },
+	  componentDidMount: function componentDidMount() {
+	    var arr = [];
+	    _exAPI.APIcall.programs.map(function (a) {
+	      return a.offices.map(function (b) {
+	        return arr.push(b.location);
+	      });
+	    });
+	    this.setState({ data: arr });
+	  },
+	  render: function render() {
+	    var location = {
+	      lat: 40.7575285,
+	      lng: -73.9884469
+	    };
+	    var markers = [{ location: { lat: 40.7575285,
+	        lng: -73.9884469 }
+	    }];
+	    return _react2.default.createElement(
+	      'div',
+	      { style: { width: 800, height: 400 } },
+	      _react2.default.createElement(_foodMap2.default, { center: location, markers: markers })
+	    );
+	  }
+	});
+
+	exports.default = foodMapContainer;
+
+/***/ },
+/* 328 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactGoogleMaps = __webpack_require__(329);
+
+	var _exAPI = __webpack_require__(375);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var foodMap = function (_Component) {
+	  _inherits(foodMap, _Component);
+
+	  function foodMap() {
+	    _classCallCheck(this, foodMap);
+
+	    return _possibleConstructorReturn(this, (foodMap.__proto__ || Object.getPrototypeOf(foodMap)).apply(this, arguments));
+	  }
+
+	  _createClass(foodMap, [{
+	    key: 'render',
+	    value: function render() {
+	      var foodMap = _react2.default.createElement('div', { style: { height: '100%', width: '100%' } });
+
+	      var arr = [];
+	      _exAPI.APIcall.programs.map(function (a) {
+	        return a.offices.map(function (b) {
+	          return arr.push(b.location);
+	        });
+	      });
+
+	      var markers = arr.map(function (org, i) {
+
+	        var marker = {
+	          position: {
+	            lat: org.latitude,
+	            lng: org.longitude
+	          }
+	        };
+	        return _react2.default.createElement(_reactGoogleMaps.Marker, _extends({ icon: 'http://i.imgur.com/GctT1pO.png', key: i }, marker));
+	      });
+	      return _react2.default.createElement(_reactGoogleMaps.GoogleMapLoader, {
+	        containerElement: foodMap,
+	        googleMapElement: _react2.default.createElement(
+	          _reactGoogleMaps.GoogleMap,
+	          {
+	            defaultZoom: 13,
+	            defaultCenter: this.props.center,
+	            options: { streetViewControl: false, mapTypeControl: false } },
+	          markers
+	        )
+	      });
+	    }
+	  }]);
+
+	  return foodMap;
+	}(_react.Component);
+
+	exports.default = foodMap;
+	;
+
+/***/ },
 /* 329 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -65795,10 +65934,92 @@
 /* 376 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _jquery = __webpack_require__(325);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	var _reactRouter = __webpack_require__(197);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var GiantBomb = _react2.default.createClass({
+	  displayName: 'GiantBomb',
+	  getInitialState: function getInitialState() {
+	    return {
+	      game: ''
+	    };
+	  },
+	  handleChange: function handleChange(event) {
+	    var text = event.target.value;
+	    this.setState({ game: text });
+	    console.log(this.state.game);
+	  },
+	  submitGame: function submitGame(event) {
+	    event.preventDefault();
+
+	    var key = "3ccef9878996b4bc77dc8b1d751b63fffbc7f2de";
+
+	    _jquery2.default.ajax({
+	      dataType: 'jsonp',
+	      crossDomain: true,
+	      jsonp: 'json_callback',
+	      // url: ''
+	      url: 'http://www.giantbomb.com/api/search/?format=jsonp&api_key=' + key + '&query=' + this.state.game + '&resources=character'
+	    }).done(function (data) {
+	      console.log("success:", data);
+	    }).fail(function () {
+	      console.log("error");
+	    }).always(function () {
+	      console.log("complete");
+	    });
+	  },
+	  render: function render() {
+	    if (this.state) {
+
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'form',
+	          { onSubmit: this.submitGame },
+	          _react2.default.createElement('input', { onChange: this.handleChange, type: 'text', placeholder: 'giant' }),
+	          _react2.default.createElement('input', { type: 'submit' })
+	        )
+	      );
+	    } else {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          ' Loading '
+	        )
+	      );
+	    }
+	  }
+	});
+
+	exports.default = GiantBomb;
+
+/***/ },
+/* 377 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(377);
+	var content = __webpack_require__(378);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(322)(content, {});
@@ -65818,7 +66039,7 @@
 	}
 
 /***/ },
-/* 377 */
+/* 378 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(321)();
@@ -65830,144 +66051,6 @@
 
 	// exports
 
-
-/***/ },
-/* 378 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _foodMap = __webpack_require__(379);
-
-	var _foodMap2 = _interopRequireDefault(_foodMap);
-
-	var _exAPI = __webpack_require__(375);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	// css
-	// import '../public/css/main.css';
-
-	var foodMapContainer = _react2.default.createClass({
-	  displayName: 'foodMapContainer',
-	  getInitialState: function getInitialState() {
-	    return { data: null };
-	  },
-	  componentDidMount: function componentDidMount() {
-	    var arr = [];
-	    _exAPI.APIcall.programs.map(function (a) {
-	      return a.offices.map(function (b) {
-	        return arr.push(b.location);
-	      });
-	    });
-	    this.setState({ data: arr });
-	  },
-	  render: function render() {
-	    var location = {
-	      lat: 40.7575285,
-	      lng: -73.9884469
-	    };
-	    var markers = [{ location: { lat: 40.7575285,
-	        lng: -73.9884469 }
-	    }];
-	    return _react2.default.createElement(
-	      'div',
-	      { style: { width: 800, height: 400 } },
-	      _react2.default.createElement(_foodMap2.default, { center: location, markers: markers })
-	    );
-	  }
-	});
-
-	exports.default = foodMapContainer;
-
-/***/ },
-/* 379 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactGoogleMaps = __webpack_require__(329);
-
-	var _exAPI = __webpack_require__(375);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var foodMap = function (_Component) {
-	  _inherits(foodMap, _Component);
-
-	  function foodMap() {
-	    _classCallCheck(this, foodMap);
-
-	    return _possibleConstructorReturn(this, (foodMap.__proto__ || Object.getPrototypeOf(foodMap)).apply(this, arguments));
-	  }
-
-	  _createClass(foodMap, [{
-	    key: 'render',
-	    value: function render() {
-	      var foodMap = _react2.default.createElement('div', { style: { height: '100%', width: '100%' } });
-
-	      var arr = [];
-	      _exAPI.APIcall.programs.map(function (a) {
-	        return a.offices.map(function (b) {
-	          return arr.push(b.location);
-	        });
-	      });
-
-	      var markers = arr.map(function (org, i) {
-
-	        var marker = {
-	          position: {
-	            lat: org.latitude,
-	            lng: org.longitude
-	          }
-	        };
-	        return _react2.default.createElement(_reactGoogleMaps.Marker, _extends({ icon: 'http://i.imgur.com/GctT1pO.png', key: i }, marker));
-	      });
-	      return _react2.default.createElement(_reactGoogleMaps.GoogleMapLoader, {
-	        containerElement: foodMap,
-	        googleMapElement: _react2.default.createElement(
-	          _reactGoogleMaps.GoogleMap,
-	          {
-	            defaultZoom: 13,
-	            defaultCenter: this.props.center,
-	            options: { streetViewControl: false, mapTypeControl: false } },
-	          markers
-	        )
-	      });
-	    }
-	  }]);
-
-	  return foodMap;
-	}(_react.Component);
-
-	exports.default = foodMap;
-	;
 
 /***/ }
 /******/ ]);
