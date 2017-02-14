@@ -30,3 +30,12 @@
 3. Eve Online
 
 MVP will include a basic framework of the Dashboard, 2 custom widgets, and 3 custom book marked widgets that link to other apps with included functionality.
+
+### Install
+
+```
+  npm i
+  touch .local-env
+  touch .env
+
+```
