@@ -1,11 +1,20 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import {eveMailMailHeaderDisplayChange} from '../../../actions/eve-mail';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 
 class EveMailSidebar extends Component {
+  constructor() {
+    super();
+  }
+  clickCompose() {
+    this.props.eveMailMailHeaderDisplayChange('compose');
+  }
   render() {
     return (
       <div>
         <button>Refresh</button>
-        <button>Compose</button>
+        <button onClick={this.clickCompose.bind(this)}>Compose</button>
         <button>Inbox</button>
         <button>Alliance</button>
         <button>Corporation</button>
@@ -16,4 +25,8 @@ class EveMailSidebar extends Component {
   }
 }
 
-export default EveMailSidebar;
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({eveMailMailHeaderDisplayChange}, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(EveMailSidebar);

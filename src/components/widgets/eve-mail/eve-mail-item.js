@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
-import {eveMailMailHeaderDisplayIsHeaders} from '../../../actions/eve-mail';
+import {eveMailMailHeaderDisplayChange} from '../../../actions/eve-mail';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
 class EveMailItem extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
   }
   handleClick() {
-    this.props.eveMailMailHeaderDisplayIsHeaders();
+    this.props.eveMailMailHeaderDisplayChange('headers');
   }
   render() {
     return (
@@ -26,7 +26,7 @@ class EveMailItem extends Component {
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({eveMailMailHeaderDisplayIsHeaders}, dispatch);
+  return bindActionCreators({eveMailMailHeaderDisplayChange}, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(EveMailItem);

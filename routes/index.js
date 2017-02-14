@@ -2,7 +2,6 @@ const router = require("express").Router();
 const path = require("path");
 // const models = require("../models");
 const axios = require("axios");
-axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 /*
 - User clicks button to begin oauth
@@ -13,23 +12,38 @@ axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 router.route('/api/fetchAuthorizationCodeWithRefreshToken')
 .post((req, res) => {
-
-});
-
-router.route('/api/fetchAuthorizationCode')
-.post((req, res) => {
-  // let secret = process.env.EVE_MAIL_CLIENT_SECRET;
-  // let clientId = process.env.EVE_MAIL_CLIENT_ID;
-  // let clientSecret = clientId + ":" + secret;
-  // let encodedClientSecret = Buffer.from(clientSecret, 'ascii').toString('base64');
-  // encodedClientSecret = "Basic " + encodedClientSecret;
-  let encodedClientSecret = process.env.EVE_MAIL_ENCODED_CLIENT_AND_SECRET;
+  let encodedClientSecret = req.body.encodedClientSecret;
   axios({
     method: "post",
     url: "https://login.eveonline.com/oauth/token",
     headers: {
       Authorization: encodedClientSecret,
-      Host: 'login.eveonline.com'
+      Host: 'login.eveonline.com',
+      'Content-Type': 'application/json'
+    },
+    params: {
+      grant_type: "refresh_token",
+      refresh_token: req.body.refreshToken
+    }
+  })
+  .then((data) => {
+    res.send(data.data);
+  })
+  .catch((err) => {
+    res.sendStatus(500);
+  });
+});
+
+router.route('/api/fetchAuthorizationCode')
+.post((req, res) => {
+  let encodedClientSecret = req.body.encodedClientSecret;
+  axios({
+    method: "post",
+    url: "https://login.eveonline.com/oauth/token",
+    headers: {
+      Authorization: encodedClientSecret,
+      Host: 'login.eveonline.com',
+      'Content-Type': 'application/json'
     },
     params: {
       grant_type: "authorization_code",

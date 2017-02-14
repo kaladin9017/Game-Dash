@@ -5,10 +5,11 @@ import {connect} from 'react-redux';
 import {eveMailGetMailBody} from '../../../actions/eve-mail';
 import EveMailHeader from './eve-mail-header';
 import EveMailItem from './eve-mail-item';
+import Compose from './eve-mail-compose';
 
 class EveMailHeaderList extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       JsxheaderList: null
     };
@@ -27,6 +28,24 @@ class EveMailHeaderList extends Component {
   }
   render() {
     let display;
+    switch (this.props.mailHeaderDisplay) {
+    case 'headers':
+      display = this.state.JsxheaderList;
+      break;
+    case 'mail':
+      display = (
+        <EveMailItem
+          subject={this.props.mailRead.subject}
+          from={this.props.mailRead.from}
+          body={this.props.mailRead.body}
+        />
+      );
+      break;
+    case 'compose':
+      display = (
+        <Compose/>
+      );
+    }
     if (this.props.mailHeaderDisplay == 'mail') {
       display = (
         <EveMailItem

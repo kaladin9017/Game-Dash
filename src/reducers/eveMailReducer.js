@@ -10,6 +10,7 @@ const initialState = {
   mailHeaders: null,
   mailHeaderDisplay: 'headers',
   mailRead: null,
+  composeSendArray: [],
   updateStage: 0
 };
 
@@ -38,12 +39,33 @@ export default function (state = initialState, action) {
     });
   case 'EVE_MAIL_GET_MAIL_BODY':
     return Object.assign({}, state, {
-      mailRead: action.payload,
-      mailHeaderDisplay: 'mail'
+      mailRead: action.payload
     });
-  case 'EVE_MAIL_MAIL_HEADER_DISPLAY_IS_HEADERS':
+  case 'EVE_MAIL_MAIL_HEADER_DISPLAY_CHANGE':
     return Object.assign({}, state, {
-      mailHeaderDisplay: 'headers'
+      mailHeaderDisplay: action.payload
+    });
+  case 'EVE_MAIL_GET_NEW_ACCESS_TOKEN_WITH_REFRESH_TOKEN':
+    return Object.assign({}, state, {
+      accessToken: action.payload.tokenData.data.access_token,
+      refreshToken: action.payload.tokenData.data.refresh_token,
+      updateStage: action.payload.updateStage,
+      accessTokenRefreshTime: action.payload.accessTokenRefreshTime
+    });
+  case 'EVE_MAIL_WRITE_TOKENS_FROM_LOCAL_STORAGE':
+    return Object.assign({}, state, {
+      accessToken: action.payload.accessToken,
+      refreshToken: action.payload.refreshToken,
+      updateStage: action.payload.updateStage,
+      accessTokenRefreshTime: action.payload.accessTokenRefreshTime
+    });
+  case 'EVE_MAIL_ADD_COMPOSE_SEND_ARRAY':
+    return Object.assign({}, state, {
+      composeSendArray: action.payload
+    });
+  case 'EVE_MAIL_REMOVE_COMPOSE_SEND_ARRAY':
+    return Object.assign({}, state, {
+      composeSendArray: action.payload
     });
   }
   return state;
