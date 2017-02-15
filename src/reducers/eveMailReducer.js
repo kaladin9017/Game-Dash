@@ -8,7 +8,13 @@ const initialState = {
   accessTokenRefreshTime: null,
   refreshToken: null,
   mailHeaders: null,
-  mailHeaderDisplay: 'headers',
+  mailHeadersInbox: null,
+  mailHeadersCorporation: null,
+  mailHeadersAlliance: null,
+  mailHeadersPersonal: null,
+  mailHeadersSent: null,
+  mailHeaderDisplay: 'mailHeadersInbox',
+  auxWindowDisplay: null,
   mailRead: null,
   composeSendArray: [],
   updateStage: 0
@@ -33,6 +39,15 @@ export default function (state = initialState, action) {
       mailHeaders: action.payload.charNameData,
       updateStage: action.payload.updateStage
     });
+  case 'EVE_MAIL_SORT_MAIL_HEADERS':
+    return Object.assign({}, state, {
+      mailHeadersInbox: action.payload.inboxArray,
+      mailHeadersCorporation: action.payload.corporationArray,
+      mailHeadersAlliance: action.payload.allianceArray,
+      mailHeadersPersonal: action.payload.personalArray,
+      mailHeadersSent: action.payload.sentArray,
+      updateStage: action.payload.updateStage
+    });
   case 'EVE_MAIL_CHANGE_UPDATE_STAGE':
     return Object.assign({}, state, {
       updateStage: action.payload
@@ -44,6 +59,10 @@ export default function (state = initialState, action) {
   case 'EVE_MAIL_MAIL_HEADER_DISPLAY_CHANGE':
     return Object.assign({}, state, {
       mailHeaderDisplay: action.payload
+    });
+  case 'EVE_MAIL_AUX_WINDOW_DISPLAY_CHANGE':
+    return Object.assign({}, state, {
+      auxWindowDisplay: action.payload
     });
   case 'EVE_MAIL_GET_NEW_ACCESS_TOKEN_WITH_REFRESH_TOKEN':
     return Object.assign({}, state, {

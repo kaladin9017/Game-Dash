@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {eveMailGetMailBody, eveMailMailHeaderDisplayChange} from '../../../actions/eve-mail';
+import {eveMailGetMailBody, eveMailAuxWindowDisplayChange} from '../../../actions/eve-mail';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
@@ -13,13 +13,14 @@ class EveMailHeader extends Component {
     let mailId = this.props.header.mail_id;
     let from = this.props.header.from;
     this.props.eveMailGetMailBody(charId, accessToken, mailId, from);
-    this.props.eveMailMailHeaderDisplayChange('mail');
+    this.props.eveMailAuxWindowDisplayChange('mail');
   }
   render() {
     return (
       <div>
         <li>
           <p>subject: {this.props.header.subject}</p>
+          <p>date: {this.props.header.timestamp}</p>
           <p>sender: {this.props.header.from}</p>
           <button onClick={this.handleClick.bind(this)}>Read</button>
         </li>
@@ -29,7 +30,7 @@ class EveMailHeader extends Component {
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({eveMailGetMailBody, eveMailMailHeaderDisplayChange}, dispatch);
+  return bindActionCreators({eveMailGetMailBody, eveMailAuxWindowDisplayChange}, dispatch);
 }
 
 function mapStateToProps(state, ownProps) {

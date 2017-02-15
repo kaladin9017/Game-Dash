@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import axios from 'axios';
+import {eveMailAddComposeSendArray} from '../../../actions/eve-mail';
 
 class EveNameSearch extends Component {
   constructor() {
@@ -52,14 +53,19 @@ class EveNameSearch extends Component {
         })
         .then((data2) => {
           this.setState({validateIsBusy: false, rawCharacterList: data2.data});
-          console.log(this.state);
+        })
+        .catch((err) => {
+          this.setState({validateIsBusy: false});
         });
       });
     }
   }
 
   selectRawName(e) {
-    console.log(e.currentTarget.value, e.target.options[e.target.selectedIndex].text);
+    let nameObj = {};
+    nameObj.character_name = e.target.options[e.target.selectedIndex].text;
+    nameObj.character_id = e.currentTarget.value;
+    this.props.eveMailAddComposeSendArray(nameObj, this.props.composeSendArray);
   }
 
   render() {
@@ -72,7 +78,7 @@ class EveNameSearch extends Component {
       select = (
         <div>
           Which name did you mean?
-          <select onChange={this.selectRawName.bind(this)}>
+          <select onClick={this.selectRawName.bind(this)}>
             {optionArray}
           </select>
         </div>
@@ -91,7 +97,7 @@ class EveNameSearch extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({}, dispatch);
+  return bindActionCreators({eveMailAddComposeSendArray}, dispatch);
 }
 
 function mapStateToProps(state, ownProps) {

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {eveMailFetchHeaders, eveMailFetchCharacterNames, eveMailGetNewAccessTokenWithRefreshToken, eveMailWriteTokensFromLocalStorage} from '../../../actions/eve-mail';
+import {eveMailFetchHeaders, eveMailFetchCharacterNames, eveMailSortMailHeaders, eveMailGetNewAccessTokenWithRefreshToken, eveMailWriteTokensFromLocalStorage} from '../../../actions/eve-mail';
 import EveMailHeaderList from './eve-mail-header-list';
 import EveMailSidebar from './eve-mail-sidebar';
 const EVE_PIC = require('../../../assets/eve-login.png');
@@ -50,10 +50,18 @@ class EveMail extends Component {
     }
 
     if (this.props.updateStage == 3) {
+      this.props.eveMailSortMailHeaders(this.props.mailHeaders, 4);
+      screen = (
+        <div>
+          <p>{this.props.updateStage}</p>
+        </div>
+      );
+    }
+
+    if (this.props.updateStage == 4) {
       screen = (
         <div>
           <EveMailHeaderList mailHeaders={this.props.mailHeaders} />
-
         </div>
       );
     }
@@ -67,7 +75,7 @@ class EveMail extends Component {
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({eveMailFetchHeaders, eveMailFetchCharacterNames, eveMailGetNewAccessTokenWithRefreshToken, eveMailWriteTokensFromLocalStorage}, dispatch);
+  return bindActionCreators({eveMailFetchHeaders, eveMailFetchCharacterNames, eveMailSortMailHeaders, eveMailGetNewAccessTokenWithRefreshToken, eveMailWriteTokensFromLocalStorage}, dispatch);
 }
 
 function mapStateToProps(state, ownProps) {

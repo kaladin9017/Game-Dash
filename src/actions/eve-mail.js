@@ -1,10 +1,12 @@
 import {
   EVE_MAIL_FETCH_HEADERS,
+  EVE_MAIL_SORT_MAIL_HEADERS,
   EVE_MAIL_WRITE_TOKENS,
   EVE_MAIL_FETCH_CHARACTER_NAMES,
   EVE_MAIL_CHANGE_UPDATE_STAGE,
   EVE_MAIL_GET_MAIL_BODY,
   EVE_MAIL_MAIL_HEADER_DISPLAY_CHANGE,
+  EVE_MAIL_AUX_WINDOW_DISPLAY_CHANGE,
   EVE_MAIL_GET_NEW_ACCESS_TOKEN_WITH_REFRESH_TOKEN,
   EVE_MAIL_WRITE_TOKENS_FROM_LOCAL_STORAGE,
   EVE_MAIL_ADD_COMPOSE_SEND_ARRAY,
@@ -82,6 +84,31 @@ export function eveMailFetchHeaders(charId, authToken, updateStage, force, lastH
       payload: mailHeaders
     };
   }
+}
+
+
+
+export function eveMailSortMailHeaders (mailHeaders, updateStage) {
+  let mailHeaderObj = {sentArray: [], corporationArray: [], allianceArray: [], personalArray: [], inboxArray: [], updateStage: updateStage};
+  mailHeaders.forEach((ele) => {
+    if (ele.from == 'Barten Lancaster') {
+      mailHeaderObj.sentArray.push(ele);
+    } else if (ele.recipients[0].recipient_type == 'character') {
+      mailHeaderObj.personalArray.push(ele);
+      mailHeaderObj.inboxArray.push(ele);
+    } else if (ele.recipients[0].recipient_type == 'alliance') {
+      mailHeaderObj.allianceArray.push(ele);
+      mailHeaderObj.inboxArray.push(ele);
+    } else if (ele.recipients[0].recipient_type == 'corporation') {
+      mailHeaderObj.corporationArray.push(ele);
+      mailHeaderObj.inboxArray.push(ele);
+    }
+  });
+
+  return {
+    type: EVE_MAIL_SORT_MAIL_HEADERS,
+    payload: mailHeaderObj
+  };
 }
 
 
@@ -168,6 +195,15 @@ export function eveMailMailHeaderDisplayChange (str) {
 
 
 
+export function eveMailAuxWindowDisplayChange (str) {
+  return {
+    type: EVE_MAIL_AUX_WINDOW_DISPLAY_CHANGE,
+    payload: str
+  };
+}
+
+
+
 export function eveMailGetNewAccessTokenWithRefreshToken (refreshToken, updateStage) {
   let tokenData = axios.post('/api/fetchAuthorizationCodeWithRefreshToken', {
     refreshToken: refreshToken,
@@ -205,5 +241,29 @@ export function eveMailWriteTokensFromLocalStorage (accessToken, refreshToken, a
   return {
     type: EVE_MAIL_WRITE_TOKENS_FROM_LOCAL_STORAGE,
     payload: tokenDataObj
+  };
+}
+
+
+
+export function eveMailAddComposeSendArray (itemToAdd, array) {
+  let newArray = array;
+  newArray.push(itemToAdd);
+
+  return {
+    type: EVE_MAIL_ADD_COMPOSE_SEND_ARRAY,
+    payload: newArray
+  };
+}
+
+
+
+export function eveMailRemoveComposeSendArray (ind, composeSendArray) {
+  let newArray = composeSendArray;
+  newArray.splice(ind, 1);
+
+  return {
+    type: EVE_MAIL_REMOVE_COMPOSE_SEND_ARRAY,
+    payload: newArray
   };
 }

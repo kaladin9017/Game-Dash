@@ -8,55 +8,33 @@ import EveMailItem from './eve-mail-item';
 import Compose from './eve-mail-compose';
 
 class EveMailHeaderList extends Component {
-  constructor() {
-    super();
-    this.state = {
-      JsxheaderList: null
-    };
-  }
-  componentDidMount() {
-    let headerList = [];
-    this.props.mailHeaders.forEach((ele, ind) => {
-      headerList.push(
-        <EveMailHeader
-          key={ind}
-          header={ele}
-        />
-      );
-    });
-    this.setState({JsxheaderList: headerList});
-  }
   render() {
     let display;
-    switch (this.props.mailHeaderDisplay) {
-    case 'headers':
-      display = this.state.JsxheaderList;
-      break;
-    case 'mail':
+
+    if (this.props.eveMail.auxWindowDisplay == 'compose') {
+      display =  <Compose/>;
+    } else if (this.props.eveMail.auxWindowDisplay == 'mail') {
       display = (
-        <EveMailItem
-          subject={this.props.mailRead.subject}
-          from={this.props.mailRead.from}
-          body={this.props.mailRead.body}
-        />
-      );
-      break;
-    case 'compose':
-      display = (
-        <Compose/>
-      );
+          <EveMailItem
+            subject={this.props.eveMail.mailRead.subject}
+            from={this.props.eveMail.mailRead.from}
+            body={this.props.eveMail.mailRead.body}
+          />
+        );
+    } else if (this.props.auxWindowDisplay == null) {
+      let headerList = [];
+      let arrayName = this.props.eveMail.mailHeaderDisplay;
+      this.props.eveMail[arrayName].forEach((ele, ind) => {
+        headerList.push(
+          <EveMailHeader
+            key={ind}
+            header={ele}
+          />
+        );
+      });
+      display = headerList;
     }
-    if (this.props.mailHeaderDisplay == 'mail') {
-      display = (
-        <EveMailItem
-          subject={this.props.mailRead.subject}
-          from={this.props.mailRead.from}
-          body={this.props.mailRead.body}
-        />
-      );
-    } else if (this.props.mailHeaderDisplay == 'headers'){
-      display = this.state.JsxheaderList;
-    }
+
     return (
       <div>
         {display}
@@ -71,11 +49,7 @@ function mapDispatchToProps(dispatch){
 
 function mapStateToProps(state, ownProps) {
   return {
-    characterId: state.eveMail.characterId,
-    accessToken: state.eveMail.accessToken,
-    mailHeaders: state.eveMail.mailHeaders,
-    mailHeaderDisplay: state.eveMail.mailHeaderDisplay,
-    mailRead: state.eveMail.mailRead
+    eveMail: state.eveMail
   };
 }
 
