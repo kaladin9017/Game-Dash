@@ -20,7 +20,7 @@ class EveNameSearch extends Component {
   validateName(e) {
     e.preventDefault();
     if (this.state.validateIsBusy) {
-      console.log('busy');
+      alert('Service is busy');
     } else {
       this.setState({validateIsBusy: true});
       let url = 'https://esi.tech.ccp.is/latest/search/?search=' + this.state.searchName + '&categories=character&language=en-us&strict=false&datasource=tranquility';
