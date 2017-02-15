@@ -29,25 +29,25 @@ class SideBar extends Component {
               }
                 <ul className="dashgames">
                   <Link to="/eveToken"><li className="game" id="gameone">Eve</li></Link>
-                  <Link to="/warcraftwidgets"><li className="game" id="gametwo">World of Warcraft</li></Link>   
+                  <Link to="/warcraftwidgets"><li className="game" id="gametwo">World of Warcraft</li></Link>
                   <Link to="/test"><li className="game" id="gamethree"> Misc.</li></Link>
-                  <li className="game" id="addgame">+</li> 
+                  <li className="game" id="addgame">+</li>
                 </ul>
 
               {
-                // LIST OF WIDGETS FOR EVE ONLINE     
+                // LIST OF WIDGETS FOR EVE ONLINE
               }
                 <ul className="gameonewidgets">
                   <li className="widgetgameone"><span className="glyphicon glyphicon-cog"></span>Eve-Mail</li>
                 </ul>
               {
-                // LIST OF WIDGETS FOR WORLD OF WARCRAFT    
+                // LIST OF WIDGETS FOR WORLD OF WARCRAFT
               }
                 <ul className="gametwowidgets">
                   <li className="widgetgametwo"><span className="glyphicon glyphicon-cog"></span>Relm-Status</li>
                 </ul>
               {
-                // LIST OF WIDGETS FOR MISCLLANEOUS    
+                // LIST OF WIDGETS FOR MISCLLANEOUS
               }
                 <ul className="gamethreewidgets">
                   <li className="widgetgamethree"><span className="glyphicon glyphicon-cog"></span>You-Tube</li>
