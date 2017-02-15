@@ -23,7 +23,7 @@ import TwitchWidget from './components/widgets/twitch/TwitchWidget';
 import WowArmory from './components/widgets/world-of-warcraft/wow-armory/WowArmory';
 //
 
-import CalenderWidget from './components/widgets/calender/calender';
+// import CalenderWidget from './components/widgets/calender/calender';
 import TvWidget from './components/widgets/tv/tv';
 import FoodWidget from './components/widgets/food/food';
 import GiantBombWidget from './components/widgets/giantBomb/giantBomb';
@@ -37,7 +37,6 @@ export default (
     <Route path="/test" component={YoutubeWidget}/>
     <Route path="/eveToken" component={EveToken}/>
     <Route path="/eveMail" component={EveMail}/>
-    <Route path="/cal" component={CalenderWidget}/>
     <Route path="/tv" component={TvWidget}/>
     <Route path="/food" component={FoodWidget}/>
     <Route path="/giant" component={GiantBombWidget}/>
