@@ -1,25 +1,30 @@
-
-import React from 'react';
 import $ from 'jquery';
+import React, {Component} from 'react';
 import {Link, browserHistory} from 'react-router';
 
-const Tv = React.createClass({
-  getInitialState(){
-    return {
-      movie: '',
+class Tv extends Component{
+  constructor(props){
+    super(props);
+
+    this.state = {
+      movie:  null,
       movieArray: []
     };
-  },
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.findMovie = this.findMovie.bind(this);
+  }
 
   handleChange(event){
     let movie = event.target.value;
-    this.setState({movie:movie });
-  },
-
+    this.setState({movie: movie });
+  }
+  
   handleClick(event){
     event.preventDefault();
 
-  },
+  }
 
   findMovie(event){
     event.preventDefault();
@@ -35,7 +40,8 @@ const Tv = React.createClass({
       this.setState({movieArray: data.results});
     });
     
-  },
+  }
+
 
   render(){
     if(this.state){
@@ -57,7 +63,7 @@ const Tv = React.createClass({
 
             return (
               <li style = {{ listStyleType: "none"}} key ={key}> 
-                <a href ={'http://demo.guidebox.com/#!movie/' + ele.id + "-"} target = '_blank'> 
+                <a href ={"http://demo.guidebox.com/#!movie/ "+ ele.id + "-"} target = "_blank"> 
                 <img src = {ele.poster_120x171}/> 
                 <div>
                   <div>
@@ -84,6 +90,6 @@ const Tv = React.createClass({
       );
     }
   }
-});
+}
 
 export default Tv;

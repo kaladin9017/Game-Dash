@@ -1,19 +1,22 @@
-import  React from  'react';
+import  React, {Component} from  'react';
 import  css from  '../../../styles/calender.css';
 import  Clock from './clock';
 
-const Calender = React.createClass({
+class Calender extends Component {
+  constructor(props){
+    super(props);
 
-  getIniitalState(){
+    this.state = {
 
-    return{
       date: '',
       day: '',
       month:'',
       year: '',
       daysArray:''
+
     };
-  },
+  }
+      
 
   componentDidMount () {
 
@@ -28,7 +31,7 @@ const Calender = React.createClass({
     this.setState({ date:date, month: month, day: day, year: year, dayNumber: dayNumber});
 
   
-  },
+  }
 
   render(){
 
@@ -38,7 +41,7 @@ const Calender = React.createClass({
         <div style = {{display: 'flex', justifyContent: 'center'}}>
           <div style = {{width: 450}}>
 
-            <div style = {{width: 400, borderRadius: 5}}className="month"> 
+            <div style = {{width: 450, borderRadius: 5}}className="month"> 
               <ul>
                 <li className="prev"></li>
                 <li className="next"></li>
@@ -86,7 +89,7 @@ const Calender = React.createClass({
     }
   }
         
-});
+}
 
 
 

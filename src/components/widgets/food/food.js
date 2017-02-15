@@ -1,60 +1,48 @@
 
-import React from 'react';
+import React, {Component} from 'react';
 import $ from 'jquery';
 import {Link, browserHistory} from 'react-router';
 import FoodMapContainer from './foodMapContainer.js';
 import Map from './foodMap';
 
 
-const Food = React.createClass({
-  getInitialState(){
-    return {
+class Food extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+    
       name: null,
       finalObj: []
+    
     };
-  },
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.findRestaurant = this.findRestaurant.bind(this);
+  }
 
   handleChange(key, event){
     let text = event.target.value;
     this.setState({[key]: text});
-  },
+  }
 
   handleClick(event){
     event.preventDefault();
 
-  },
+  }
 
   findRestaurant(event, ESApi){
     event.preventDefault();
-    // https://dev.locu.com/
     let key = "1e6c365cc09f900876f608fa492c63a4";
-    // // let key = "35dfc23289ee7385"
     let url = "https://developers.zomato.com/api/v2.1/search?q=" + this.state.name;
-    // let url =  'https://api.eatstreet.com/publicapi/v1/restaurant/search?method=both&search=pizza&street-address=ny'
-
-    // let movie = this.state.movie
-    
-     // let ESApi = ESApi.onload = function(){
-
-     // ESApi.init('__API_EXPLORER_AUTH_KEY__');
-     // };
-
-     // console.log(ESApi)
-    //  ESApi.searchRestaurants({ 'street-address': '316 W. Washington Ave. Madison, WI' }, function(response) {
-    // let address = response.address;
-    // let restaurants = response.restaurants;
-    // console.log(address, restaurants);
-    // });
+   
     $.ajax({
             
-            // headers: { 
-            //     "Accept": "application/json",
-            //     "user-key": key
-            // },
       beforeSend: function(xhrObj) {
         xhrObj.setRequestHeader("user-key",key);
-                // xhrObj.setRequestHeader("Accept","application/json");
       },
+
       type: "GET",
       url: url
           
@@ -64,7 +52,7 @@ const Food = React.createClass({
       this.setState({finalObj:data.restaurants});
          
     });
-  },
+  }
 
   render(){
           
@@ -79,7 +67,8 @@ const Food = React.createClass({
 
           <form onSubmit = {this.findRestaurant}>
             <input onChange = {this.handleChange.bind(this, "name")} type = "text" placeholder = "name" />
-            <input onChange = {this.handleChange.bind(this, "zip")} type = "text" placeholder = "zip" />
+           {// <input onChange = {this.handleChange.bind(this, "zip")} type = "text" placeholder = "zip" />
+           }
             <input type = "submit" value = "Button"/> 
           </form>
 
@@ -112,6 +101,6 @@ const Food = React.createClass({
       );
     }
   }
-});
+}
 
 export default Food;

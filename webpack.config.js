@@ -22,7 +22,9 @@ module.exports = {
     ],
     loader: 'eslint',
     exclude: /node_modules/
+
   },
+  devtool: 'source-map',
   plugins:[
     new ExtractTextPlugin("public/style.css"),
     new DotenvPlugin({
