@@ -16,6 +16,7 @@ const localLogin = new LocalStrategy(localOptions, function(username, password, 
   db.Gamer.findOne({where : {username: username}})
     .then((gamer) => {
       if(!gamer) {return done(null, false);}
+
       gamer.comparePassword(password, function(err, isMatch) {
         if(err) { return done(err); }
         if(!isMatch) { return done(null, false); }
@@ -37,7 +38,7 @@ const jwtLogin = new JwtStrategy(jwtOptions, function(payload, done) {
 // Check if user.id in payload exist in our database
 // if true call done with user object
 // else call done without user object
-  db.Gamer.findOne({where: {id: payload.sub}})
+  db.Gamer.findOne({where: {username: payload.sub}})
   .then((gamer) => {
     if(gamer) {
       done(null, gamer);
@@ -50,5 +51,3 @@ const jwtLogin = new JwtStrategy(jwtOptions, function(payload, done) {
 
 passport.use(jwtLogin);
 passport.use(localLogin);
-
-// eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjYsImlhdCI6MTQ4NzAyMTk3NzQ4N30.MhqQqjbGLjmSkiu21jRBd6YsAC3JgOn-iVQt5dyXRNI

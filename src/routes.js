@@ -19,13 +19,14 @@ import EveMailHeaderList from './components/widgets/eve-mail/eve-mail-header-lis
 // FOR TESTING VIEW
 import FifteenGame from './components/widgets/fifteen-game/FifteenGame';
 import TwitchWidget from './components/widgets/twitch/TwitchWidget';
+import WowArmory from './components/widgets/world-of-warcraft/wow-armory/WowArmory';
 //
 
 export default (
   <Route path="/" component={Main}>
 				<IndexRoute component={InitialScreen}/>
 				<Route path="/evewidgets" component={EveScreen}/>
-				<Route path="/warcraftwidgets" component={WarCraftScreen}/>
+				<Route path="/warcraftwidgets" component={WowArmory}/>
 				<Route path="/miscwidgets" component={MiscScreen}/>
     <Route path="/test" component={YoutubeWidget}/>
     <Route path="/eveToken" component={EveToken}/>
