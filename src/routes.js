@@ -30,10 +30,10 @@ import GiantBombWidget from './components/widgets/giantBomb/giantBomb';
 
 export default (
   <Route path="/" component={Main}>
-				<IndexRoute component={InitialScreen}/>
-				<Route path="/evewidgets" component={EveScreen}/>
-				<Route path="/warcraftwidgets" component={WowArmory}/>
-				<Route path="/miscwidgets" component={MiscScreen}/>
+		<IndexRoute component={InitialScreen}/>
+		<Route path="/evewidgets" component={EveScreen}/>
+		<Route path="/warcraftwidgets" component={WowArmory}/>
+		<Route path="/miscwidgets" component={MiscScreen}/>
     <Route path="/test" component={YoutubeWidget}/>
     <Route path="/eveToken" component={EveToken}/>
     <Route path="/eveMail" component={EveMail}/>

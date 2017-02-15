@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
-import {eveMailWriteTokens} from '../../../actions/eve-mail';
+import {eveMailWriteTokens, eveMailGetNewAccessTokenWithRefreshToken, eveMailWriteTokensFromLocalStorage} from '../../../actions/eve-mail';
 import {bindActionCreators} from 'redux';
 
 class EveToken extends Component {
@@ -23,7 +23,7 @@ class EveToken extends Component {
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({eveMailWriteTokens}, dispatch);
+  return bindActionCreators({eveMailWriteTokens, eveMailGetNewAccessTokenWithRefreshToken, eveMailWriteTokensFromLocalStorage}, dispatch);
 }
 
 function mapStateToProps(state, ownProps) {
