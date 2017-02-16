@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
 import { GoogleMapLoader, GoogleMap, Marker } from 'react-google-maps';
-import {APIcall} from '../../../../seed/exAPI.js';
+// import {APIcall} from '../../../../seed/exAPI.js';
 
 export default class foodMap extends Component{
   render() {
     const foodMap = <div style={{height:'100%', width: '100%'}}></div>;
 
     const arr=[];
-    APIcall.programs.map((a)=>{return a.offices.map((b)=>{
-      return arr.push(b.location);
-    });
-    });
+    // // APIcall.programs.map((a)=>{return a.offices.map((b)=>{
+    // //   return arr.push(b.location);
+    // // });
+    // });
 
     const markers = arr.map((org, i)=>{
 
@@ -35,8 +35,8 @@ export default class foodMap extends Component{
             </GoogleMap>
           }
       />
-           
- 
+
+
       );
   }
 }

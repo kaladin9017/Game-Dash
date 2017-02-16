@@ -1,27 +1,32 @@
 import React, {Component} from 'react';
 import Map from './foodMap';
-import {APIcall} from '../../../../seed/exAPI.js';
+// import {APIcall} from '../../../../seed/exAPI.js';
 
-const foodMapContainer = React.createClass ({
-  getInitialState(){
-    return ({data:null});
-  },
+class foodMapContainer extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      data: null
+    };
+  }
 
   componentDidMount(){
     const arr=[];
-    APIcall.programs.map((a)=>{return a.offices.map((b)=>{
-      return arr.push(b.location);
-    });
-    });
+    // APIcall.programs.map((a)=>{return a.offices.map((b)=>{
+    //   return arr.push(b.location);
+    // });
+    // });
     this.setState({data:arr});
-  },
+  }
+
   render() {
     const location = {
       lat: 40.7575285,
       lng:-73.9884469
     };
     const markers=[
-      {location: 
+      {location:
         {lat: 40.7575285,
         lng:-73.9884469}
       }
@@ -33,6 +38,6 @@ const foodMapContainer = React.createClass ({
     );
 
   }
-});
+}
 
 export default foodMapContainer;
