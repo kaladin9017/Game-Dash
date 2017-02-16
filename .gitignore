@@ -3,4 +3,5 @@ node_modules
 /public/bundle.js.map
 npm-debug.log
 .local-env
+.env
 /config/config.json
