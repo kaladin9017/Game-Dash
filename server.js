@@ -5,8 +5,8 @@ const path = require('path');
 let app = express();
 const fs = require('fs');
 
-fs.createReadStream('.local-env')
-  .pipe(fs.createWriteStream('.env'));
+// fs.createReadStream('.local-env')
+//   .pipe(fs.createWriteStream('.env'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

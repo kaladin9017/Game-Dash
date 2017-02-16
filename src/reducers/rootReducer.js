@@ -5,13 +5,15 @@ import twitchReducer from './twitchReducer';
 import eveMailReducer from './eveMailReducer';
 
 import wowRelmReducer from './wowRelmReducer';
+import wowArmoryReducer from './wowArmoryReducer';
 
 const rootReducer = combineReducers({
   youtube: youtubeReducer,
   twitchVideos: twitchReducer,
   eveMail: eveMailReducer,
-  wowRelms: wowRelmReducer
-
+  wowRelms: wowRelmReducer,
+  wowArmory: wowArmoryReducer
+  
 });
 
 export default rootReducer;
