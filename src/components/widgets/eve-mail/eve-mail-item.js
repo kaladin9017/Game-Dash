@@ -1,7 +1,14 @@
 import React, {Component} from 'react';
+import {eveMailAuxWindowDisplayChange} from '../../../actions/eve-mail';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+
 class EveMailItem extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
+  }
+  handleClick() {
+    this.props.eveMailAuxWindowDisplayChange(null);
   }
   render() {
     return (
@@ -12,9 +19,14 @@ class EveMailItem extends Component {
         <br/>
         <div dangerouslySetInnerHTML={{ __html: this.props.body}}></div>
         <br/>
-        <button onClick={this.props.backButton}>Back</button>
+        <button onClick={this.handleClick.bind(this)}>Back</button>
       </div>
     );
   }
-} 
-export default EveMailItem;
+}
+
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({eveMailAuxWindowDisplayChange}, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(EveMailItem);
