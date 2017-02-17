@@ -1,0 +1,12 @@
+.gamedash-sidebar{
+  width: 160px;
+  height: 484px;
+  background-color: #282c34;
+}
+
+.game-dropdown {
+  width: 144px;
+  height: 74.5px;
+  border-radius: 2px;
+  background-color: #3a3f4b;
+}

@@ -19,3 +19,8 @@ export const EVE_MAIL_SORT_MAIL_HEADERS = 'EVE_MAIL_SORT_MAIL_HEADERS';
 // World Of Warcraft Constants
 export const GET_WOW_RELM_STATUS = 'GET_WOW_RELM_STATUS';
 export const GET_WOW_ITEM_DETAILS = 'GET_WOW_ITEM_DETAILS';
+
+
+// SideBar Widgets
+export const ADD_WIDGET = 'ADD_WIDGET';
+export const REMOVE_WIDGET = 'REMOVE_WIDGET';
