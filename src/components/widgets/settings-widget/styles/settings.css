@@ -1,0 +1,53 @@
+.settings-widget {
+  display: flex;
+}
+
+.widget-selector {
+  width: 30%;
+  height: 100vh;
+  background-color: #282c34;
+}
+
+.widget-description {
+  align-self: flex-end;
+  margin-left: 1%;
+  margin-right: 0;
+  width: 70%;
+  height: 100vh;
+  background-color: #282c34;
+}
+
+.settings-dropdown {
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 5%;
+  overflow: auto;
+  border-radius: 2px;
+  background-color: #3a3f4b;
+}
+
+.settings-dropdown ul li {
+  list-style: none;
+  font-family: DINOT;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  /*line-height: 1.5;*/
+  letter-spacing: normal;
+  text-align: left;
+  color: #ccd1d5;
+}
+
+.settings-header {
+  margin-left: 5%;
+  font-family: DINOT;
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: #d0d2d3;
+}

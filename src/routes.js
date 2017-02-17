@@ -23,7 +23,8 @@ import FifteenGame from './components/widgets/fifteen-game/FifteenGame';
 import YoutubeWidget from './components/widgets/youtube/YoutubeWidget';
 import TwitchWidget from './components/widgets/twitch/TwitchWidget';
 
-
+// Settings
+import SettingsWidget from './components/widgets/settings-widget/SettingsWidget';
 
 
 export default (
@@ -38,5 +39,6 @@ export default (
     <Route path="/food" component={FoodWidget}/>
     <Route path="/giant" component={GiantBombWidget}/>
     <Route path="/fifteen" component={FifteenGame}/>
+    <Route path="/settings" component={SettingsWidget}/>
   </Route>
 );
