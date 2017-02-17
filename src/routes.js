@@ -17,6 +17,8 @@ import EveMailSidebar from './components/widgets/eve-mail/eve-mail-sidebar';
 import EveMailItem from './components/widgets/eve-mail/eve-mail-item';
 import EveMailHeaderList from './components/widgets/eve-mail/eve-mail-header-list';
 
+import GuildWars2TalentCalc from './components/widgets/talent-calculators/guild-wars-2.js';
+
 // FOR TESTING VIEW
 import FifteenGame from './components/widgets/fifteen-game/FifteenGame';
 import TwitchWidget from './components/widgets/twitch/TwitchWidget';
@@ -40,5 +42,6 @@ export default (
     <Route path="/tv" component={TvWidget}/>
     <Route path="/food" component={FoodWidget}/>
     <Route path="/giant" component={GiantBombWidget}/>
+    <Route path="/gw2TalentCalc" component={GuildWars2TalentCalc}/>
   </Route>
 );

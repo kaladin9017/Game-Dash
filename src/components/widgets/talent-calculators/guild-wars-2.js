@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-const GW2_BANNER = require('../../assets/gw2-banner.jpg');
+const GW2_BANNER = require('../../../assets/gw2-banner.jpg');
+require('./talent-calculator.css');
 
 class GuildWars2TalentCalc extends Component {
   constructor() {
@@ -12,7 +13,9 @@ class GuildWars2TalentCalc extends Component {
 
     return (
       <div>
-        <a target="_blank" href="http://en.gw2skills.net/editor/"><img src={GW2_BANNER} /></a>
+        <a target="_blank" href="http://en.gw2skills.net/editor/">
+          <img className="link-banner" src={GW2_BANNER} />
+        </a>
       </div>
     );
   }
