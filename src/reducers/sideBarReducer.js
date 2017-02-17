@@ -4,7 +4,7 @@ import { ADD_WIDGET, REMOVE_WIDGET } from '../actions/types';
 const initialState = {
   Eve: ['evemail'],
   WorldOfWarcraft: ['armory', 'relmstatus'],
-  Misc: ['tv']
+  Misc: ['tv', 'food', 'youtube', 'twitch']
 };
 
 export default function (state = initialState, action) {

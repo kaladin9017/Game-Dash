@@ -3,7 +3,9 @@ import { Link } from 'react-router';
 
 const WidgetItem = ({widgetName}) => {
   return (
-    <Link to={`/${widgetName}`}><li>{widgetName}</li></Link>
+    <div className="widget-item">
+      <Link to={`/${widgetName}`}>{widgetName}</Link>
+    </div>
   );
 
 };

@@ -1,12 +1,72 @@
-.gamedash-sidebar{
-  width: 160px;
-  height: 484px;
+.gamedash-sidebar {
+  width: 22%;
+  height: 100vh;
   background-color: #282c34;
 }
 
+/* SIDEBAR */
 .game-dropdown {
-  width: 144px;
-  height: 74.5px;
-  border-radius: 2px;
+  display: flex;
+  width: 90%;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-radius: 4px;
   background-color: #3a3f4b;
+  margin-bottom: 16px;
+  overflow:auto;
+  text-align: left;
+
+}
+
+.Logo---GameDash {
+  margin-top: 20px;
+  width: 40%;
+  height: 30px;
+  object-fit: contain;
+}
+
+.Rectangle-2 {
+  width: 156px;
+  height: 34px;
+  border-radius: 16px;
+  background-color: #23c1b2;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+
+.header {
+  font-family: DINOT;
+  font-size: 20px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.5;
+  letter-spacing: normal;
+  color: #d0d2d3;
+
+}
+
+
+
+.widget-item {
+  font-family: DINOT;
+  font-size: 18px;
+  text-align: left;
+}
+
+#divider {
+  width: 284px;
+  height: 0.5px;
+  background-color: #444957;
+}
+
+/*DASHBOARD*/
+.widget-display {
+  overflow:auto;
+  margin-left: 1%;
+  margin-right: 1%;
+  width: 76%;
+  height: 100vh;
+  background-color: #282c34;
 }

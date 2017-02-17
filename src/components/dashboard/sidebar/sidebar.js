@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 import WidgetTab from './WidgetTab';
 
+const logo = require('../../../../images/logo-game-dash@3x.png');
+// CSS
 
 class SideBar extends Component {
   render() {
@@ -12,22 +14,21 @@ class SideBar extends Component {
       this.props.games[game][0] ? gameTabs.push( <WidgetTab key={game} gameName={game} widgets={this.props.games[game]} /> ) : null;
     }
     return (
-      <div>
-        <div className="dashboard">
-          <center>
-            <div className="row">
-              <div className="stay">
-                <ul id="pjsub">
-                  <li className="lineitem"><h4>Welcome</h4></li>
-                </ul>
-              </div>
-            </div>
-          </center>
-            <br />
-          <ul className="dashgames">
-            {gameTabs}
-          </ul>
-        </div>
+      <div className="gamedash-sidebar">
+        <center>
+          <div>
+            <img src={logo}
+             className="Logo---GameDash"/>
+           </div>
+           <div>
+             <button className="Rectangle-2">
+               Add Widget
+             </button>
+          </div>
+       </center>
+       <center>
+        {gameTabs}
+       </center>
       </div>
     );
   }
