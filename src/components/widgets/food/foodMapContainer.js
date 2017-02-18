@@ -32,7 +32,7 @@ class foodMapContainer extends Component {
       }
     ];
     return(
-    <div style={{width: 800, height: 400}}>
+    <div style={{marginLeft: 20, width: 600, height: 400}}>
       <Map center= {location} markers={markers}/>
     </div>
     );

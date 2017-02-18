@@ -39,6 +39,6 @@ export default (
     <Route path="/cal" component={CalenderWidget}/>
     <Route path="/tv" component={TvWidget}/>
     <Route path="/food" component={FoodWidget}/>
-    <Route path="/giant" component={GiantBombWidget}/>
+    <Route path="/reviews" component={GiantBombWidget}/>
   </Route>
 );
