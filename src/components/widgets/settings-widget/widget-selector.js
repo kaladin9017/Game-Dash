@@ -1,6 +1,6 @@
 import React from 'react';
 
-const WidgetSelector = () => {
+const WidgetSelector = ({handleSelect}) => {
   const style = {
     marginLeft: "8%",
     marginTop: "80px",
@@ -22,26 +22,26 @@ const WidgetSelector = () => {
       <div className="settings-dropdown">
         <label className="settings-header">Eve</label>
         <ul>
-          <li>Eve Mail</li>
-          <li>Asset Tracket</li>
+          <li onClick={handleSelect.bind(this, 'evemail')}>Eve Mail</li>
+          <li onClick={handleSelect.bind(this, 'assetTracker')}>Asset Tracket</li>
         </ul>
       </div>
 
       <div className="settings-dropdown">
         <label className="settings-header">World Of Warcraft</label>
         <ul>
-          <li>Armory</li>
-          <li>Relm Status</li>
+          <li onClick={handleSelect.bind(this, 'armory')}>Armory</li>
+          <li onClick={handleSelect.bind(this, 'relmstatus')}>Relm Status</li>
         </ul>
       </div>
 
       <div className="settings-dropdown">
         <label className="settings-header">Misc</label>
         <ul>
-          <li>Youtube</li>
-          <li>Twitch</li>
-          <li>Couch Potato</li>
-          <li>Binge Tv</li>
+          <li onClick={handleSelect.bind(this, 'youtube')}>Youtube</li>
+          <li onClick={handleSelect.bind(this, 'twitch')}>Twitch</li>
+          <li onClick={handleSelect.bind(this, 'movie')}>Couch Potato</li>
+          <li onClick={handleSelect.bind(this, 'tv')}>Binge Tv</li>
         </ul>
       </div>
     </div>

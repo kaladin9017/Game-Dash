@@ -51,3 +51,13 @@
   letter-spacing: normal;
   color: #d0d2d3;
 }
+
+.Rectangle-2 {
+  width: 156px;
+  height: 34px;
+  border-radius: 16px;
+  background-color: #23c1b2;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
