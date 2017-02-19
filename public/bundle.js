@@ -67716,7 +67716,7 @@
 	
 	    _this.state = {
 	      game: null,
-	      gameInput: 'metroid'
+	      gameInput: ''
 	    };
 	
 	    _this.handleChange = _this.handleChange.bind(_this);
@@ -67729,39 +67729,28 @@
 	    value: function handleChange(event) {
 	      var text = event.target.value;
 	      this.setState({ gameInput: text });
-	      // console.log(this.state.game);
 	    }
 	  }, {
 	    key: 'submitGame',
 	    value: function submitGame(event) {
+	      var _this2 = this;
+	
 	      event.preventDefault();
-	      // const config = {
-	      //   headers: {
-	      //     'Accept': 'Access-Control-Allow-Origin',
-	      //   }
-	      // };
-	      // let key = "3ccef9878996b4bc77dc8b1d751b63fffbc7f2de";
-	      // axios.get(`http://www.giantbomb.com/api/search/?api_key=3ccef9878996b4bc77dc8b1d751b63fffbc7f2de&format=json&query="metroid prime"&resources=game`, config)
-	      // .then((response) => {
-	      //   console.log(response.data);
-	      // })
+	
+	      var mashkey = "9AVDJ0SYqzmshxvVyIP3fvB30uxnp11lb4gjsnK07xVmu02YUd";
+	
 	      (0, _jquery.ajax)({
-	        dataType: "jsonp",
-	        crossDomain: true,
-	        jsonp: "json_callback",
-	        url: 'http://www.giantbomb.com/api/search/?api_key=3ccef9878996b4bc77dc8b1d751b63fffbc7f2de&format=json&query="metroid prime"&resources=game'
+	
+	        beforeSend: function beforeSend(xhrObj) {
+	          xhrObj.setRequestHeader('X-Mashape-Key', mashkey);
+	        },
+	
+	        type: "GET",
+	        url: 'https://ahmedakhan-game-review-information-v1.p.mashape.com/api/v1/information?game_name=' + this.state.gameInput
+	
 	      }).done(function (data) {
-	        console.log(data);
-	        // $.ajax ({
-	        //   dataType: "jsonp",
-	        //   crossDomain: true,
-	        //   jsonp: "json_callback",
-	        //   url: `http://www.giantbomb.com/api/reviews/${}/?format=jsonp&api_key=" + key + "&query=`
-	        // })
-	        // jQuery('<div>').html(blah).text().substr(8)
-	        // this.setState({game: data.results});
-	        // console.log(data);
-	      }).fail(function () {}).always(function () {});
+	        _this2.setState({ game: data.result });
+	      });
 	    }
 	  }, {
 	    key: 'render',
@@ -67776,18 +67765,43 @@
 	          _react2.default.createElement('input', { onChange: this.handleChange.bind(this), type: 'text', placeholder: 'giant' }),
 	          _react2.default.createElement('input', { type: 'submit' })
 	        ),
-	        this.state.game ? _react2.default.createElement('div', { dangerouslySetInnerHTML: { __html: this.state.game.map(function (a, b) {
-	              return a.deck;
-	            }) } }) : _react2.default.createElement(
+	        this.state.game ? _react2.default.createElement(
+	          'div',
+	          null,
+	          ' ',
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            ' ',
+	            _react2.default.createElement(
+	              'a',
+	              { href: this.state.game.metacritic.url, target: 'blank' },
+	              ' ',
+	              _react2.default.createElement(
+	                'h6',
+	                null,
+	                ' ',
+	                this.state.game.name
+	              ),
+	              ' ',
+	              _react2.default.createElement('img', { style: { width: 250 }, src: this.state.game.thumbnail }),
+	              ' '
+	            ),
+	            ' ',
+	            _react2.default.createElement(
+	              'h6',
+	              null,
+	              ' ',
+	              this.state.game.summary,
+	              ' '
+	            )
+	          ),
+	          ' '
+	        ) : _react2.default.createElement(
 	          'p',
 	          null,
-	          ' loading '
+	          ' CHOOSE A GAME...AND THEN YOU WILL JOIN ME....CHOOSE THE TV....THEN YOU WILL JOIN YOUR MOTHER! '
 	        )
-	        // this.state.game ? this.state.game.map(function(a,b){
-	        //   return <h6> {a.deck} </h6>
-	        // }) : <p> loading </p>
-	
-	
 	      );
 	    }
 	  }]);

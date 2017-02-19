@@ -8,7 +8,7 @@ class GiantBomb extends Component {
     super(props);
     this.state = {
       game: null,
-      gameInput: 'metroid',
+      gameInput: ''
     };
     
     this.handleChange = this.handleChange.bind(this);
@@ -18,42 +18,33 @@ class GiantBomb extends Component {
   handleChange(event){
     let text = event.target.value;
     this.setState({gameInput: text});
-    // console.log(this.state.game);
   }
 
   submitGame(event){
+  
     event.preventDefault();
-    // const config = {
-    //   headers: {
-    //     'Accept': 'Access-Control-Allow-Origin',
-    //   }
-    // };
-    // let key = "3ccef9878996b4bc77dc8b1d751b63fffbc7f2de";
-    // axios.get(`http://www.giantbomb.com/api/search/?api_key=3ccef9878996b4bc77dc8b1d751b63fffbc7f2de&format=json&query="metroid prime"&resources=game`, config)
-    // .then((response) => {
-    //   console.log(response.data);
-    // })
+  
+    let mashkey = "9AVDJ0SYqzmshxvVyIP3fvB30uxnp11lb4gjsnK07xVmu02YUd";
+      
     ajax({
-      dataType: "jsonp",
-      crossDomain: true,
-      jsonp: "json_callback",
-      url: 'http://www.giantbomb.com/api/search/?api_key=3ccef9878996b4bc77dc8b1d751b63fffbc7f2de&format=json&query="metroid prime"&resources=game'
-    }).done((data)=> {
-      console.log(data)
-      // $.ajax ({
-      //   dataType: "jsonp",
-      //   crossDomain: true,
-      //   jsonp: "json_callback",
-      //   url: `http://www.giantbomb.com/api/reviews/${}/?format=jsonp&api_key=" + key + "&query=`
-      // })
-        // jQuery('<div>').html(blah).text().substr(8)
-      // this.setState({game: data.results});
-      // console.log(data);
-    }).fail(()=> {
-    }).always(()=> {
-    });
+            
+      beforeSend: function(xhrObj) {
+        xhrObj.setRequestHeader('X-Mashape-Key',mashkey);
+      },
 
+      type: "GET",
+      url: 'https://ahmedakhan-game-review-information-v1.p.mashape.com/api/v1/information?game_name=' + this.state.gameInput
+          
+            
+    })
+    .done((data)=>{
+      this.setState({game:data.result});
+         
+    });
   }
+
+
+  
   
   render(){
 
@@ -67,11 +58,7 @@ class GiantBomb extends Component {
 
           {
           
-            this.state.game ? <div dangerouslySetInnerHTML= {{ __html: this.state.game.map((a,b)=> {return a.deck })}}></div> : <p> loading </p>
-            // this.state.game ? this.state.game.map(function(a,b){
-            //   return <h6> {a.deck} </h6>
-            // }) : <p> loading </p>
-
+            this.state.game ? <div> <li> <a href = {this.state.game.metacritic.url} target = "blank"> <h6> {this.state.game.name}</h6> <img style ={{width: 250}} src = {this.state.game.thumbnail} /> </a> <h6> {this.state.game.summary} </h6></li> </div> : <p> CHOOSE A GAME...AND THEN YOU WILL JOIN ME....CHOOSE THE TV....THEN YOU WILL JOIN YOUR MOTHER! </p>
 
           }
         </div>
