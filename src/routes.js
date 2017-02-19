@@ -26,6 +26,7 @@ import TwitchWidget from './components/widgets/twitch/TwitchWidget';
 // Settings
 import SettingsWidget from './components/widgets/settings-widget/SettingsWidget';
 
+import GameReviewWidget from './components/widgets/gameReviews/gameReview';
 
 export default (
   <Route path="/" component={Main}>
@@ -40,5 +41,6 @@ export default (
     <Route path="/giant" component={GiantBombWidget}/>
     <Route path="/fifteen" component={FifteenGame}/>
     <Route path="/settings" component={SettingsWidget}/>
+    <Route path="/reviews" component={GameReviewWidget}/>
   </Route>
 );
