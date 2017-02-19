@@ -72,7 +72,7 @@ class Tv extends Component{
 
                 return (
               
-              <div>
+              <div key = {key}>
                 <li style = {{ width: 150, listStyleType: "none"}} key ={key}> 
                   <a href ={"http://demo.guidebox.com/#!movie/ "+ ele.id + "-"} target = "_blank"> 
                   <img src = {ele.poster_120x171}/> 

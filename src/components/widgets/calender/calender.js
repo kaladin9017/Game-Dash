@@ -1,5 +1,5 @@
 import  React, {Component} from  'react';
-import  css from  '../../../styles/calender.css';
+let css = require ('../../../styles/calender.css');
 import  Clock from './clock';
 
 class Calender extends Component {

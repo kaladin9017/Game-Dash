@@ -37,7 +37,7 @@ class Food extends Component {
   recent(ele,event){
     event.preventDefault();
 
-    this.state.recents.length != 6 ? this.setState({recents: this.state.recents.concat(ele.name)}) : this.setState({recents: this.state.recents.pop()})
+    this.state.recents.length != 6 ? this.setState({recents: this.state.recents.concat(ele.name)}) : this.setState({recents: this.state.recents.pop()});
 
 
   }
@@ -95,7 +95,7 @@ class Food extends Component {
               <center>
                 <h1> Recent Deviants! </h1>
                 {this.state ? this.state.recents.map((a,b)=>{
-                  return <div><h3 key = {b}> <a key = {b} href = {this.state.finalObj.menu_url}>{a} </a> </h3> </div>
+                  return <div key = {a} ><h3 key = {b}> <a key = {b} href = {this.state.finalObj.menu_url}>{a} </a> </h3> </div>;
                 }) : <p> loading </p>}
               </center>
 
@@ -105,7 +105,7 @@ class Food extends Component {
 
           <div style ={{display: "flex", flexWrap: "wrap", marginBottom: 30}}>
             {this.state.finalObj ? this.state.finalObj.map((ele,key)=>{
-              return <div> <li onClick ={this.recent.bind(this, ele.restaurant)} style =  {{display:"flex", justifyContent: "center", alignItems: "center", width:250,height: 50, backgroundColor: "#196cfc", borderRadius: 15, marginLeft:  10, marginRight: 10, marginTop: 10, color: "white"}} key = {key}> <a href = {ele.restaurant.menu_url}> {ele.restaurant.name }</a> </li> <h1 style = {{fontSize: 11, marginLeft: 22}}>{ele.restaurant.location.address}</h1> <h1 style = {{fontSize: 20, marginLeft: 100}}> rating </h1> <h1 style = {{fontSize: 11, marginLeft: 100}}>{ele.restaurant.user_rating.aggregate_rating}</h1></div>
+              return <div key = {key}> <li onClick ={this.recent.bind(this, ele.restaurant)} style =  {{display:"flex", justifyContent: "center", alignItems: "center", width:250,height: 50, backgroundColor: "#196cfc", borderRadius: 15, marginLeft:  10, marginRight: 10, marginTop: 10, color: "white"}} key = {key}> <a href = {ele.restaurant.menu_url}> {ele.restaurant.name}</a> </li> <h1 style = {{fontSize: 11, marginLeft: 22}}>{ele.restaurant.location.address}</h1> <h1 style = {{fontSize: 20, marginLeft: 100}}> rating </h1> <h1 style = {{fontSize: 11, marginLeft: 100}}>{ele.restaurant.user_rating.aggregate_rating}</h1></div>;
             }) : <p> loading </p>}
 
           </div>

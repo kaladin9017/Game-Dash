@@ -25,7 +25,7 @@ import TwitchWidget from './components/widgets/twitch/TwitchWidget';
 import CalenderWidget from './components/widgets/calender/calender';
 import TvWidget from './components/widgets/tv/tv';
 import FoodWidget from './components/widgets/food/food';
-import GiantBombWidget from './components/widgets/giantBomb/giantBomb';
+import GameReviewWidget from './components/widgets/gameReviews/gameReview';
 
 export default (
   <Route path="/" component={Main}>
@@ -39,6 +39,6 @@ export default (
     <Route path="/cal" component={CalenderWidget}/>
     <Route path="/tv" component={TvWidget}/>
     <Route path="/food" component={FoodWidget}/>
-    <Route path="/reviews" component={GiantBombWidget}/>
+    <Route path="/reviews" component={GameReviewWidget}/>
   </Route>
 );

@@ -65,7 +65,7 @@ class TopPicks extends Component{
         <h1 style = {{display: 'flex', justifyContent: 'center'}}> Top Gamer Movies </h1>
           <div style = {{display: 'flex', justifyContent: 'center', flexDirection: "spaceAround"}}>
             {this.state.movies ? this.state.movies.map((a,b)=>{
-              return <div> <a href = {a.link} target = "blank"> <li style = {{marginLeft: 5, listStyleType: "none"}}key = {b}> {a.name} </li> <li style = {{listStyleType: "none", width: 250}}> <img src = {a.url} /></li> </a> </div>
+              return <div key = {b}> <a href = {a.link} target = "blank"> <li style = {{marginLeft: 5, listStyleType: "none"}}key = {b}> {a.name} </li> <li style = {{listStyleType: "none", width: 250}}> <img src = {a.url} /></li> </a> </div>;
             }) : <p> loading </p>}
 
           </div>

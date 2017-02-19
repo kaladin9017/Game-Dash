@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Map from './foodMap';
-import {APIcall} from '../../../../seed/exAPI.js';
+let {APIcall}  = require ('../../../../seed/exAPI');
 
 class foodMapContainer extends Component {
   constructor(props){

@@ -3,7 +3,7 @@ import {ajax} from 'jquery';
 import axios from 'axios';
 import {Link, browserHistory} from 'react-router';
 
-class GiantBomb extends Component {
+class GameReviews extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -58,9 +58,10 @@ class GiantBomb extends Component {
 
           {
           
-            this.state.game ? <div> <li> <a href = {this.state.game.metacritic.url} target = "blank"> <h6> {this.state.game.name}</h6> <img style ={{width: 250}} src = {this.state.game.thumbnail} /> </a> <h6> {this.state.game.summary} </h6></li> </div> : <p> CHOOSE A GAME...AND THEN YOU WILL JOIN ME....CHOOSE THE TV....THEN YOU WILL JOIN YOUR MOTHER! </p>
+            this.state.game ? <div> <li> <a href = {this.state.game.metacritic.url} target = "blank"> <h3> {this.state.game.name}</h3> <img style ={{width: 250}} src = {this.state.game.thumbnail} /> </a> <h5> {this.state.game.summary} </h5></li> </div> : <p> CHOOSE A GAME...AND THEN YOU WILL JOIN ME....CHOOSE THE TV....THEN YOU WILL JOIN YOUR MOTHER! </p>
 
           }
+
         </div>
 
       );  
@@ -68,4 +69,4 @@ class GiantBomb extends Component {
   }
 }
 
-export default GiantBomb;
+export default GameReviews;
