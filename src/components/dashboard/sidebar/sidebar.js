@@ -21,9 +21,11 @@ class SideBar extends Component {
              className="Logo---GameDash"/>
            </div>
            <div>
+           <Link to="settings">
              <button className="Rectangle-2">
                Add Widget
              </button>
+           </Link>
           </div>
        </center>
        <center>

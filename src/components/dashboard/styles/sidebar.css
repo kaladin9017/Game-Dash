@@ -6,11 +6,12 @@
 
 /* SIDEBAR */
 .game-dropdown {
+  margin-right: 0%;
   display: flex;
   width: 90%;
   padding-top: 8px;
   padding-bottom: 8px;
-  border-radius: 4px;
+  border-radius: 2px;
   background-color: #3a3f4b;
   margin-bottom: 16px;
   overflow:auto;
@@ -65,8 +66,6 @@
 .widget-display {
   overflow:auto;
   margin-left: 1%;
-  margin-right: 1%;
   width: 76%;
   height: 100vh;
-  background-color: #282c34;
 }

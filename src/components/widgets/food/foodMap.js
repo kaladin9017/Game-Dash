@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { GoogleMapLoader, GoogleMap, Marker } from 'react-google-maps';
-// import {APIcall} from '../../../../seed/exAPI.js';
+
+let {APIcall} = require ('../../../../seed/exAPI');
 
 export default class foodMap extends Component{
   render() {
