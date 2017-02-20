@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import algoliasearch from 'algoliasearch';
 import _ from 'lodash';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { getWowItemDetails } from '../../../../actions/index';
 
 // ALGOLIA
 const ALGOLIA_SEARCH_ONLY_KEY = process.env.ALGOLIA_SEARCH_ONLY_KEY;
@@ -19,15 +21,16 @@ class WowArmory extends Component {
   constructor (props) {
     super (props);
 
-    this.state = {items: [], searchArmory: _.debounce((term) => {this.armorySearch(term);}, 500)};
+    this.state = {itemInfo: null, items: [], searchArmory: _.debounce((term) => {this.armorySearch(term);}, 500)};
     this.armorySearch(this.props.search);
   }
 
   handleSelect(item) {
+
     let that =this;
-    axios.get(`https://us.api.battle.net/wow/item/${item.entry}?locale=en_US&apikey=${process.env.WOW_API_KEY}`)
-      .then((response) => {
-        this.setState({selectedItem: item, itemInfo: response.data});
+    this.props.getWowItemDetails(item.entry)
+      .then(() => {
+        this.setState({selectedItem: item, itemInfo: this.props.wowArmory});
       });
   }
 
@@ -50,9 +53,9 @@ class WowArmory extends Component {
               <WowArmorySearchBar onSearchTermChange={this.state.searchArmory} />
             </center>
             <center>
-              <div className="youtubevideodiv">
-                <WowItemDisplay itemInfo={this.state.itemInfo} item={this.state.selectedItem}/>
-              </div>
+              {this.state.itemInfo ? <WowItemDisplay itemInfo={this.state.itemInfo}/> : null}
+            </center>
+            <center>
             </center>
             <WowArmoryList
               onItemSelect={this.handleSelect.bind(this)}
@@ -64,10 +67,14 @@ class WowArmory extends Component {
   }
 }
 
+function mapStateToProps (state) {
+  return {
+    wowArmory: state.wowArmory
+  };
+}
 
 
-
-export default WowArmory;
+export default connect(mapStateToProps, {getWowItemDetails})(WowArmory);
 
 
 // 0 - Poor

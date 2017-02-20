@@ -1,5 +1,5 @@
 
-import { YOUTUBE_SEARCH_TERM, GET_TWITCH_VIDEOS, GET_WOW_RELM_STATUS } from './types';
+import { YOUTUBE_SEARCH_TERM, GET_TWITCH_VIDEOS, GET_WOW_RELM_STATUS, GET_WOW_ITEM_DETAILS } from './types';
 
 import axios from 'axios';
 
@@ -26,10 +26,21 @@ export function fetchTwitchVideos(term) {
     payload: response
   };
 }
+
 export function getWowRelmStatus() {
   let response = axios.get(`https://us.api.battle.net/wow/realm/status?locale=en_US&apikey=${WOW_API_KEY}`);
   return {
     type: GET_WOW_RELM_STATUS,
     payload: response
   };
+}
+
+export function getWowItemDetails(entry) {
+  let response = axios.get(`https://us.api.battle.net/wow/item/${entry}?locale=en_US&apikey=${process.env.WOW_API_KEY}`);
+
+  return {
+    type: GET_WOW_ITEM_DETAILS,
+    payload: response
+  };
+
 }

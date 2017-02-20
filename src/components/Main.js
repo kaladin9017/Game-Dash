@@ -1,16 +1,15 @@
 import React, { Component } from "react";
-import SideBar from './dashboard/sidebar';
-import InitialScreen from './initialscreen/initialscreen';
-import EveScreen from './evescreen/evescreenpage';
-import WarCraftScreen from './warcraftscreen/warcraftscreen';
-import MiscScreen from './miscscreen/miscscreen';
+import SideBar from './dashboard/sidebar/sidebar';
+require('./dashboard/styles/sidebar.css');
 
 export default class Main extends Component {
   render(){
     return(
-			<div>
+			<div className="GameDash">
 				<SideBar />
-				{this.props.children}
+        <div className="widget-display">
+          {this.props.children}
+        </div>
 			</div>
     );
   }
