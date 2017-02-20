@@ -6,7 +6,7 @@ import {Router, browserHistory} from 'react-router';
 import store from './store/configureStore';
 import routes from './routes';
 
-require('./styles/app.css');
+require('./styles/main.css');
 
 ReactDOM.render(
   <Provider store={store}>
