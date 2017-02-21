@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+require('./relmstyles/relmstyles.css');
 
 import RelmList from './RelmList';
 import SelectedRealm from './SelectedRealm';

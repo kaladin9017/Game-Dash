@@ -71,11 +71,14 @@ class WowArmory extends Component {
               onItemSelect={this.handleSelect.bind(this)}
               items={this.state.items}
             />
-            <div>
-            {savedItems}
-            </div>
+            <center><h1 className="savedheading">Your saved weapons <span id="savedarr" className="glyphicon glyphicon-menu-down"></span></h1></center>
+            <div className="savedthings">
+              <div>
+                {savedItems}
+              </div>
           </div>
         </div>
+      </div>
     );
   }
 }

@@ -1,11 +1,13 @@
 .settings-widget {
   display: flex;
+  font-family: 'Lato', sans-serif;
 }
 
 .widget-selector {
   width: 30%;
   height: 100vh;
   background-color: #282c34;
+  font-family: 'Lato', sans-serif;
 }
 
 .widget-description {
@@ -25,11 +27,12 @@
   overflow: auto;
   border-radius: 2px;
   background-color: #3a3f4b;
+  font-family: 'Lato', sans-serif;
 }
 
 .settings-dropdown ul li {
   list-style: none;
-  font-family: DINOT;
+  font-family: 'Lato', sans-serif;
   font-size: 14px;
   font-weight: normal;
   font-style: normal;
@@ -38,11 +41,12 @@
   letter-spacing: normal;
   text-align: left;
   color: #ccd1d5;
+  margin-bottom: 10px;
 }
 
 .settings-header {
   margin-left: 5%;
-  font-family: DINOT;
+  font-family: 'Lato', sans-serif;
   font-size: 20px;
   font-weight: normal;
   font-style: normal;
@@ -60,4 +64,40 @@
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   margin-top: 24px;
   margin-bottom: 16px;
+}
+
+#evesettingsul {
+  font-family: 'Lato', sans-serif;
+}
+
+#eveulone {
+  font-family: 'Lato', sans-serif;
+}
+
+#eveultwo {
+  font-family: 'Lato', sans-serif;
+}
+
+.settingshr {
+  width: 100%;
+  border-color: #23c1b2;
+  border-width: 1px;
+  margin-top: -2px; 
+}
+
+.settingswrap {
+  background-color: #23c1b2;
+  width: auto;
+  height: auto;
+  color: black;
+}
+
+#gamename {
+  color: black;
+}
+
+#pointer {
+  color: white;
+  font-size: 8px;
+  margin-right: 10px;
 }
