@@ -73,6 +73,7 @@ class WowArmory extends Component {
             />
             <center><h1 className="savedheading">Your saved weapons <span id="savedarr" className="glyphicon glyphicon-menu-down"></span></h1></center>
             <div className="savedthings">
+            <div>
             {savedItems}
             </div>
           </div>

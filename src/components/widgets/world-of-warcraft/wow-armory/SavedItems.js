@@ -5,6 +5,7 @@ const SavedItems = ({itemInfo}) => {
   //
   // }
   return (
+
     <div className="video-detail col-md-8" id="weaponlistreturn">
       <div className="embed-responsive embed-responsive-16by9" >
         <img className="media-object" id="armorpic" src={`https://wow.zamimg.com/images/wow/icons/large/${itemInfo.icon}.jpg`} />

@@ -21,6 +21,7 @@ const WowItemDisplay = ({itemInfo, saveItem}) => {
             <br />
             <li className="weaponlistitem">{itemInfo.description}</li>
           </ul>
+
         </div>
       </div>
 
