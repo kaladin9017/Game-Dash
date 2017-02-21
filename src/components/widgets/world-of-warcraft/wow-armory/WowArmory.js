@@ -52,7 +52,7 @@ class WowArmory extends Component {
 
   render() {
     let savedItems = this.props.wowSavedItems.map((val,idx) => (<SavedItems itemInfo={val} key={idx} /> ));
-    console.log(savedItems)
+
     return (
         <div className="youtubeparentdiv">
         <h1 className="wowheading">Search the Armory- pick your weapon!</h1>
@@ -71,6 +71,9 @@ class WowArmory extends Component {
               onItemSelect={this.handleSelect.bind(this)}
               items={this.state.items}
             />
+            <div>
+            {savedItems}
+            </div>
           </div>
         </div>
     );
