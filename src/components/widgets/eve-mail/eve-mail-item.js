@@ -19,7 +19,7 @@ class EveMailItem extends Component {
         <br/>
         <div dangerouslySetInnerHTML={{ __html: this.props.body}}></div>
         <br/>
-        <button onClick={this.handleClick.bind(this)}>Back</button>
+        <button className="eve-mail-buttons" onClick={this.handleClick.bind(this)}>Back</button>
       </div>
     );
   }

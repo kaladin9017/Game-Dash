@@ -52,7 +52,7 @@ class Compose extends Component {
       }
     })
     .catch((err) => {
-      
+
     });
   }
   render() {
@@ -84,8 +84,8 @@ class Compose extends Component {
           <input type="text" placeholder="Body" onChange={this.updateBody.bind(this)}></input>
           <br/>
         </form>
-        <button onClick={this.sendMail.bind(this)}>Send Mail</button>
-        <button onClick={this.clickBack.bind(this)}>Back</button>
+        <button className="eve-mail-buttons" onClick={this.sendMail.bind(this)}>Send Mail</button>
+        <button className="eve-mail-buttons" onClick={this.clickBack.bind(this)}>Back</button>
       </div>
     );
   }

@@ -5,6 +5,7 @@ import {eveMailFetchHeaders, eveMailFetchCharacterNames, eveMailSortMailHeaders,
 import EveMailHeaderList from './eve-mail-header-list';
 import EveMailSidebar from './eve-mail-sidebar';
 const EVE_PIC = require('../../../assets/eve-login.png');
+require('./eve-mail.css');
 
 class EveMail extends Component {
   render() {

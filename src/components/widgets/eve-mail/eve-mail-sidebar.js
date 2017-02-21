@@ -22,14 +22,14 @@ class EveMailSidebar extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.clickRefresh.bind(this)}>Refresh</button>
-        <button onClick={this.clickCompose.bind(this)}>Compose</button>
-        <button onClick={this.clickSpecificMailList.bind(this, 'mailHeadersInbox')}>Inbox</button>
-        <button onClick={this.clickSpecificMailList.bind(this, 'mailHeadersPersonal')}>Personal</button>
-        <button onClick={this.clickSpecificMailList.bind(this, 'mailHeadersAlliance')}>Alliance</button>
-        <button onClick={this.clickSpecificMailList.bind(this, 'mailHeadersCorporation')}>Corporation</button>
-        <button onClick={this.clickSpecificMailList.bind(this, 'mailHeadersSent')}>Sent</button>
-        <button>Trash</button>
+        <button className="eve-mail-buttons" onClick={this.clickRefresh.bind(this)}>Refresh</button>
+        <button className="eve-mail-buttons" onClick={this.clickCompose.bind(this)}>Compose</button>
+        <button className="eve-mail-buttons" onClick={this.clickSpecificMailList.bind(this, 'mailHeadersInbox')}>Inbox</button>
+        <button className="eve-mail-buttons" onClick={this.clickSpecificMailList.bind(this, 'mailHeadersPersonal')}>Personal</button>
+        <button className="eve-mail-buttons" onClick={this.clickSpecificMailList.bind(this, 'mailHeadersAlliance')}>Alliance</button>
+        <button className="eve-mail-buttons" onClick={this.clickSpecificMailList.bind(this, 'mailHeadersCorporation')}>Corporation</button>
+        <button className="eve-mail-buttons" onClick={this.clickSpecificMailList.bind(this, 'mailHeadersSent')}>Sent</button>
+        <button className="eve-mail-buttons">Trash</button>
       </div>
     );
   }
