@@ -1,5 +1,10 @@
 
-import { YOUTUBE_SEARCH_TERM, GET_TWITCH_VIDEOS, GET_WOW_RELM_STATUS, GET_WOW_ITEM_DETAILS } from './types';
+import { YOUTUBE_SEARCH_TERM,
+         GET_TWITCH_VIDEOS,
+         GET_WOW_RELM_STATUS,
+         GET_WOW_ITEM_DETAILS,
+         SAVE_WOW_ITEM,
+         DELETE_WOW_ITEM } from './types';
 
 import axios from 'axios';
 
@@ -41,6 +46,14 @@ export function getWowItemDetails(entry) {
   return {
     type: GET_WOW_ITEM_DETAILS,
     payload: response
+  };
+
+}
+export function saveWowItem(item) {
+
+  return {
+    type: SAVE_WOW_ITEM,
+    payload: item
   };
 
 }

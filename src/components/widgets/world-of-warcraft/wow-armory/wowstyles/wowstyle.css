@@ -1,3 +1,6 @@
+button:focus {outline: none;}
+input:focus {outline: none;}
+
 #wowsearch {
 	margin-left: 20px;
 	margin-bottom: 20px;
@@ -63,10 +66,26 @@
 	height: 100%;
 }
 
+#weaponlistreturn {
+	width: auto;
+	height: auto;
+	display: inline-block;
+	margin: 10px;
+}
+
 .weaponul {
 	list-style: none;
 	font-family: 'Lato', sans-serif;
 	color: white;
+}
+
+.weaponulsave {
+	list-style: none;
+	font-family: 'Lato', sans-serif;
+	color: white;
+	display: inline-block;
+	width: auto;
+	height: auto;
 }
 
 #weaponname {
@@ -76,6 +95,13 @@
 
 .weaponlistitem {
 	font-size: 22px;
+}
+
+.weaponlistitemsave {
+	font-size: 22px;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
 }
 
 #weaponhr {
@@ -89,4 +115,45 @@
 	color: white;
 	font-size: 40px;
 	margin: 50px;
+}
+
+.youtubediv {
+	height: 150%;
+}
+
+.youtubeparentdiv {
+	height: auto;
+}
+
+#ulwrapper {
+	height: 500px;
+	display: inline-block;
+}
+
+.buttondiv {
+	display: inline-block;
+	margin-left: 20px;
+}
+
+.savedthings {
+	width: auto;
+	height: 300px;
+	overflow-y: scroll;
+	margin: 20px;
+	background-color: #1a1a1a;
+}
+
+#return {
+	display: inline-block;
+	margin: 10px;
+}
+
+.savedheading {
+	color: #23c1b2;
+	font-family: 'Lato', sans-serif;
+	margin: 40px;
+}
+
+#savedarr {
+	margin-left: 10px;
 }

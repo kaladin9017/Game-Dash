@@ -6,6 +6,7 @@ import eveMailReducer from './eveMailReducer';
 
 import wowRelmReducer from './wowRelmReducer';
 import wowArmoryReducer from './wowArmoryReducer';
+import wowSavedItemsReducer from './wowSavedItemsReducer';
 
 import sideBarReducer from './sideBarReducer';
 
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   twitchVideos: twitchReducer,
   eveMail: eveMailReducer,
   wowRelms: wowRelmReducer,
-  wowArmory: wowArmoryReducer
+  wowArmory: wowArmoryReducer,
+  wowSavedItems: wowSavedItemsReducer
 
 });
 
