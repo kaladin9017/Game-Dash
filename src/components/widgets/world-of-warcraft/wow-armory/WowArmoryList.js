@@ -1,5 +1,6 @@
 import React from 'react';
 import WowArmoryItem from './WowArmoryItem';
+require('./wowstyles/wowstyle.css');
 
 const WowArmoryList = (props) => {
   const armoryItems = props.items.map((item) => {
@@ -12,9 +13,11 @@ const WowArmoryList = (props) => {
   });
 
   return(
-    <ul className="col-md-4 list-group">
-      {armoryItems}
-    </ul>
+    <div className="listdiv">
+      <ul className="col-md-4 list-group">
+        {armoryItems}
+      </ul>
+    </div>
   );
 };
 
