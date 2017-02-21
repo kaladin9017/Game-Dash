@@ -4,7 +4,8 @@ import $ from 'jquery';
 import {Link, browserHistory} from 'react-router';
 import FoodMapContainer from './foodMapContainer.js';
 import Map from './foodMap';
-import CSS from './styles/foodstyles.css';
+
+require('./styles/foodstyles.css');
 
 class Food extends Component {
   constructor(props){
@@ -81,7 +82,7 @@ class Food extends Component {
             <input type = "submit" value = "Find" id="foodbutton"/>
           </form>
 
-          
+
             <div>
               <center>
                 <FoodMapContainer/>
@@ -91,14 +92,14 @@ class Food extends Component {
             <br />
 
             <div id="recdev">
-              
+
                 <h1>Recent Deviants!</h1>
                 {this.state ? this.state.recents.map((a,b)=>{
                   return <div key = {a} id="restname"><h3 key = {b}> <a key = {b} href = {this.state.finalObj.menu_url}>{a} </a> </h3> </div>;
                 }) : <p> loading </p>}
-              
+
             </div>
-            <hr id="foodhrone" />          
+            <hr id="foodhrone" />
 
           <center>
             <div style ={{display: "flex", flexWrap: "wrap", marginBottom: 30}}>

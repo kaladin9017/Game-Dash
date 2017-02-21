@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { GoogleMapLoader, GoogleMap, Marker } from 'react-google-maps';
-import CSS from './styles/foodstyles.css';
+require('./styles/foodstyles.css');
 
 let {APIcall} = require ('../../../../seed/exAPI');
 

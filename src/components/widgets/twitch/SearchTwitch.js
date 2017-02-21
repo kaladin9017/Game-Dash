@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { fetchTwitchVideos } from '../../../actions/index';
-import CSS from './styles/twitchstyle.css'
+require('./styles/twitchstyle.css');
 
 class SearchTwitch extends Component {
   constructor(props) {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CSS from './styles/youtubestyle.css'
+require('./styles/youtubestyle.css');
 
 class SearchBar extends Component {
   constructor(props){
@@ -19,7 +19,7 @@ class SearchBar extends Component {
       <div className="search-bar">
         <input
           onChange={this.onInputChange.bind(this)}
-          value={this.state.term} 
+          value={this.state.term}
           id="vidsearch"
           placeholder="Search a video..."
           />

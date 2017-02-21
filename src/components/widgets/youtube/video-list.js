@@ -1,6 +1,5 @@
 import React from 'react';
 import VideoListItem from './video-list-items';
-import CSS from './styles/youtubestyle.css';
 
 const VideoList = (props) => {
 
