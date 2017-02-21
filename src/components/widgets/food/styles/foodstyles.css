@@ -1,0 +1,61 @@
+#mapdiv {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 97%;
+	height: 300px;
+	display: block;
+}
+
+#recdev {
+	width: 100%;
+	height: auto;
+	color: #f2f2f2;
+	display: block;
+	overflow: hidden;
+	text-align: left;
+}
+
+#searchfood {
+	margin-top: 20px;
+	background-color: #1a1a1a;
+	border: 1px solid white;
+	border-radius: 20px;
+	color: #23c1b2;
+	height: 30px;
+	font-family: 'Lato', sans-serif;
+	text-align: center;
+	width: 200px;
+}
+
+#foodbutton {
+	background-color: #23c1b2;
+	border-radius: 5px;
+	color: white;
+	font-family: 'Lato', sans-serif;
+	height: 30px;
+	border: transparent;
+	width: 80px;
+	margin-left: 20px;
+}
+
+input:focus {outline: none;}
+
+.headingfood {
+	font-family: 'Lato', sans-serif;
+	font-size: 40px;
+	color: #23c1b2;
+	margin-top: 20px;
+	margin-right: 20px;
+	margin-bottom: -10px;
+}
+
+#foodhrone {
+	width: 100%;
+	border-color: #23c1b2;
+	border-width: 1px;
+	margin-top: 20px;
+}
+
+#restname {
+	color: #23c1b2;
+}

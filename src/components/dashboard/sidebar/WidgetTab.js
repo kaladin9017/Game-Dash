@@ -7,7 +7,7 @@ const WidgetTab = ({gameName, widgets}) => {
   return (
       <div className="game-dropdown" data-toggle="collapse" data-target={`#demo${gameName}`}>
         <div>
-          <p className="header">{gameName}</p>
+          <span className="glyphicon glyphicon-menu-down" id="downarr"></span><p className="header">{gameName}</p>
 
           <div id={`demo${gameName}`} className="collapse">
             <div id="divider"></div>

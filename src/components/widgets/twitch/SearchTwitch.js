@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { fetchTwitchVideos } from '../../../actions/index';
+import CSS from './styles/twitchstyle.css'
 
 class SearchTwitch extends Component {
   constructor(props) {
@@ -18,8 +19,8 @@ class SearchTwitch extends Component {
   render() {
     return(
       <div>
-        <input type="text" value={this.state.input} onChange={this.handleChange.bind(this)} />
-        <button onClick={this.handleSearch.bind(this)}>Search</button>
+        <input type="text" value={this.state.input} onChange={this.handleChange.bind(this)} id="searchtwitch"/>
+        <button onClick={this.handleSearch.bind(this)} id="twitchsearch">Search</button>
       </div>
     );
 

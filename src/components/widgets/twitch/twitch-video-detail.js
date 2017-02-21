@@ -6,8 +6,8 @@ const TwitchVideoDetail = ({channel}) => {
 
       <iframe
         src={`http://player.twitch.tv/?channel=${channel}`}
-        height="720"
-        width="1280"
+        height="620"
+        width="97%"
         frameBorder="0"
         scrolling="no"
         allowFullScreen="true">
