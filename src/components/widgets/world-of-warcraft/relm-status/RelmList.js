@@ -10,12 +10,12 @@ const RelmList = ({props, getRelm}) => {
   });
 
   return (
-  	<div>
-	  	<h1 id="relmheading">Select a Relm from the dropdown list below!</h1>
-	  	<hr id="relmultwo"/ >
-	    <select onChange={getRelm} name="realms">
-	      {relmList}
-	    </select>
+    <div>
+      <h1 id="relmheading">Select a Relm from the dropdown list below!</h1>
+      <hr id="relmultwo"/ >
+      <select onChange={getRelm} name="realms">
+        {relmList}
+      </select>
     </div>
   );
 };
