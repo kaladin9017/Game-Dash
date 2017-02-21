@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import React, {Component} from 'react';
 import {Link, browserHistory} from 'react-router';
+require('./styles/tvstyles.css');
 
 class TopPicks extends Component{
   constructor(props){
@@ -62,7 +63,7 @@ class TopPicks extends Component{
 
       return (
         <div>
-        <h1 style = {{display: 'flex', justifyContent: 'center'}}> Top Gamer Movies </h1>
+        <center><h1 id="topgamerheading"> Trending flicks </h1></center>
           <div style = {{display: 'flex', justifyContent: 'center', flexDirection: "spaceAround"}}>
             {this.state.movies ? this.state.movies.map((a,b)=>{
               return <div key = {b}> <a href = {a.link} target = "blank"> <li style = {{marginLeft: 5, listStyleType: "none"}}key = {b}> {a.name} </li> <li style = {{listStyleType: "none", width: 250}}> <img src = {a.url} /></li> </a> </div>;

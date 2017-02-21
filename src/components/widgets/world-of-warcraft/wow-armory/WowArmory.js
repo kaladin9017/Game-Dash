@@ -5,6 +5,8 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { getWowItemDetails, saveWowItem } from '../../../../actions/index';
 
+require('./wowstyles/wowstyle.css');
+
 // ALGOLIA
 const ALGOLIA_SEARCH_ONLY_KEY = process.env.ALGOLIA_SEARCH_ONLY_KEY;
 const ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID;
@@ -53,10 +55,13 @@ class WowArmory extends Component {
     console.log(savedItems)
     return (
         <div className="youtubeparentdiv">
+        <h1 className="wowheading">Search the Armory- pick your weapon!</h1>
+        <hr id="wowhrone" />
+        <h3 id="wowsub">Just type to filter your choice and then click on the one you want!</h3>
           <div className="youtubediv">
-            <center>
               <WowArmorySearchBar onSearchTermChange={this.state.searchArmory} />
-            </center>
+              <h3 id="wowsub">Your Weapon of choice:</h3>
+              <hr id="weaponhr" />
             <center>
               {this.state.itemInfo ? <WowItemDisplay itemInfo={this.state.itemInfo} saveItem={this.saveItem.bind(this)} /> : null}
             </center>

@@ -18,7 +18,9 @@ class WowArmorySearchBar extends Component {
       <div className="search-bar">
         <input
           onChange={this.onInputChange.bind(this)}
-          value={this.state.term} />
+          value={this.state.term} 
+          id="wowsearch"
+           />
       </div>
     );
   }
