@@ -3,6 +3,7 @@ import { ADD_WIDGET, REMOVE_WIDGET } from '../actions/types';
 
 const initialState = {
   Eve: ['evemail'],
+  GuildWars: ['GW2TalentCalc'],
   WorldOfWarcraft: ['armory', 'relmstatus'],
   Misc: ['tv', 'food', 'youtube', 'twitch', 'fifteen']
 };

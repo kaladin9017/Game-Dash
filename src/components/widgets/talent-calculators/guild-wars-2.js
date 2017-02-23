@@ -6,16 +6,80 @@ class GuildWars2TalentCalc extends Component {
   constructor() {
     super();
     this.state = {
-
+      notes: [],
+      newTitle: '',
+      newUrl: '',
+      newNote: ''
     };
   }
+  componentDidMount() {
+    if (JSON.parse(localStorage.getItem("GW2TalentCalcNotes"))) {
+      this.setState({notes: JSON.parse(localStorage.getItem("GW2TalentCalcNotes"))});
+    }
+  }
+  updateFormStateData(key, event) {
+    switch (key) {
+    case 'newTitle':
+      this.setState({newTitle: event.target.value});
+      break;
+    case 'newUrl':
+      this.setState({newUrl: event.target.value});
+      break;
+    case 'newNote':
+      this.setState({newNote: event.target.value});
+    }
+  }
+  writeNote(event) {
+    event.preventDefault();
+    let newNoteObj = {title: this.state.newTitle, url: this.state.newUrl, note: this.state.newNote};
+    let newNotesArray = this.state.notes;
+    newNotesArray.push(newNoteObj);
+    this.setState({notes: newNotesArray});
+    localStorage.setItem("GW2TalentCalcNotes", JSON.stringify(newNotesArray));
+  }
+  deleteNote(ind) {
+    let newNotesArray = this.state.notes;
+    newNotesArray.splice(ind, 1);
+    this.setState({notes: newNotesArray});
+    localStorage.setItem("GW2TalentCalcNotes", JSON.stringify(newNotesArray));
+  }
   render() {
-
+    let noteList;
+    if (this.state.notes.length == 0) {
+      noteList = null;
+    } else {
+      noteList = this.state.notes.map((ele, ind) => {
+        return (
+          <div key={ind}>
+            <a target="_blank" href={ele.url}><h2>{ele.title}</h2></a>
+            <p>{ele.note}</p>
+            <button onClick={this.deleteNote.bind(this, ind)}>Delete</button>
+          </div>
+        );
+      });
+    }
     return (
       <div>
         <a target="_blank" href="http://en.gw2skills.net/editor/">
           <img className="link-banner" src={GW2_BANNER} />
         </a>
+        <br/>
+        <div>
+          <form onSubmit={this.writeNote.bind(this)}>
+            <input type="text" placeholder="Name Your Build Here" onChange={this.updateFormStateData.bind(this, 'newTitle')}></input>
+            <br/>
+            <input type="text" placeholder="Input Quick Link Url Here" onChange={this.updateFormStateData.bind(this, 'newUrl')}></input>
+            <br/>
+            <input type="text" placeholder="Write Notes Here" onChange={this.updateFormStateData.bind(this, 'newNote')}></input>
+            <br/>
+            <input type="submit"></input>
+          </form>
+        </div>
+        <div>
+          <ul>
+            {noteList}
+          </ul>
+        </div>
       </div>
     );
   }
