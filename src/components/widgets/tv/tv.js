@@ -3,6 +3,8 @@ import React, {Component} from 'react';
 import {Link, browserHistory} from 'react-router';
 import TopPicks from './topPicks';
 
+require('./styles/tvstyles.css');
+
 class Tv extends Component{
   constructor(props){
     super(props);
@@ -53,10 +55,11 @@ class Tv extends Component{
 
       return (
         <div>
-         
+          <h1 className="headingtv">Find a Movie to watch!</h1>
+          <hr id="tvhrone" />
           <form onSubmit = {this.findMovie}>
-            <input onChange = {this.handleChange} type = "text" placeholder = "Type Movie"/>
-            <input type = "submit" value = "Button"/> 
+            <input onChange = {this.handleChange} type = "text" placeholder = "Find a Movie..." id="tvsearch"/>
+            <input type = "submit" value = "Find" id="tvbutton"/> 
           </form>
 
           <TopPicks />
@@ -64,7 +67,9 @@ class Tv extends Component{
           <div style ={{display: 'flex', jusifyContent: 'center', height: 50}}> 
           </div>
           <center>
-            <h1>Pick A Movie! </h1>
+            <h1 id="topgamerheadingpick">Pick A Movie! </h1>
+            <hr id="tvhrone" />
+            <br />
           </center>
           <div >
             <div style ={{display: "flex", flexWrap: "wrap", marginBottom: 30}}>

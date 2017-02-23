@@ -2,6 +2,8 @@
   width: 22%;
   height: 100vh;
   background-color: #282c34;
+  font-family: 'Lato', sans-serif;
+  text-align: center;
 }
 
 /* SIDEBAR */
@@ -13,39 +15,69 @@
   padding-bottom: 8px;
   border-radius: 2px;
   background-color: #3a3f4b;
+  /*background-color: #1a1a1a;*/
   margin-bottom: 16px;
-  overflow:auto;
   text-align: left;
+  padding: 20px;
+  font-family: 'Lato', sans-serif;
+  color: white;
+  overflow: hidden;
+  color: white;
+}
 
+.game-dropdown:hover {
+  cursor: pointer;
+}
+
+a {
+  color: white;
+  font-family: 'Lato', sans-serif;
+}
+
+a:hover {
+  color: white;
+  font-family: 'Lato', sans-serif;
+  text-decoration: none;
 }
 
 .Logo---GameDash {
   margin-top: 20px;
-  width: 40%;
-  height: 30px;
+  width: 50%;
+  height: 50px;
   object-fit: contain;
 }
 
 .Rectangle-2 {
-  width: 156px;
+  width: 60%;
   height: 34px;
   border-radius: 16px;
   background-color: #23c1b2;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
   margin-top: 24px;
   margin-bottom: 16px;
+  color: white;
+  border: transparent;
+  transition: 0.4s;
+}
+
+.Rectangle-2:hover {
+  border: 1px solid white;
+  transition: 0.4s;
 }
 
 .header {
-  font-family: DINOT;
+  /*font-family: DINOT;*/
   font-size: 20px;
   font-weight: normal;
   font-style: normal;
   font-stretch: normal;
   line-height: 1.5;
-  letter-spacing: normal;
-  color: #d0d2d3;
-
+  letter-spacing: 3px;
+  /*color: #d0d2d3;*/
+  color: white;
+  /*font-family: 'Lato', sans-serif;*/
+  font-family: 'Titillium Web', sans-serif;
+  display: inline-block;
 }
 
 
@@ -60,12 +92,39 @@
   width: 284px;
   height: 0.5px;
   background-color: #444957;
+  margin-bottom: 10px;
 }
 
 /*DASHBOARD*/
 .widget-display {
-  overflow:auto;
+  overflow: auto;
   margin-left: 1%;
   width: 76%;
   height: 100vh;
+}
+
+.tabs {
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+}
+
+#downarr {
+  display: inline-block;
+  margin-right: 10px;
+  float: left;
+  color: grey;
+  margin-top: 5px;
+}
+
+.collapse {
+  overflow-x: hidden;
+  color: white;
+}
+
+#x {
+  color: grey;
+  margin-right: 10px;
+  display: inline-block;
+  font-weight: lighter;
+  font-size: 10px;
 }

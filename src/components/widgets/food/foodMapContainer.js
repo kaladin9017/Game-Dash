@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Map from './foodMap';
+require('./styles/foodstyles.css');
 
 let {APIcall}  = require ('../../../../seed/exAPI');
 
@@ -33,7 +34,7 @@ class foodMapContainer extends Component {
       }
     ];
     return(
-    <div style={{marginLeft: 20, width: 600, height: 400}}>
+    <div id="mapdiv">
       <Map center= {location} markers={markers}/>
     </div>
     );

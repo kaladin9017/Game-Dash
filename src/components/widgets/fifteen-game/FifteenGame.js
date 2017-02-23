@@ -40,19 +40,26 @@ class FifteenGame extends Component {
   render () {
     return (
       <div id="gamebody">
-        <div className="container">
-          <div className="game">
-            {this.state.positions.map((i, key)=> {
-              let cellClass = key ? "cell":'empty cell';
-              let [x,y] = layout[this.state.positions.indexOf(key)];
-              return (
-                <div key={key} className={cellClass}
-                 onClick={this.updatePosition.bind(this, key)}
-                 style={{transform: `translate3d(${x}px,${y}px,0) scale(1.1)`}}>{key}
-                </div>
-              );
-            })}
-          </div>
+          <h1>The Fifteen-Game</h1>
+            <h2>Instructions:</h2>
+            <h4>• Click on a cell next to an empty one to move it around- you'll get the hang of it.</h4>
+            <h4>• Try and get the boxes in order! (and good luck!)</h4>
+              <hr id="fifteenhr"/>
+        <div className="container" id="gamecon">
+            <div id="gamewrap">
+              <div className="game">
+                {this.state.positions.map((i, key)=> {
+                  let cellClass = key ? "cell":'empty cell';
+                  let [x,y] = layout[this.state.positions.indexOf(key)];
+                  return (
+                    <div key={key} className={cellClass}
+                     onClick={this.updatePosition.bind(this, key)}
+                     style={{transform: `translate3d(${x}px,${y}px,0) scale(1.1)`}}>{key}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
       </div>
     </div>
       );

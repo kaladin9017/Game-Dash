@@ -21,10 +21,10 @@ class TwitchWidget extends Component {
       <div>
 
         <SearchTwitch />
-        <TwitchVideoDetail channel={this.state.channel} />
+        <center><TwitchVideoDetail channel={this.state.channel} /></center>
 
         {this.props.twitchVideos ? <div><TwitchVideoList videos={this.props.twitchVideos} getVideo={this.getVideo.bind(this)} /> <div> </div></div> : null}
-        <TwitchChat channel={this.state.channel} />
+        <center><TwitchChat channel={this.state.channel} /></center>
       </div>
     );
   }

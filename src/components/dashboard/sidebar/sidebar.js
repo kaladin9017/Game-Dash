@@ -29,7 +29,9 @@ class SideBar extends Component {
           </div>
        </center>
        <center>
-        {gameTabs}
+       <span className="tabs">
+        <center>{gameTabs}</center>
+       </span>
        </center>
       </div>
     );

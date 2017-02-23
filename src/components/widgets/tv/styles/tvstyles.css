@@ -1,0 +1,55 @@
+#tvsearch {
+	margin-left: 20px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	background-color: #1a1a1a;
+	border: 1px solid white;
+	border-radius: 20px;
+	color: #23c1b2;
+	height: 30px;
+	font-family: 'Lato', sans-serif;
+	text-align: center;
+	width: 200px;
+}
+
+#tvbutton {
+	background-color: #23c1b2;
+	border-radius: 5px;
+	color: white;
+	font-family: 'Lato', sans-serif;
+	height: 30px;
+	border: transparent;
+	width: 80px;
+	margin-left: 20px;
+}
+
+.headingtv {
+	font-family: 'Lato', sans-serif;
+	font-size: 40px;
+	color: #23c1b2;
+	margin-top: 20px;
+	margin-right: 20px;
+	margin-left: 20px;
+	margin-bottom: -10px;
+}
+
+#tvhrone {
+	width: 97%;
+	border-color: #23c1b2;
+	border-width: 1px;
+	margin-top: 20px;
+}
+
+#topgamerheading {
+	color: white;
+	font-family: 'Lato', sans-serif;
+	margin-top: 30px;
+	margin-bottom: 30px;	
+}
+
+#topgamerheadingpick {
+	color: white;
+	font-family: 'Lato', sans-serif;
+	margin-top: 30px;
+	margin-bottom: 30px;	
+}
