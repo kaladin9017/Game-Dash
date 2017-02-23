@@ -1,9 +1,10 @@
 #gamebody {
   margin:0;
-  padding:0;
+  padding: 20px;
   background:#eee;
-  font-family:Helvetica,
-  sans-serif
+  font-family: 'Lato', sans-serif;
+  overflow-x: hidden;
+  overflow: hidden;
   }
   
   .container,#gamebody{
@@ -15,26 +16,46 @@
   }
   .game{
     margin:auto;
+    margin-right: 42%;
     text-align:center;
     line-height:70px;
     width:348px;
-    height:348px
+    height:348px;    
     }
   .cell{
-    width:70px;
-    height:70px;
+    width: 70px;
+    height: 70px;
     margin-right:7px;
     border-radius:4px;
     margin-bottom:7px;
-    background:#fff;
+    background-color: #23c1b2;
+    border: 1px solid #1a1a1a;
     box-shadow:rgba(0,0,0,.2) 0 1px 2px 0;
     color:#333;
-    font-size:1.2rem;
+    font-size: 20px;
     font-weight:700;
     cursor:pointer;
     transition:all .3s ease-in;
-    position:absolute
+    position:absolute;
     }
     .empty{
       opacity:0
     }
+
+#fifteenhr {
+  width: 100%;
+  border-width: 1px;
+  border-color: #1a1a1a;
+  margin-bottom: 5px;
+}
+
+#gamecon {
+  padding-top: 0px;
+}
+
+#gamewrap {
+  width: auto;
+  height: auto;
+  margin-top: 5%;
+  margin-left: 25%;
+}

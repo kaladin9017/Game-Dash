@@ -1,0 +1,159 @@
+button:focus {outline: none;}
+input:focus {outline: none;}
+
+#wowsearch {
+	margin-left: 20px;
+	margin-bottom: 20px;
+	margin-top: 20px;
+	background-color: #1a1a1a;
+	border: 1px solid white;
+	border-radius: 20px;
+	color: #23c1b2;
+	height: 30px;
+	font-family: 'Lato', sans-serif;
+	text-align: center;
+	width: 200px;
+	text-transform: uppercase;
+}
+
+.wowheading {
+	font-family: 'Lato', sans-serif;
+	font-size: 40px;
+	color: #23c1b2;
+	margin-top: 20px;
+	margin-right: 20px;
+	margin-left: 20px;
+	margin-bottom: -10px;
+}
+
+#wowhrone {
+	width: 97%;
+	border-color: #23c1b2;
+	border-width: 1px;
+	margin-top: 20px;
+}
+
+#wowsub {
+	font-family: 'Lato', sans-serif;
+	color: white;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+.listdiv {
+	width: auto;
+	height: 350px;
+	overflow-y: scroll;
+	margin-left: 65%;
+	font-family: 'Lato', sans-serif;
+}
+
+.list-group {
+	width: auto;
+}
+
+#armorpic {
+	width: 100px;
+	height: 100px;
+	display: inline-block;
+	margin: 20px;
+}
+
+#weaponlist {
+	align-self: left;
+	align-content: left;
+	text-align: left;
+	height: 100%;
+}
+
+#weaponlistreturn {
+	width: auto;
+	height: auto;
+	display: inline-block;
+	margin: 10px;
+}
+
+.weaponul {
+	list-style: none;
+	font-family: 'Lato', sans-serif;
+	color: white;
+}
+
+.weaponulsave {
+	list-style: none;
+	font-family: 'Lato', sans-serif;
+	color: white;
+	display: inline-block;
+	width: auto;
+	height: auto;
+}
+
+#weaponname {
+	color: white;
+	display: inline-block;
+}
+
+.weaponlistitem {
+	font-size: 22px;
+}
+
+.weaponlistitemsave {
+	font-size: 22px;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+}
+
+#weaponhr {
+	width: 97%;
+	border-color: white;
+	border-width: 1px;
+}
+
+.selectaw {
+	font-family: 'Lato', sans-serif;
+	color: white;
+	font-size: 40px;
+	margin: 50px;
+}
+
+.youtubediv {
+	height: 150%;
+}
+
+.youtubeparentdiv {
+	height: auto;
+}
+
+#ulwrapper {
+	height: 500px;
+	display: inline-block;
+}
+
+.buttondiv {
+	display: inline-block;
+	margin-left: 20px;
+}
+
+.savedthings {
+	width: auto;
+	height: 300px;
+	overflow-y: scroll;
+	margin: 20px;
+	background-color: #1a1a1a;
+}
+
+#return {
+	display: inline-block;
+	margin: 10px;
+}
+
+.savedheading {
+	color: #23c1b2;
+	font-family: 'Lato', sans-serif;
+	margin: 40px;
+}
+
+#savedarr {
+	margin-left: 10px;
+}

@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 const WidgetItem = ({widgetName}) => {
   return (
     <div className="widget-item">
-      <Link to={`/${widgetName}`}>{widgetName}</Link>
+      <span className="glyphicon glyphicon-remove" id="x"></span><Link to={`/${widgetName}`}>{widgetName}</Link>
     </div>
   );
 
