@@ -22,6 +22,7 @@ import GiantBombWidget from './components/widgets/giantBomb/giantBomb';
 import FifteenGame from './components/widgets/fifteen-game/FifteenGame';
 import YoutubeWidget from './components/widgets/youtube/YoutubeWidget';
 import TwitchWidget from './components/widgets/twitch/TwitchWidget';
+import StreamWidget from './components/widgets/stream/StreamWidget';
 
 // Settings
 import SettingsWidget from './components/widgets/settings-widget/SettingsWidget';
@@ -42,5 +43,6 @@ export default (
     <Route path="/fifteen" component={FifteenGame}/>
     <Route path="/settings" component={SettingsWidget}/>
     <Route path="/reviews" component={GameReviewWidget}/>
+    <Route path="/stream" component={StreamWidget}/>
   </Route>
 );

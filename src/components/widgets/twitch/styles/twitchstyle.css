@@ -20,3 +20,65 @@
 }
 
 input:focus {outline: none;}
+
+
+.twitch-container {
+	display: flex;
+}
+
+.reddit-container {
+	display: flex;
+	width: 35%;
+	height: 100%;
+	flex-direction: column;
+}
+
+.twitch-social {
+	display: flex;
+	flex-direction: column;
+	width: 75%;
+	height: 300px;
+}
+
+
+.reddit-social-display {
+	align-self: flex-end;
+	width: 100%;
+	height: 300px;
+	overflow-y: auto;
+	margin-right: 8px;
+
+}
+
+.twitch-social-display {
+	align-self: center;
+	width: 100%;
+	margin-left: 8px;
+
+}
+
+
+.twitch-social-list {
+
+}
+
+
+
+
+
+.twitch-stream-icons{
+	width: 12px;
+  height: 12px;
+
+}
+
+.twitch-video-container {
+	display: flex;
+}
+.twitch-video-display {
+	width: 100%;
+}
+
+.twitch-social-list-item {
+	flex: 0 0 auto;
+}
