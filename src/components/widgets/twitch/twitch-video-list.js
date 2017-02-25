@@ -12,9 +12,14 @@ const TwitchVideoList  = ({videos, getVideo}) => {
     );
   });
   return (
-    <ul className="col-md-4 list-group">
-      {videoItems}
-    </ul>
+
+    <div className="tbl-content">
+      <table cellPadding="0" cellSpacing="0" border="0">
+        <tbody>
+          {videoItems}
+        </tbody>
+      </table>
+  </div>
   );
 };
 

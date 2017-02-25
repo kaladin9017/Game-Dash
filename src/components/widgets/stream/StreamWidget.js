@@ -53,7 +53,18 @@ class StreamWidget extends Component {
         return (<StreamRedditList key={val.data.id} article={val} />);
       });
       return (
-        <div>{articles}</div>
+        <div className="panel panel-info">
+                <div className="panel-heading-fixed">
+                    <h3 className="panel-title">
+                        <span className="glyphicon glyphicon-list-alt"></span>  Recent Posts
+                    </h3>
+                </div>
+                <div className="panel-body">
+                    <ul className="media-list">
+                      {articles}
+                    </ul>
+                </div>
+            </div>
       );
     }
 
