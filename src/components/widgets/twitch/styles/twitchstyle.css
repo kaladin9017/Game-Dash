@@ -82,3 +82,28 @@ input:focus {outline: none;}
 .twitch-social-list-item {
 	flex: 0 0 auto;
 }
+
+
+/*ICON BAR*/
+
+.icon-bar {
+	display: flex;
+  width: 96%;
+  overflow-x: auto;
+}
+
+.icon-bar span {
+  transition: all 0.3s ease;
+}
+
+.icon-bar span:hover {
+    background-color: #000;
+}
+
+.icon-bar-image {
+	width: 64px;
+}
+
+.active {
+    background-color: #4CAF50;
+}

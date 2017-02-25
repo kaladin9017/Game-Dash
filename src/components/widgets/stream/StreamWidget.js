@@ -32,14 +32,11 @@ class StreamWidget extends Component {
   render() {
 
     if (this.props.redditCode && !this.props.reddit.access_token) {
-      console.log('get access')
       this.handleRequest();
     }
     if (this.props.reddit.access_token && this.props.reddit.articles.length < 1) {
       this.handleArticlesRequest();
     }
-
-    console.log(this.props)
 
     if (this.props.reddit.articles.length < 1 || !this.props.reddit.access_token) {
       return(
