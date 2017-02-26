@@ -53,7 +53,7 @@ class GuildWars2TalentCalc extends Component {
           <div key={ind}>
             <a target="_blank" href={ele.url}><h2>{ele.title}</h2></a>
             <p>{ele.note}</p>
-            <button onClick={this.deleteNote.bind(this, ind)}>Delete</button>
+            <button className="talent-calc-buttons" onClick={this.deleteNote.bind(this, ind)}>Delete</button>
           </div>
         );
       });
@@ -72,7 +72,7 @@ class GuildWars2TalentCalc extends Component {
             <br/>
             <input type="text" placeholder="Write Notes Here" onChange={this.updateFormStateData.bind(this, 'newNote')}></input>
             <br/>
-            <input type="submit"></input>
+            <input className="small-calc-button" type="submit"></input>
           </form>
         </div>
         <div>
