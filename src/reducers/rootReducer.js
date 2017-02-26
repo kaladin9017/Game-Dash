@@ -10,6 +10,8 @@ import wowSavedItemsReducer from './wowSavedItemsReducer';
 
 import sideBarReducer from './sideBarReducer';
 
+import redditReducer from './redditReducer';
+
 const rootReducer = combineReducers({
   games: sideBarReducer,
   youtube: youtubeReducer,
@@ -17,7 +19,8 @@ const rootReducer = combineReducers({
   eveMail: eveMailReducer,
   wowRelms: wowRelmReducer,
   wowArmory: wowArmoryReducer,
-  wowSavedItems: wowSavedItemsReducer
+  wowSavedItems: wowSavedItemsReducer,
+  reddit: redditReducer
 
 });
 

@@ -9,7 +9,7 @@ class SearchTwitch extends Component {
     super(props);
     this.state = { input: ''};
   }
-  handleSearch() {
+  handleSearch(term) {
     this.props.fetchTwitchVideos(this.state.input);
   }
   handleChange(event) {
