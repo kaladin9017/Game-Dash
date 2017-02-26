@@ -12,6 +12,7 @@ import EveMailItem from './components/widgets/eve-mail/eve-mail-item';
 import EveMailHeaderList from './components/widgets/eve-mail/eve-mail-header-list';
 
 import GuildWars2TalentCalc from './components/widgets/talent-calculators/guild-wars-2.js';
+import PathOfExileCalc from './components/widgets/talent-calculators/poe-skill-calc';
 
 // FOR TESTING VIEW
 import FifteenGame from './components/widgets/fifteen-game/FifteenGame';
@@ -45,6 +46,7 @@ export default (
     <Route path="/food" component={FoodWidget}/>
     <Route path="/giant" component={GiantBombWidget}/>
     <Route path="/gw2TalentCalc" component={GuildWars2TalentCalc}/>
+    <Route path="POESkillPlanner" component={PathOfExileCalc}/>
     <Route path="/fifteen" component={FifteenGame}/>
     <Route path="/settings" component={SettingsWidget}/>
     <Route path="/reviews" component={GameReviewWidget}/>
