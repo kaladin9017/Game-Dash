@@ -27,3 +27,8 @@ export const DELETE_WOW_ITEM = 'DELETE_WOW_ITEM';
 // SideBar Widgets
 export const ADD_WIDGET = 'ADD_WIDGET';
 export const REMOVE_WIDGET = 'REMOVE_WIDGET';
+
+// Reddit
+
+export const GET_SUB_REDDIT = 'GET_SUB_REDDIT';
+export const GET_REDDIT_ACCESS_TOKEN = 'GET_REDDIT_ACCESS_TOKEN';

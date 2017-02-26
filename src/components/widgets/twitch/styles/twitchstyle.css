@@ -20,3 +20,150 @@
 }
 
 input:focus {outline: none;}
+
+
+.twitch-container {
+	display: flex;
+
+}
+
+.reddit-container {
+	display: flex;
+	margin-right: 12px;
+	width: 35%;
+	height: 100%;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+.twitch-social {
+	display: flex;
+	flex-direction: column;
+	width: 75%;
+	height: 300px;
+}
+
+
+.reddit-social-display {
+	align-self: flex-end;
+	width: 100%;
+	height: 300px;
+	overflow-y: auto;
+	background-color: #3a3f4b;
+	margin-top: 12px;
+
+
+}
+
+.twitch-social-display {
+	align-self: center;
+	width: 100%;
+	margin-left: 8px;
+
+}
+
+
+.twitch-social-list {
+
+}
+
+
+
+
+
+.twitch-stream-icons{
+	width: 24px;
+  height: 24px;
+
+}
+
+.twitch-video-container {
+	display: flex;
+}
+.twitch-video-display {
+	width: 100%;
+}
+
+.twitch-social-list-item {
+	flex: 0 0 auto;
+}
+
+
+/*ICON BAR*/
+
+.icon-bar {
+	display: flex;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.icon-bar span {
+  transition: all 0.3s ease;
+}
+
+.icon-bar span:hover {
+    background-color: #000;
+}
+
+.icon-bar-image {
+	width: 64px;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+
+/*SCROLL BAR*/
+
+::-webkit-scrollbar {
+    width: 1px;
+}
+
+::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+/*::-webkit-scrollbar-thumb {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}*/
+
+
+
+/*REDDIT STREAM TABLE*/
+
+
+table{
+  width:100%;
+  table-layout: fixed;
+	background-color: #3a3f4b;
+	text-transform: uppercase;
+
+}
+.tbl-content{
+  height:300px;
+  overflow-x:auto;
+  margin-top: 0px;
+  border: 1px solid;
+	background-color: #3a3f4b;
+
+}
+th{
+  padding: 20px 15px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 12px;
+  color: #fff;
+  text-transform: uppercase;
+	background-color: #3a3f4b;
+
+}
+td{
+  padding: 15px;
+  text-align: left;
+  vertical-align:middle;
+  font-weight: 300;
+  font-size: 12px;
+  color: #fff;
+  border-bottom: solid 1px;
+	background-color: #3a3f4b;
+
+}
