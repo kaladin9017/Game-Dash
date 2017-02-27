@@ -22,7 +22,7 @@ class EveMailHeader extends Component {
           <p>subject: {this.props.header.subject}</p>
           <p>date: {this.props.header.timestamp}</p>
           <p>sender: {this.props.header.from}</p>
-          <button className="eve-mail-read-button" onClick={this.handleClick.bind(this)}>Read</button>
+          <button onClick={this.handleClick.bind(this)}>Read</button>
         </li>
       </div>
     );

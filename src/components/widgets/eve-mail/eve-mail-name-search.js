@@ -88,7 +88,7 @@ class EveNameSearch extends Component {
       <div>
         <form onSubmit={this.validateName.bind(this)}>
           <input type="text" onChange={this.updateSearchName.bind(this)}></input>
-          <input className="eve-mail-buttons" type="submit" value="Validate Name"/>
+          <input type="submit" value="Validate Name"/>
         </form>
         {select}
       </div>

@@ -18,7 +18,7 @@ export function eveMailWriteTokens(authToken, updateStage) {
   let tokenData;
   tokenData = axios.post('/api/fetchAuthorizationCode', {
     authToken: authToken,
-    encodedClientSecret: process.env.EVE_MAIL_ENCODED_CLIENT_AND_SECRET
+    encodedClientSecret: process.env.REACT_APP_EVE_MAIL_ENCODED_CLIENT_AND_SECRET
   })
   .then((data) => {
     let tokenDataObj = {};
@@ -207,7 +207,7 @@ export function eveMailAuxWindowDisplayChange (str) {
 export function eveMailGetNewAccessTokenWithRefreshToken (refreshToken, updateStage) {
   let tokenData = axios.post('/api/fetchAuthorizationCodeWithRefreshToken', {
     refreshToken: refreshToken,
-    encodedClientSecret: process.env.EVE_MAIL_ENCODED_CLIENT_AND_SECRET
+    encodedClientSecret: process.env.REACT_APP_EVE_MAIL_ENCODED_CLIENT_AND_SECRET
   })
   .then((data) => {
     let tokenDataObj = {};

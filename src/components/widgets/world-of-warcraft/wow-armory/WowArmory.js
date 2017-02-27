@@ -8,8 +8,8 @@ import { getWowItemDetails, saveWowItem } from '../../../../actions/index';
 require('./wowstyles/wowstyle.css');
 
 // ALGOLIA
-const ALGOLIA_SEARCH_ONLY_KEY = process.env.ALGOLIA_SEARCH_ONLY_KEY;
-const ALGOLIA_APP_ID = process.env.ALGOLIA_APP_ID;
+const ALGOLIA_SEARCH_ONLY_KEY = process.env.REACT_APP_ALGOLIA_SEARCH_ONLY_KEY;
+const ALGOLIA_APP_ID = process.env.REACT_APP_ALGOLIA_APP_ID;
 const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_ONLY_KEY);
 const index = client.initIndex('WoWArmory');
 //

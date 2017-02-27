@@ -11,40 +11,21 @@ class StreamWidget extends Component {
     this.state = {code : ''};
   }
 
+  // handleArticlesRequest() {
+  //   this.props.getSubReddit(this.props.reddit.access_token, this.props.reddit.token_type);
+  // }
   componentDidMount() {
-    if(this.props.redditCode) {
-      this.setState({ code: this.props.redditCode });
-    }
-  }
-
-  handleRequest() {
-    this.props.getRedditAccessToken(this.props.redditCode);
-  }
-  handleArticlesRequest() {
     this.props.getSubReddit(this.props.reddit.access_token, this.props.reddit.token_type);
   }
 
-  // getDate(date) {
-  //   return moment(time*1000).format('YYYY-MM-DD HH:mm:ss');
-  // }
-
-
   render() {
-
-    if (this.props.redditCode && !this.props.reddit.access_token) {
-      this.handleRequest();
-    }
-    if (this.props.reddit.access_token && this.props.reddit.articles.length < 1) {
-      this.handleArticlesRequest();
-    }
 
     if (this.props.reddit.articles.length < 1 || !this.props.reddit.access_token) {
       return(
         <div>
-          <a href={`https://www.reddit.com/api/v1/authorize?client_id=${process.env.REDDIT_CLIENT_ID}&response_type=code&state=GAME_DASH&redirect_uri=http://localhost:8000/twitch&duration=temporary&scope=read`} >
+          <a href={`https://www.reddit.com/api/v1/authorize?client_id=${process.env.REACT_APP_REDDIT_CLIENT_ID}&response_type=code&state=GAME_DASH&redirect_uri=http://localhost:8000&duration=temporary&scope=read`} >
               Auth Me
             </a>
-            <button onClick={this.handleRequest.bind(this)}>Click</button>
         </div>
       );
     }
@@ -54,18 +35,18 @@ class StreamWidget extends Component {
       });
       return (
         <div className="panel panel-info">
-                <div className="panel-heading-fixed">
-                    <h3 className="panel-title">
-                        <span className="glyphicon glyphicon-list-alt"></span>  Recent Posts
-                    </h3>
-                </div>
-                <div className="panel-body">
-                    <ul className="media-list">
-                      {articles}
-                    </ul>
-                </div>
-            </div>
-      );
+          <div className="panel-heading-fixed">
+              <h3 className="panel-title">
+                Gamer News
+              </h3>
+          </div>
+          <div className="panel-body">
+              <ul className="media-list">
+                {articles}
+              </ul>
+          </div>
+        </div>
+  );
     }
 
 

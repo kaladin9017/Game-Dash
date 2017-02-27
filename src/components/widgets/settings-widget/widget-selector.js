@@ -42,7 +42,27 @@ const WidgetSelector = ({handleSelect}) => {
 
       <div className="settings-dropdown">
       <div className="settingswrap">
-        <label className="settings-header"><span id="gamename">Misc</span></label>
+        <label className="settings-header"><span id="gamename">Guild Wars</span></label>
+      </div>
+        <hr className="settingshr"/>
+        <ul>
+          <li onClick={handleSelect.bind(this, 'armory')}><span className="glyphicon glyphicon-menu-right" id="pointer"></span>Talent Calculator</li>
+        </ul>
+      </div>
+
+      <div className="settings-dropdown">
+      <div className="settingswrap">
+        <label className="settings-header"><span id="gamename">Path Of Exile</span></label>
+      </div>
+        <hr className="settingshr"/>
+        <ul>
+          <li onClick={handleSelect.bind(this, 'armory')}><span className="glyphicon glyphicon-menu-right" id="pointer"></span>Talent Calculator</li>
+        </ul>
+      </div>
+
+      <div className="settings-dropdown">
+      <div className="settingswrap">
+        <label className="settings-header"><span id="gamename">Addons</span></label>
       </div>
         <hr className="settingshr"/>
         <ul>

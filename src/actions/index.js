@@ -12,8 +12,8 @@ import $ from 'jquery';
 import Querystring from 'querystring';
 const qs = require('qs');
 
-const TWITCH_CLIENT_ID = process.env.TWITCH_CLIENT_ID;
-const WOW_API_KEY = process.env.WOW_API_KEY;
+const TWITCH_CLIENT_ID = process.env.REACT_APP_TWITCH_CLIENT_ID;
+const WOW_API_KEY = process.env.REACT_APP_WOW_API_KEY;
 
 export function changeYoutubeVideos(term) {
   return {
@@ -45,7 +45,7 @@ export function getWowRelmStatus() {
 }
 
 export function getWowItemDetails(entry) {
-  let response = axios.get(`https://us.api.battle.net/wow/item/${entry}?locale=en_US&apikey=${process.env.WOW_API_KEY}`);
+  let response = axios.get(`https://us.api.battle.net/wow/item/${entry}?locale=en_US&apikey=${process.env.REACT_APP_WOW_API_KEY}`);
 
   return {
     type: GET_WOW_ITEM_DETAILS,
@@ -65,7 +65,6 @@ export function saveWowItem(item) {
 // Reddit Actions
 
 export function getRedditAccessToken(code) {
-
   const config = {
     url: 'https://www.reddit.com/api/v1/access_token',
     method: 'post',
@@ -78,11 +77,11 @@ export function getRedditAccessToken(code) {
       code: code
     },
     paramsSerializer: function(params) {
-      return Querystring.stringify(params)+"&redirect_uri=http://localhost:8000/twitch";
+      return Querystring.stringify(params)+"&redirect_uri=http://localhost:8000";
     }
   };
   let response = axios(config);
-
+  console.log(response)
   return {
     type: GET_REDDIT_ACCESS_TOKEN,
     payload: response

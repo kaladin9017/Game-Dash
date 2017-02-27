@@ -15,6 +15,7 @@ const TwitchVideoList  = ({videos, getVideo}) => {
 
     <div className="tbl-content">
       <table cellPadding="0" cellSpacing="0" border="0">
+        <thead>Live Streams</thead>
         <tbody>
           {videoItems}
         </tbody>

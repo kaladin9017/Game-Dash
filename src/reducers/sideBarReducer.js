@@ -6,7 +6,7 @@ const initialState = {
   GuildWars: ['GW2TalentCalc'],
   PathOfExile: ['POESkillPlanner'],
   WorldOfWarcraft: ['armory', 'relmstatus'],
-  Misc: ['tv', 'food', 'youtube', 'twitch', 'fifteen']
+  Addons: ['tv', 'food', 'youtube', 'twitch', 'fifteen']
 };
 
 export default function (state = initialState, action) {
